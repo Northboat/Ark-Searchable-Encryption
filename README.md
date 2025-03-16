@@ -1,4 +1,7 @@
 # Searchable Encryption
+
+> [基于 Pairing 的 SE 算法仿真 | 北船の坞](https://northboat.github.io/pages/752eb6/)
+
 可搜索加密仿真，基于 JPBC 对一些基于 Pairing 的可搜索加密算法的复现，并测试其加密、陷门以及配对的时间开销
 
 SPWSE

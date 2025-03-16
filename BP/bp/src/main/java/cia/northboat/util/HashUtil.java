@@ -95,6 +95,11 @@ public class HashUtil {
         return hashG2Zr(Zr, g.powZn(r)).getImmutable();
     }
 
+    public static Element hashGT2Zr(Field Zr, Element gt){
+        byte[] bytes = gt.toBytes();
+        return Zr.newElementFromHash(bytes, 0, bytes.length).getImmutable();
+    }
+
     // 将 GT 上元素 gt 映射为 log(q) 位的 Zr 上的整数元素
     public static Element hashGT2ZrWithQ(Field Zr, Element gt, int q){
         byte[] bytes = gt.toBytes();
