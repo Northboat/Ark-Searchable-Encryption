@@ -13,5 +13,5 @@
   6. CR-IMA √
   7. TuCR √
   8. Tu2CKS √
-- IPFE：基于属性加密的可搜索前缀四叉树构建
 - Polynomial：一些基于多项式的可搜索加密算法
+- PECK：多项式系数加密
