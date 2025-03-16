@@ -16,8 +16,8 @@ BP：一些基于双线性配对的可搜索加密算法
 4. ~~DuMSE~~
 5. pMatch √
 6. CR-IMA √
-7. TuCR √
-8. Tu2CKS √
+7. TuCR ⍻
+8. Tu2CKS ⍻
 
 Polynomial
 
