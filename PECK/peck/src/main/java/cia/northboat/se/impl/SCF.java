@@ -13,11 +13,9 @@ public class SCF extends CipherSystem {
         super(G, GT, Zr, bp, n);
     }
 
-    private static int n;
-
     public Element h2(String w){
-        Element[] W = HashUtil.hashStr2ZrArr(this.getZr(), w, n);
-        return HashUtil.hashZrArr2Zr(this.getZr(), P, W);
+        Element[] W = HashUtil.hashStr2ZrArr(this.getZr(), w, this.getN());
+        return HashUtil.hashZrArr2Zr(this.getZr(), W);
     }
 
     public Element h3(Element gt){

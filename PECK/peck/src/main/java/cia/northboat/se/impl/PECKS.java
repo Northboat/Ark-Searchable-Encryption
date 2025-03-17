@@ -13,22 +13,20 @@ import java.util.List;
 
 public class PECKS extends CipherSystem {
 
-    Element g;
-
-    public PECKS(Field G, Field GT, Field Zr, Pairing bp, int n, Element g){
+    public PECKS(Field G, Field GT, Field Zr, Pairing bp, int n){
         super(G, GT, Zr, bp, n);
-        this.g = g;
     }
 
     public Element H(String str){
         Element[] w = HashUtil.hashStr2ZrArr(this.getZr(), str, this.getN());
-        return HashUtil.hashZrArr2Zr(this.getZr(), g, w);
+        return HashUtil.hashZrArr2Zr(this.getZr(), w);
     }
 
 
-    private Element g1, g2, EK, sk_cs, sk_ts, pk_cs, pk_ts, x_t, b1, a1, b2;
+    private Element g, g1, g2, EK, sk_cs, sk_ts, pk_cs, pk_ts, x_t, b1, a1, b2;
     @Override
     public void setup(){
+        g = this.getG().newRandomElement().getImmutable();
         a1 = this.getZr().newRandomElement().getImmutable();
         b1 = this.getZr().newRandomElement().getImmutable();
         b2 = this.getZr().newRandomElement().getImmutable();

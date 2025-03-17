@@ -31,14 +31,14 @@ public class HashUtil {
     }
 
     // 将 Zr 群上的数组 w 通过 G 上的生成元 g 映射为 Zr 群上的单个元素
-    public static Element hashZrArr2Zr(Field Zr, Element g, Element[] w){
-        Element h = g.duplicate();
+    public static Element hashZrArr2Zr(Field Zr, Element[] w){
+        Element h = Zr.newOneElement();
         for(Element e: w){
             if(!e.isZero()){
-                h.powZn(e);
+                h.mul(e);
             }
         }
-        return HashUtil.hashG2Zr(Zr, h);
+        return h.getImmutable();
     }
 
     // 将 G 上元素 e 映射到 Zr 群上

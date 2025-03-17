@@ -8,11 +8,8 @@ import it.unisa.dia.gas.jpbc.Pairing;
 
 public class FIPECK extends CipherSystem{
 
-    private final Element g;
-
-    public FIPECK(Field G, Field GT, Field Zr, Pairing bp, int n, Element g){
+    public FIPECK(Field G, Field GT, Field Zr, Pairing bp, int n){
         super(G, GT, Zr, bp, n);
-        this.g = g;
     }
 
     public Element H1(Element gt){
@@ -21,7 +18,7 @@ public class FIPECK extends CipherSystem{
 
     public Element H2(String str){
         Element[] w = HashUtil.hashStr2ZrArr(this.getZr(), str, this.getN());
-        return HashUtil.hashZrArr2Zr(this.getZr(), g, w);
+        return HashUtil.hashZrArr2Zr(this.getZr(), w);
     }
 
     public Element H3(String str){
@@ -29,11 +26,11 @@ public class FIPECK extends CipherSystem{
         return HashUtil.hashZrArr2G(g, w);
     }
 
-    private Element sk_s, sk_r, x;
-    public Element pk_r, X, pk_s, V, K;
+    Element g, sk_s, sk_r, x, pk_r, X, pk_s, V, K;
 
     @Override
     public void setup(){
+        g = this.getG().newRandomElement().getImmutable();
         sk_s = this.getZr().newRandomElement().getImmutable();
         V = this.getG().newRandomElement().getImmutable();
         pk_s = g.powZn(sk_s).getImmutable();
