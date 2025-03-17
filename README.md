@@ -32,4 +32,4 @@ PECK
 1. FIPECK √
 2. SCF √
 3. PECKS √
-4. AP
+4. AP ⍻
