@@ -53,18 +53,18 @@ public class AP extends CipherSystem {
 
     int l;
     Element[] B;
-    Element Ci1, Ci2, Ci3, pi;
+    Element Ci1, Ci2, Ci3;
     @Override
     public void enc(List<String> W) {
         l = W.size();
         Element s = randomZ(), r = randomZ();
         Element t = pairing(X, V).powZn(s).getImmutable();
         Ci1 = g1.powZn(s).getImmutable();
-        Ci2 = t.mul(pairing(X, V).powZn(r)).getImmutable();
+        Ci2 = t.mul(pairing(X, Y).powZn(r)).getImmutable();
         Ci3 = g2.powZn(r).getImmutable();
 
         List<Element> factors = new ArrayList<>();
-        pi = randomZ();
+        Element pi = randomZ();
         for(String w: W){
             factors.add(H1(w));
         }
@@ -104,7 +104,7 @@ public class AP extends CipherSystem {
                 sum.add(H1(q).powZn(fai));
             }
             sum.getImmutable();
-            Ti[i] = g1.powZn(m.invert().mul(Ti1).mul(sum)).mul(X.powZn(xi)).getImmutable();
+            Ti[i] = g1.powZn(m.invert().mul(Ti1).mul(y).mul(sum)).mul(X.powZn(xi)).getImmutable();
         }
     }
 
@@ -121,6 +121,8 @@ public class AP extends CipherSystem {
             part2.mul(cur);
         }
         part2.getImmutable();
+        System.out.println("product: " + part2);
+
         Element left = part1.mul(part2).getImmutable();
 
         System.out.println("left: " + left);
@@ -153,6 +155,7 @@ public class AP extends CipherSystem {
             rk3[i] = K[i].mul(pairing(X, V).powZn(s[i].sub(s[i-1]))).getImmutable();
         }
     }
+
 
     Element Cj1, Cj2, Cj3;
     Element[] Cj4, Cj5, Cj6;
@@ -210,6 +213,7 @@ public class AP extends CipherSystem {
             product.mul(cur);
         }
         product.getImmutable();
+        System.out.println("product: " + product);
 
         Element left = t.mul(Cj5[j]).powZn(Tj1).mul(product).getImmutable();
         Element right = Cj2.mul(pairing(H2(K), Cj3)).powZn(Tj1).getImmutable();

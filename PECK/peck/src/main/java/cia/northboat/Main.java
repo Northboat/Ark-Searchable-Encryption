@@ -53,7 +53,8 @@ public class Main {
         CipherSystem pecks = new PECKS(G1, GT, Zr, bp, n);
         CipherSystem ap = new AP(G1, GT, Zr, bp, n, G2);
 
-        test(fipeck, word, strs, round);
+//        test(fipeck, word, strs, round);
+
         test(scf, word, strs, round);
         test(pecks, word, strs, round);
         test(ap, word, strs, round);

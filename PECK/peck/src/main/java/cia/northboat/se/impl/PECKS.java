@@ -18,7 +18,7 @@ public class PECKS extends CipherSystem {
     }
 
     public Element H(String str){
-        Element[] w = HashUtil.hashStr2ZrArr(this.getZr(), str, this.getN());
+        Element[] w = h(str);
         return HashUtil.hashZrArr2Zr(this.getZr(), w);
     }
 
@@ -66,15 +66,11 @@ public class PECKS extends CipherSystem {
         C2 = EK.powZn(r).getImmutable();
         C3 = g.powZn(r).getImmutable();
 
-        // 将系数模一个 p
-//        BigInteger p = new BigInteger("4");
 
         l = W.size();
 
         List<Element> factors = new ArrayList<>(l);
         for(int i = 0; i < l; i++){
-//            BigInteger v = H(W.get(i)).toBigInteger();
-//            factors.add(this.getZr().newElement(v.mod(p)).getImmutable());
             factors.add(H(W.get(i)));
         }
         System.out.println("function params: " + factors);
