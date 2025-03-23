@@ -5,14 +5,17 @@ import cia.northboat.se.impl.AP;
 import cia.northboat.se.impl.FIPECK;
 import cia.northboat.se.impl.PECKS;
 import cia.northboat.se.impl.SCF;
-import it.unisa.dia.gas.jpbc.Element;
+import cia.northboat.util.FileUtil;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Main {
     public static Field G1, G2, GT, Zr;
@@ -30,11 +33,17 @@ public class Main {
         GT = bp.getGT();
         Zr = bp.getZr();
         n = 12;
+
+        // 需要测试的算法数量
+        int k = 3;
         times = new ArrayList<>();
+        for(int i = 0; i < k; i++){
+            times.add(new ArrayList<>());
+        }
     }
 
     public static void printTime(){
-        System.out.println("======== Time Cost ========");
+        System.out.println("================= Time Cost =================");
         for(List<Long> t: times){
             for(long i: t){
                 System.out.print(i + "\t\t\t");
@@ -44,88 +53,51 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String word = "Hello Maven!";
-        int round = 1;
-        List<String> strs = Arrays.asList("cyber", "information", "security");
 
-        CipherSystem fipeck = new FIPECK(G1, GT, Zr, bp, n);
+        int round = 1, sender = 10, receiver = 10;
+
+        String file = "300.txt";
+        List<String> words = FileUtil.readFileToList(file);
+
+//        CipherSystem fipeck = new FIPECK(G1, GT, Zr, bp, n);
         CipherSystem scf = new SCF(G1, GT, Zr, bp, n);
-        CipherSystem pecks = new PECKS(G1, GT, Zr, bp, n);
         CipherSystem ap = new AP(G1, GT, Zr, bp, n, G2);
+        CipherSystem pecks = new PECKS(G1, GT, Zr, bp, n);
 
-//        test(fipeck, word, strs, round);
+        List<CipherSystem> cipherSystems = new ArrayList<>();
+        cipherSystems.add(scf);
+        cipherSystems.add(ap);
+        cipherSystems.add(pecks);
 
-        test(scf, word, strs, round);
-        test(pecks, word, strs, round);
-        test(ap, word, strs, round);
-
-        printTime();
+        executorServiceTest(cipherSystems, words, sender, receiver, round);
     }
 
 
-    public static void test(CipherSystem cipherSystem, String word, List<String> words, int m){
-        System.out.println(cipherSystem.getClass() + " test:");
+    public static void executorServiceTest(List<CipherSystem> cipherSystems, List<String> words,
+                            int sender, int receiver, int round){
 
-        cipherSystem.setup();
-        cipherSystem.keygen();
-
-        long s1 = System.currentTimeMillis();
-        for(int i = 0; i < m; i++) {
-            try {
-                cipherSystem.enc(word);
-            } catch (UnsupportedOperationException e) {
-                cipherSystem.enc(words);
-            }
-        }
-        long e1 = System.currentTimeMillis();
-        long t1 = e1-s1;
-
-        long s2 = System.currentTimeMillis();
-        for(int i = 0; i < m; i++){
-            try{
-                cipherSystem.trap(word);
-            }catch (UnsupportedOperationException e){
-                cipherSystem.trap(words);
-            }
-        }
-        long e2 = System.currentTimeMillis();
-        long t2 = e2-s2;
-
-        long s3 = System.currentTimeMillis();
-        for(int i = 0; i < m; i++)
-            System.out.println(cipherSystem.search());
-        long e3 = System.currentTimeMillis();
-        long t3 = e3-s3;
-
-        if(cipherSystem.getUpdatable()){
-            cipherSystem.updateKey();
-            long s4 = System.currentTimeMillis();
-            for(int i = 0; i < m; i++)
-                cipherSystem.updateEnc();
-            long e4 = System.currentTimeMillis();
-            t1 += e4-s4;
-
-
-            long s5 = System.currentTimeMillis();
-            for(int i = 0; i < m; i++) {
-                try {
-                    cipherSystem.constTrap(word);
-                } catch (UnsupportedOperationException e) {
-//                    e.printStackTrace();
-                    cipherSystem.constTrap(words);
-                }
-            }
-            long e5 = System.currentTimeMillis();
-            t2 += e5-s5;
-
-            long s6 = System.currentTimeMillis();
-            for(int i = 0; i < m; i++)
-                System.out.println(cipherSystem.updateSearch());
-            long e6 = System.currentTimeMillis();
-            t3 += e6-s6;
+        ExecutorService executor = Executors.newFixedThreadPool(cipherSystems.size());
+        List<Future<List<Long>>> futures = new ArrayList<>();
+        // 提交任务
+        for(CipherSystem cipherSystem: cipherSystems){
+            futures.add(executor.submit(() -> cipherSystem.test(words, sender, receiver, round)));
         }
 
-        times.add(Arrays.asList(t1/m, t2/m, t3/m));
-        System.out.println(cipherSystem.getClass() + " test finished!\n");
+        // 获取结果
+        try {
+            // 这一步是阻塞的，不用 add 而用 set 是因为有可能先后次序不是我所希望的
+            for(int i = 0; i < futures.size(); i++){
+                Future<List<Long>> future = futures.get(i);
+                times.set(i, future.get());
+            }
+            // 打印结果
+            printTime();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        } finally {
+            // 关闭线程池
+            executor.shutdown();
+        }
     }
+
 }

@@ -7,7 +7,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -130,5 +132,34 @@ public class PECKS extends CipherSystem {
         System.out.println("right: " + right);
 
         return left.isEqual(right);
+    }
+
+    @Override
+    public List<Long> test(List<String> words, int sender, int receiver, int round){
+        long t1 = 0, t2 = 0, t3 = 0;
+
+        for(int i = 0; i < round; i++){
+            setup();
+            keygen();
+
+            Long s1 = System.currentTimeMillis();
+            for(int j = 0; j < sender; j++)
+                enc(words);
+            Long e1 = System.currentTimeMillis();
+            t1 += e1-s1;
+
+            Long s2 = System.currentTimeMillis();
+            for(int j = 0; j < receiver; j++)
+                trap(words);
+            Long e2 = System.currentTimeMillis();
+            t2 += e2-s2;
+
+            Long s3 = System.currentTimeMillis();
+            for(int j = 0; j < receiver * sender; j++)
+                System.out.println(search());
+            Long e3 = System.currentTimeMillis();
+            t3 += e3-s3;
+        }
+        return Arrays.asList(t1/round, t2/round, t3/round);
     }
 }

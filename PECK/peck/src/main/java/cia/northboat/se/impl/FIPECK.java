@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class FIPECK extends CipherSystem{
 
     public FIPECK(Field G, Field GT, Field Zr, Pairing bp, int n){

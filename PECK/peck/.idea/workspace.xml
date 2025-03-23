@@ -37,7 +37,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/File/XDU/项目/可搜索加密/code/peck&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/File/XDU/项目/可搜索加密/code/peck/test&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -50,16 +50,27 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\File\XDU\项目\可搜索加密\code\peck\test" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\java\cia\northboat\se" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\pack\src\main\java\cia\northboat" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\pack" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\pack\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cia.northboat.utils" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
+    <configuration name="FileUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FileUtil" />
+      <module name="peck" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cia.northboat.Main" />
       <module name="peck" />
@@ -89,6 +100,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.FileUtil" />
         <item itemvalue="Application.PolynomialUtil" />
       </list>
     </recent_temporary>
@@ -114,6 +126,8 @@
       <workItem from="1742189469926" duration="10220000" />
       <workItem from="1742204892091" duration="2878000" />
       <workItem from="1742622924677" duration="3115000" />
+      <workItem from="1742708680308" duration="662000" />
+      <workItem from="1742712157109" duration="13677000" />
     </task>
     <servers />
   </component>

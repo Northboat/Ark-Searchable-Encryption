@@ -7,6 +7,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SCF extends CipherSystem {
 
     public SCF(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -72,5 +75,36 @@ public class SCF extends CipherSystem {
         Element pairing = this.getBp().pairing(PK_do, T);
         System.out.println("pairing: " + pairing);
         return h3(pairing).isEqual(h4(pairing));
+    }
+
+
+    @Override
+    public List<Long> test(List<String> words, int sender, int receiver, int round){
+        long t1 = 0, t2 = 0, t3 = 0;
+        for(int i = 0; i < round; i++){
+            setup();
+            keygen();
+            for(String word: words){
+                long s1 = System.currentTimeMillis();
+                for(int j = 0; j < sender * receiver; j++)
+                    enc(word);
+                long e1 = System.currentTimeMillis();
+                t1 += e1-s1;
+
+                long s2 = System.currentTimeMillis();
+                for(int j = 0; j < receiver * sender; j++)
+                    trap(word);
+                long e2 = System.currentTimeMillis();
+                t2 += e2-s2;
+
+                long s3 = System.currentTimeMillis();
+                for(int j = 0; j < receiver * sender; j++)
+                    search();
+                long e3 = System.currentTimeMillis();
+                t3 += e3-s3;
+            }
+        }
+
+        return Arrays.asList(t1/round, t2/round, t3/round);
     }
 }

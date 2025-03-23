@@ -8,6 +8,7 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AP extends CipherSystem {
@@ -222,5 +223,58 @@ public class AP extends CipherSystem {
         System.out.println("right: " + right);
 
         return left.isEqual(right);
+    }
+
+
+    @Override
+    public List<Long> test(List<String> words, int sender, int receiver, int round){
+        long t1 = 0, t2 = 0, t3 = 0;
+
+        for(int i = 0; i < round; i++){
+            setup();
+            keygen();
+
+            long s1 = System.currentTimeMillis();
+            for(int j = 0; j < sender; j++){
+                enc(words);
+            }
+            long e1 = System.currentTimeMillis();
+            t1 += e1-s1;
+
+            int min = Math.min(sender, receiver);
+            long s2 = System.currentTimeMillis();
+            for(int j = 0; j < min; j++){
+                trap(words);
+            }
+            long e2 = System.currentTimeMillis();
+            t2 += e2-s2;
+
+            long s3 = System.currentTimeMillis();
+            for(int j = 0; j < min; j++){
+                search();
+            }
+            long e3 = System.currentTimeMillis();
+            t3 += e3-s3;
+
+            updateKey();
+
+            for(int j = 0; j < receiver * sender - sender; j++){
+                long s4 = System.currentTimeMillis();
+                updateEnc();
+                long e4 = System.currentTimeMillis();
+                t1 += e4-s4;
+
+                long s5 = System.currentTimeMillis();
+                constTrap(words);
+                long e5 = System.currentTimeMillis();
+                t2 += e5-s5;
+
+                long s6 = System.currentTimeMillis();
+                updateSearch();
+                long e6 = System.currentTimeMillis();
+                t3 += e6-s6;
+            }
+        }
+        return Arrays.asList(t1, t2, t3);
     }
 }

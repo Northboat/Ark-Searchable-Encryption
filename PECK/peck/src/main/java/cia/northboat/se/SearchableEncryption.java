@@ -1,5 +1,6 @@
 package cia.northboat.se;
 
+import java.util.Arrays;
 import java.util.List;
 
 public interface SearchableEncryption {
@@ -39,6 +40,48 @@ public interface SearchableEncryption {
 
     default boolean updateSearch() {
         throw new UnsupportedOperationException("updateSearch() is not supported");
+    }
+
+    default List<Long> test(List<String> words, int round){
+        long t1 = 0, t2 = 0, t3 = 0;
+        for(int i = 0; i < round; i++){
+            setup();
+            keygen();
+
+            long s1 = System.currentTimeMillis();
+            try{
+                enc(words);
+            }catch (UnsupportedOperationException e){
+                for(String word: words){
+                    enc(word);
+                }
+            }
+            long e1 = System.currentTimeMillis();
+            t1 += e1-s1;
+
+
+            long s2 = System.currentTimeMillis();
+            try{
+                trap(words);
+            }catch (UnsupportedOperationException e){
+                for(String word: words){
+                    trap(word);
+                }
+            }
+            long e2 = System.currentTimeMillis();
+            t2 += e2-s2;
+
+            long s3 = System.currentTimeMillis();
+            for(int j = 0; j < words.size(); j++)
+                search();
+            long e3 = System.currentTimeMillis();
+            t3 += e3-s3;
+        }
+        return Arrays.asList(t1, t2, t3);
+    }
+
+    default List<Long> test(List<String> words, int sender, int receiver, int round) {
+        throw new UnsupportedOperationException("test(List<String> words, int sender, int receiver, int round) is not supported");
     }
 
 }
