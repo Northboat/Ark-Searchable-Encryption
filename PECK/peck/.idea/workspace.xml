@@ -37,7 +37,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/File/XDU/项目/可搜索加密/code/peck/test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/File/XDU/项目/可搜索加密/code/polynomial/polynomial&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -127,7 +127,10 @@
       <workItem from="1742204892091" duration="2878000" />
       <workItem from="1742622924677" duration="3115000" />
       <workItem from="1742708680308" duration="662000" />
-      <workItem from="1742712157109" duration="13677000" />
+      <workItem from="1742712157109" duration="21773000" />
+      <workItem from="1742751179262" duration="9885000" />
+      <workItem from="1742795800574" duration="9775000" />
+      <workItem from="1742821920154" duration="1011000" />
     </task>
     <servers />
   </component>

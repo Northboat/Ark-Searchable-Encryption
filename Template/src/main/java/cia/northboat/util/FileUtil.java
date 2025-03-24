@@ -37,7 +37,7 @@ public class FileUtil {
 
     public static void writeCostToLog(String logMessage){
         // 将日志写入文件
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("app.log", true))) { // true 表示追加模式
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("time.log", true))) { // true 表示追加模式
             writer.write(logMessage);
         } catch (IOException e) {
             System.err.println("写入日志文件失败: " + e.getMessage());

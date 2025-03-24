@@ -42,35 +42,40 @@ public class Main {
         }
     }
 
-    public static void printTime(){
-        System.out.println("================= Time Cost =================");
+    public static void logTime(){
+        FileUtil.writeCostToLog("================= Time Cost =================\n");
         for(List<Long> t: times){
             for(long i: t){
-                System.out.print(i + "\t\t\t");
+                FileUtil.writeCostToLog(i + "\t\t\t");
             }
-            System.out.println();
+            FileUtil.writeCostToLog("\n");
         }
+        FileUtil.writeCostToLog("\n\n");
     }
 
     public static void main(String[] args) {
 
         int round = 1, sender = 10, receiver = 10;
 
-        String file = "300.txt";
+        String file = "100.txt";
         List<String> words = FileUtil.readFileToList(file);
 
-//        CipherSystem fipeck = new FIPECK(G1, GT, Zr, bp, n);
         CipherSystem scf = new SCF(G1, GT, Zr, bp, n);
         CipherSystem ap = new AP(G1, GT, Zr, bp, n, G2);
         CipherSystem pecks = new PECKS(G1, GT, Zr, bp, n);
 
         List<CipherSystem> cipherSystems = new ArrayList<>();
         cipherSystems.add(scf);
-        cipherSystems.add(ap);
-        cipherSystems.add(pecks);
+//        cipherSystems.add(ap);
+//        cipherSystems.add(pecks);
 
-        executorServiceTest(cipherSystems, words, sender, receiver, round);
+
+        for(int i = 6; i <= 7; i++){
+            executorServiceTest(cipherSystems, words, sender+i, receiver, round);
+//            executorServiceTest(cipherSystems, words, sender, receiver+i, round);
+        }
     }
+
 
 
     public static void executorServiceTest(List<CipherSystem> cipherSystems, List<String> words,
@@ -85,13 +90,13 @@ public class Main {
 
         // 获取结果
         try {
-            // 这一步是阻塞的，不用 add 而用 set 是因为有可能先后次序不是我所希望的
+            // 这一步是阻塞的，用 set 保证各算法先后次序是我所希望的
             for(int i = 0; i < futures.size(); i++){
                 Future<List<Long>> future = futures.get(i);
                 times.set(i, future.get());
             }
-            // 打印结果
-            printTime();
+            // 记录结果
+            logTime();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {
