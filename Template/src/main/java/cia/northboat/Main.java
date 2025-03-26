@@ -20,7 +20,6 @@ public class Main {
     public static Field G1, G2, GT, Zr;
     private static Pairing bp;
     private static final int n;
-    public static List<List<Long>> times;
 
     static{
         bp = PairingFactory.getPairing("a.properties");
@@ -29,13 +28,14 @@ public class Main {
         GT = bp.getGT();
         Zr = bp.getZr();
         n = 26;
-        times = new ArrayList<>();
     }
 
     public static void main(String[] args) {
         System.out.println("Creat Your Cipher Implement by Extending CipherSystem in Directory se! The functions including setup, keygen, enc, trap, search and test are supposed to be finished");
         System.out.println("In this Main module, you should create a List<CipherSystem> and add your system to it then use executorServiceTest() to count its cost");
     }
+	
+	
 
     public static void logTime(){
         FileUtil.writeCostToLog("================= Time Cost =================");
@@ -47,11 +47,18 @@ public class Main {
         }
         FileUtil.writeCostToLog("\n\n");
     }
+	
+	
+	public static void executorServiceTest(List<CipherSystem> cipherSystems, List<String> words,
+                            int sender, int receiver, int round){
+        int n = cipherSystems.size();
 
-    public static void executorServiceTest(List<CipherSystem> cipherSystems, List<String> words,
-                                           int sender, int receiver, int round){
-
-        ExecutorService executor = Executors.newFixedThreadPool(cipherSystems.size());
+        // 需要测试的算法数量
+        List<List<Long>> times = new ArrayList<>(n);
+        for(int i = 0; i < n; i++){
+            times.add(new ArrayList<>());
+        }
+        ExecutorService executor = Executors.newFixedThreadPool(n);
         List<Future<List<Long>>> futures = new ArrayList<>();
         // 提交任务
         for(CipherSystem cipherSystem: cipherSystems){
@@ -60,13 +67,13 @@ public class Main {
 
         // 获取结果
         try {
-            // 这一步是阻塞的，不用 add 而用 set 是因为有可能先后次序不是我所希望的
-            for(int i = 0; i < futures.size(); i++){
+            // 这一步是阻塞的，用 set 保证各算法先后次序是我所希望的
+            for(int i = 0; i < n; i++){
                 Future<List<Long>> future = futures.get(i);
                 times.set(i, future.get());
             }
-            // 打印结果
-            logTime();
+            // 记录结果
+            logTime(times);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {

@@ -22,9 +22,6 @@ public class Main {
     private static final Pairing bp;
     // 加密单词长度，为 2n
     private static final int n;
-    // 主公钥
-
-    public static List<List<Long>> times;
 
     static{
         bp = PairingFactory.getPairing("a.properties");
@@ -33,31 +30,13 @@ public class Main {
         GT = bp.getGT();
         Zr = bp.getZr();
         n = 12;
-
-        // 需要测试的算法数量
-        int k = 3;
-        times = new ArrayList<>();
-        for(int i = 0; i < k; i++){
-            times.add(new ArrayList<>());
-        }
-    }
-
-    public static void logTime(){
-        FileUtil.writeCostToLog("================= Time Cost =================\n");
-        for(List<Long> t: times){
-            for(long i: t){
-                FileUtil.writeCostToLog(i + "\t\t\t");
-            }
-            FileUtil.writeCostToLog("\n");
-        }
-        FileUtil.writeCostToLog("\n\n");
     }
 
     public static void main(String[] args) {
 
-        int round = 1, sender = 10, receiver = 10;
+        int round = 1, sender = 100, receiver = 100;
 
-        String file = "100.txt";
+        String file = "2.txt";
         List<String> words = FileUtil.readFileToList(file);
 
         CipherSystem scf = new SCF(G1, GT, Zr, bp, n);
@@ -66,13 +45,13 @@ public class Main {
 
         List<CipherSystem> cipherSystems = new ArrayList<>();
         cipherSystems.add(scf);
-//        cipherSystems.add(ap);
-//        cipherSystems.add(pecks);
+        cipherSystems.add(ap);
+        cipherSystems.add(pecks);
 
 
-        for(int i = 6; i <= 7; i++){
-            executorServiceTest(cipherSystems, words, sender+i, receiver, round);
-//            executorServiceTest(cipherSystems, words, sender, receiver+i, round);
+        for(int i = 1; i <= 7; i++){
+//            executorServiceTest(cipherSystems, words, sender+i*50, receiver, round);
+            executorServiceTest(cipherSystems, words, sender, receiver+i*50, round);
         }
     }
 
@@ -80,8 +59,14 @@ public class Main {
 
     public static void executorServiceTest(List<CipherSystem> cipherSystems, List<String> words,
                             int sender, int receiver, int round){
+        int n = cipherSystems.size();
 
-        ExecutorService executor = Executors.newFixedThreadPool(cipherSystems.size());
+        // 需要测试的算法数量
+        List<List<Long>> times = new ArrayList<>(n);
+        for(int i = 0; i < n; i++){
+            times.add(new ArrayList<>());
+        }
+        ExecutorService executor = Executors.newFixedThreadPool(n);
         List<Future<List<Long>>> futures = new ArrayList<>();
         // 提交任务
         for(CipherSystem cipherSystem: cipherSystems){
@@ -91,18 +76,29 @@ public class Main {
         // 获取结果
         try {
             // 这一步是阻塞的，用 set 保证各算法先后次序是我所希望的
-            for(int i = 0; i < futures.size(); i++){
+            for(int i = 0; i < n; i++){
                 Future<List<Long>> future = futures.get(i);
                 times.set(i, future.get());
             }
             // 记录结果
-            logTime();
+            logTime(times);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {
             // 关闭线程池
             executor.shutdown();
         }
+    }
+
+    public static void logTime(List<List<Long>> times){
+        FileUtil.writeCostToLog("================= Time Cost =================\n");
+        for(List<Long> t: times){
+            for(long i: t){
+                FileUtil.writeCostToLog(i + "\t\t\t");
+            }
+            FileUtil.writeCostToLog("\n");
+        }
+        FileUtil.writeCostToLog("\n\n");
     }
 
 }

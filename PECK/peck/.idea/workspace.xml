@@ -37,7 +37,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/File/XDU/项目/可搜索加密/code/polynomial/polynomial&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/File/XDU/项目/可搜索加密/code/peck/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -50,11 +50,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\resources" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\peck\test" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\java\cia\northboat\se" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\pack\src\main\java\cia\northboat" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\pack" />
-      <recent name="E:\File\XDU\项目\可搜索加密\code\pack\lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\resources" />
@@ -131,6 +131,9 @@
       <workItem from="1742751179262" duration="9885000" />
       <workItem from="1742795800574" duration="9775000" />
       <workItem from="1742821920154" duration="1011000" />
+      <workItem from="1742830837563" duration="1890000" />
+      <workItem from="1742917945756" duration="1152000" />
+      <workItem from="1742955913328" duration="5299000" />
     </task>
     <servers />
   </component>
