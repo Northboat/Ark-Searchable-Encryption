@@ -6,10 +6,12 @@ import cia.northboat.se.impl.FIPECK;
 import cia.northboat.se.impl.PECKS;
 import cia.northboat.se.impl.SCF;
 import cia.northboat.util.FileUtil;
+import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -36,7 +38,7 @@ public class Main {
 
         int round = 1, sender = 100, receiver = 100;
 
-        String file = "2.txt";
+        String file = "200.txt";
         List<String> words = FileUtil.readFileToList(file);
 
         CipherSystem scf = new SCF(G1, GT, Zr, bp, n);
@@ -48,11 +50,61 @@ public class Main {
         cipherSystems.add(ap);
         cipherSystems.add(pecks);
 
+        executorServiceTest(cipherSystems, words, sender, receiver, round);
+        testMem();
 
-        for(int i = 1; i <= 7; i++){
-//            executorServiceTest(cipherSystems, words, sender+i*50, receiver, round);
-            executorServiceTest(cipherSystems, words, sender, receiver+i*50, round);
+    }
+
+
+    public static void testMem(){
+        Element g1 = G1.newRandomElement();
+        Element g2 = G2.newRandomElement();
+        Element gt = GT.newRandomElement();
+        Element zr = Zr.newRandomElement();
+
+        int a = 100, b = 100, n = 2, m = 2, lambda = 32;
+        int G1 = g1.toBytes().length, G2 = g2.toBytes().length, GT = gt.toBytes().length, ZR = zr.toBytes().length;
+
+        int AP1, AP2, SCF, PECKS;
+        for(int i = 0; i < 7; i++){
+
+            // 密钥传输 1
+//            AP1 = a*(G1+G2+ZR);
+//            SCF = a*(G1+ZR);
+//            PECKS = a*(3*G1+ZR);
+            // 密钥传输 2
+//            AP1 = b*(G2+ZR);
+//            SCF = b*(G1+ZR);
+//            PECKS = b*(3*G1+ZR);
+
+
+            // 密文传输
+//            AP1 = a*(GT+(n+3)*G2+G1);
+//            AP2 = (a*b-a)*(3*GT+(n+3)*G2+2*G1);
+//            SCF = (a*b*n)*(9*lambda);
+//            PECKS = a*((n+3)*G1);
+
+            // 陷门传输
+            AP1 = b*((n+3)*G1+ZR);
+            AP2 = (a*b-b)*((n+3)*G1+ZR);
+            SCF = (a*b*m)*G1;
+            PECKS = b*((n+4)*G1);
+
+
+
+            System.out.println(AP1);
+            System.out.println(AP2);
+            System.out.println(SCF);
+            System.out.println(PECKS);
+            System.out.println();
+
+//            a += 50;
+            b += 50;
+//            m += 100;
+//            n += 100;
         }
+
+
     }
 
 
@@ -93,8 +145,12 @@ public class Main {
     public static void logTime(List<List<Long>> times){
         FileUtil.writeCostToLog("================= Time Cost =================\n");
         for(List<Long> t: times){
-            for(long i: t){
-                FileUtil.writeCostToLog(i + "\t\t\t");
+            for(int i = 0; i < t.size(); i++){
+                if(i != 0){
+                    FileUtil.writeCostToLog("\t\t\t" + t.get(i));
+                    continue;
+                }
+                FileUtil.writeCostToLog(t.get(i) + "");
             }
             FileUtil.writeCostToLog("\n");
         }

@@ -6,6 +6,7 @@ import cia.northboat.util.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -62,6 +63,20 @@ public class SCF extends CipherSystem {
         v = h5(P.mulZn(l).mulZn(SK_dr)).getImmutable();
     }
 
+    public long[] hashTimeCost(){
+        Element l = randomZ();
+
+        long s1 = System.currentTimeMillis();
+        CV = h5(PK_dr.mulZn(l)).getImmutable();
+        long e1 = System.currentTimeMillis();
+
+        long s2 = System.currentTimeMillis();
+        v = h5(P.mulZn(l).mulZn(SK_dr)).getImmutable();
+        long e2 = System.currentTimeMillis();
+
+        return new long[]{e1-s1, e2-s2};
+    }
+
 
     public Element T;
     @Override
@@ -106,5 +121,30 @@ public class SCF extends CipherSystem {
         }
 
         return Arrays.asList(t1/round, t2/round, t3/round);
+    }
+
+    public static void main(String[] args) {
+        Pairing bp = PairingFactory.getPairing("a.properties");
+        Field G1 = bp.getG1();
+        Field GT = bp.getGT();
+        Field Zr = bp.getZr();
+        int n = 12;
+        SCF scf1 = new SCF(G1, GT, Zr, bp, n);
+        scf1.setup();
+        scf1.keygen();
+        scf1.enc("test");
+        long t1 = 0, t2 = 0;
+        int base = 100;
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < base; j++){
+                long[] t = scf1.hashTimeCost();
+                t1 += t[0];
+                t2 += t[1];
+            }
+            System.out.println(t1);
+            System.out.println(t2);
+            base += 50;
+        }
+
     }
 }
