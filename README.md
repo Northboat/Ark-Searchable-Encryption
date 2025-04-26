@@ -20,6 +20,7 @@ BP
 6. CR-IMA √
 7. TuCR ⍻
 8. Tu2CKS ⍻
+8. PAEKS √
 
 Polynomial
 
