@@ -39,7 +39,7 @@ public class PAEKS extends CipherSystem {
     @Override
     public void enc(String w){
         Element r = randomZ();
-        C1 = H(w).powZn(sk_s);
+        C1 = H(w).powZn(sk_s).mul(g.powZn(r)).getImmutable();
         C2 = pk_r.powZn(r).getImmutable();
     }
 
@@ -55,8 +55,11 @@ public class PAEKS extends CipherSystem {
 
     @Override
     public boolean search(){
+        System.out.println("T: " + T);
         Element left = T.mul(pairing(C2, g)).getImmutable();
         Element right = pairing(C1, pk_r).getImmutable();
+        System.out.println("PAEKS left: " + left);
+        System.out.println("PAEKS right: " + right);
         return left.isEqual(right);
     }
 

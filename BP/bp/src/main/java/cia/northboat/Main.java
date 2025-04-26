@@ -44,7 +44,7 @@ public class Main {
         int m = 1, k = 3, q = 1024;
         String w = "hello world";
 
-//        CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);
+        CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);
 //        CipherSystem saPauks = new SAPAUKS(G1, GT, Zr, bp, n);
 //        CipherSystem dIBaeks = new DIBAEKS(G1, GT, Zr, bp, n);
 //        CipherSystem pMatch = new PMatch(G1, GT, Zr, bp, n);
@@ -54,7 +54,7 @@ public class Main {
 //        CipherSystem duMse = new DuMSE(G1, GT, Zr, bp, n, q);
         CipherSystem paeks = new PAEKS(G1, GT, Zr, bp, n);
 
-//        test(pauks, w, null, m);
+        test(pauks, w, null, m);
 //        test(saPauks, w, null, m);
 //        test(dIBaeks, w, null, m);
 //        test(pMatch, w, null, m);
