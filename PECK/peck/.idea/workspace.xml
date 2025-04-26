@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="" />
+    <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../BP/bp/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../BP/bp/src/main/java/cia/northboat/se/impl/PAEKS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../BP/bp/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/src/main/java/cia/northboat/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../BP/bp/src/main/java/cia/northboat/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/CipherSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/SearchableEncryption.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/CRIMA.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/DIBAEKS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/DuMSE.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/PAUKS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/PMatch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/SAPAUKS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/Tu2CKS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/se/impl/TuCR.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/util/AESUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/util/BitUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/util/HashUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BP/bp/target/classes/cia/northboat/util/MatrixUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/northboat/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/northboat/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/northboat/util/Encoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/northboat/util/Encoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/northboat/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/northboat/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/northboat/algo/Back.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/northboat/algo/Test$LRUCache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/northboat/algo/Test$ListNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/northboat/algo/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/northboat/se/impl/SCF.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/northboat/se/impl/SCF.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/northboat/util/Encoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/northboat/util/Encoder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/time.log" beforeDir="false" afterPath="$PROJECT_DIR$/time.log" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +49,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -39,23 +74,24 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/File/XDU/项目/可搜索加密/code/peck/peck&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/File/Repo/cur/Searchable-Encryption/BP/bp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\resources" />
@@ -73,7 +109,7 @@
       <recent name="cia.northboat.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Encoder">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Encoder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cia.northboat.util.Encoder" />
       <module name="peck" />
@@ -193,6 +229,7 @@
       <workItem from="1743582764289" duration="7083000" />
       <workItem from="1743650152712" duration="1424000" />
       <workItem from="1743663795926" duration="1881000" />
+      <workItem from="1745645756201" duration="1442000" />
     </task>
     <servers />
   </component>

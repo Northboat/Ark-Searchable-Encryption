@@ -41,26 +41,28 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int m = 1, index = 4, k = 3, q = 1024;
+        int m = 1, k = 3, q = 1024;
         String w = "hello world";
 
-        CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);
-        CipherSystem saPauks = new SAPAUKS(G1, GT, Zr, bp, n);
-        CipherSystem dIBaeks = new DIBAEKS(G1, GT, Zr, bp, n);
-        CipherSystem pMatch = new PMatch(G1, GT, Zr, bp, n);
-        CipherSystem crIma = new CRIMA(G1, GT, Zr, bp, n);
-        CipherSystem tu2Cks = new Tu2CKS(G1, GT, Zr, bp, n ,k);
-        CipherSystem tuCr = new TuCR(G1, GT, Zr, bp, n);
-        CipherSystem duMse = new DuMSE(G1, GT, Zr, bp, n, q);
+//        CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);
+//        CipherSystem saPauks = new SAPAUKS(G1, GT, Zr, bp, n);
+//        CipherSystem dIBaeks = new DIBAEKS(G1, GT, Zr, bp, n);
+//        CipherSystem pMatch = new PMatch(G1, GT, Zr, bp, n);
+//        CipherSystem crIma = new CRIMA(G1, GT, Zr, bp, n);
+//        CipherSystem tu2Cks = new Tu2CKS(G1, GT, Zr, bp, n ,k);
+//        CipherSystem tuCr = new TuCR(G1, GT, Zr, bp, n);
+//        CipherSystem duMse = new DuMSE(G1, GT, Zr, bp, n, q);
+        CipherSystem paeks = new PAEKS(G1, GT, Zr, bp, n);
 
-        test(pauks, w, null, m);
-        test(saPauks, w, null, m);
-        test(dIBaeks, w, null, m);
-        test(pMatch, w, null, m);
-        test(crIma, w, null, m);
-        test(tu2Cks, w, null, m);
-        test(tuCr, w, null, m);
-        test(duMse, w, null, m);
+//        test(pauks, w, null, m);
+//        test(saPauks, w, null, m);
+//        test(dIBaeks, w, null, m);
+//        test(pMatch, w, null, m);
+//        test(crIma, w, null, m);
+//        test(tu2Cks, w, null, m);
+//        test(tuCr, w, null, m);
+//        test(duMse, w, null, m);
+        test(paeks, w, null, m);
 
         printTime();
     }

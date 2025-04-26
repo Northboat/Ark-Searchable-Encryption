@@ -30,8 +30,14 @@ public class Encoder {
 
             base += 50;
         }
+    }
 
 
+    public static StringBuilder subComma(StringBuilder str){
+        if (!str.isEmpty() && ',' == str.charAt(str.length() - 1)){
+            return new StringBuilder(str.substring(0, str.length() - 1));
+        }
+        return str;
     }
 
 
@@ -46,9 +52,7 @@ public class Encoder {
                 result.append(",");
             }
         }
-        if (!result.isEmpty() && ',' == result.charAt(result.length() - 1)){
-            result = new StringBuilder(result.substring(0, result.length() - 1));
-        }
+        result = subComma(result);
         long e = System.nanoTime();
 
         return Map.of("result", result.toString(), "time", e-s);
@@ -68,6 +72,7 @@ public class Encoder {
                 }
             }
         }
+        result = subComma(result);
         long e = System.nanoTime();
 
         return Map.of("result", result.toString(), "time", e-s);
