@@ -60,6 +60,10 @@ public abstract class CipherSystem implements SearchableEncryption{
         return Zr.newRandomElement().getImmutable();
     }
 
+    public Element getI(int i){
+        return Zr.newElement(i).getImmutable();
+    }
+
     public Element randomG(){
         return G.newRandomElement().getImmutable();
     }
