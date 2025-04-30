@@ -9,7 +9,7 @@
 2. PAUKS √
 4. SA-PAEKS √
 5. dIBAEKS √
-6. ~~DuMSE~~
+6. DuMSE ×
 7. pMatch √
 8. CR-IMA √
 9. TuCR ⍻
@@ -22,5 +22,6 @@
 16. SCF √
 17. PECKS √
 18. AP √
+19. PAKE ×
 
 ~~IPFE：基于属性加密的可搜索加密四叉树仿真~~
