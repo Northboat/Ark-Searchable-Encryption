@@ -62,13 +62,13 @@ public class PEKS extends CipherSystem {
 
         Element r1 = randomZ();
         E[0][0] = g1.powZn(r1.mul(getI(6))).mul(gs.powZn(r1)).getImmutable();
-        E[0][1] = g1.powZn(r1.mul(getI(12))).mul(gs.powZn(r1)).getImmutable();
+        E[0][1] = g1.powZn(r1.mul(getI(-5))).mul(gs.powZn(r1)).getImmutable();
         E[0][2] = g1.powZn(r1.mul(getI(1))).mul(gs.powZn(r1)).getImmutable();
         E[1][0] = g1.powZn(r1.mul(getI(12))).mul(gs.powZn(r1)).getImmutable();
-        E[1][1] = g1.powZn(r1.mul(getI(10))).mul(gs.powZn(r1)).getImmutable();
+        E[1][1] = g1.powZn(r1.mul(getI(-7))).mul(gs.powZn(r1)).getImmutable();
         E[1][2] = g1.powZn(r1.mul(getI(1))).mul(gs.powZn(r1)).getImmutable();
 
-        T[0] = g1.powZn(r.mul(getI(2))).getImmutable();
+        T[0] = g1.powZn(r1.mul(getI(2)).mul(r)).getImmutable();
         T[1] = g.powZn(r1).getImmutable();
         T[2] = gs.powZn(r1.mul(getI(3).mul(r))).getImmutable();
         T[3] =g1.powZn(r1.mul(r).mul(getI(6))).getImmutable();
@@ -88,6 +88,6 @@ public class PEKS extends CipherSystem {
         System.out.println("tau1: " + tau1);
         System.out.println("tau2: " + tau2);
 
-        return z1.isEqual(getGT().newOneElement()) && tau1.isEqual(getGT().newOneElement());
+        return z1.isEqual(z2) && tau1.isEqual(tau2);
     }
 }
