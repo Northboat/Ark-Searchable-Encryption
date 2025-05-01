@@ -4,10 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="update: add PEKS algo &amp; TestUtil">
+    <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="fix: PEKS match true">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/CipherSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/CipherSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/PEKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/PEKS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/CipherSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/CipherSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/impl/PEKS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/impl/PEKS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKE_test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKS$C.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKS$KeyPair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKS$PK.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKS$SK.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKS$TD.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/shit/PEKS_Utils.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +124,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cia.arkrypto.Main" />
-      <module name="peck" />
+      <module name="se-sim" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cia.arkrypto.*" />
@@ -206,7 +224,9 @@
       <workItem from="1745645756201" duration="1442000" />
       <workItem from="1745912834654" duration="1855000" />
       <workItem from="1745995962007" duration="3157000" />
-      <workItem from="1746002116743" duration="880000" />
+      <workItem from="1746002116743" duration="1108000" />
+      <workItem from="1746003721314" duration="1597000" />
+      <workItem from="1746076194986" duration="3526000" />
     </task>
     <task id="LOCAL-00001" summary="update: add PEKS algo &amp; TestUtil">
       <created>1745999105945</created>
@@ -215,14 +235,33 @@
       <option name="project" value="LOCAL" />
       <updated>1745999105945</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: PEKS match true">
+      <created>1746003212093</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746003212093</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update: add PEKS algo &amp; TestUtil" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: add PEKS algo &amp; TestUtil" />
+    <MESSAGE value="fix: PEKS match true" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: PEKS match true" />
   </component>
 </project>

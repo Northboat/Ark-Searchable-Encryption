@@ -5,6 +5,8 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.math.BigInteger;
+
 public abstract class CipherSystem implements SearchableEncryption{
     Field G, GT, Zr;
     Pairing bp;
@@ -60,8 +62,9 @@ public abstract class CipherSystem implements SearchableEncryption{
         return Zr.newRandomElement().getImmutable();
     }
 
-    public Element getI(int i){
-        return Zr.newElement(i).getImmutable();
+    public Element getI(String i){
+        BigInteger bi = new BigInteger(i);
+        return Zr.newElement(bi).getImmutable();
     }
 
     public Element randomG(){

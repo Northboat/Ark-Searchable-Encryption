@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TestUtil {
     public static void singleThreadOneWordTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n){
-        int m = 1, k = 3, q = 1024;
+        int m = 10, k = 3, q = 1024;
         String w = "hello world";
 
         CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);

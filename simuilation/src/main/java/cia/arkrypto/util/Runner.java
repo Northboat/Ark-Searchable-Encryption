@@ -110,21 +110,21 @@ public class Runner {
     }
 
     public static void printTime(){
-        System.out.println("======== Time Cost ========");
+        System.out.println("=== Time Cost ===");
         for(List<Long> t: times){
             for(long i: t){
-                System.out.print(i + "\t\t\t");
+                System.out.print(i + "\t");
             }
             System.out.println();
         }
     }
 
     public static void logTime(List<List<Long>> times){
-        FileUtil.writeCostToLog("================= Time Cost =================\n");
+        FileUtil.writeCostToLog("============= Time Cost ============\n");
         for(List<Long> t: times){
             for(int i = 0; i < t.size(); i++){
                 if(i != 0){
-                    FileUtil.writeCostToLog("\t\t\t" + t.get(i));
+                    FileUtil.writeCostToLog("\t" + t.get(i));
                     continue;
                 }
                 FileUtil.writeCostToLog(t.get(i) + "");

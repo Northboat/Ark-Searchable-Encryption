@@ -29,6 +29,6 @@
 环境
 
 - JDK 17
-- IDEA 2022.3.3
-- Maven 3.9.1
 - JPBC 2.0.0
+- IDEA 2022.3
+- Maven 3.9.1
