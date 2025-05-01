@@ -1,0 +1,12 @@
+        E[1][0] = g1.powZn(r1.mul(getI(-1289945088))).mul(gs.powZn(r1)).getImmutable();
+        E[1][1] = g1.powZn(r1.mul(getI(465813504))).mul(gs.powZn(r1)).getImmutable();
+        E[1][2] = g1.powZn(r1.mul(getI(-71373312))).mul(gs.powZn(r1)).getImmutable();
+        E[1][3] = g1.powZn(r1.mul(getI(6011584))).mul(gs.powZn(r1)).getImmutable();
+        E[1][4] = g1.powZn(r1.mul(getI(-300451))).mul(gs.powZn(r1)).getImmutable();
+        E[1][5] = g1.powZn(r1.mul(getI(8907))).mul(gs.powZn(r1)).getImmutable();
+        E[1][6] = g1.powZn(r1.mul(getI(-145))).mul(gs.powZn(r1)).getImmutable();
+        E[1][7] = g1.powZn(r1.mul(getI(1))).mul(gs.powZn(r1)).getImmutable();
+        
+        T[3] =g1.powZn(r1.mul(r).mul(getI(-889785000))).getImmutable();
+        
+        return z2.isEqual(tau2) && z4.isEqual(tau4);
