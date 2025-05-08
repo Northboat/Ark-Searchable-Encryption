@@ -52,7 +52,7 @@ public class Runner {
             cipherSystem.updateKey();
             long s4 = System.currentTimeMillis();
             for(int i = 0; i < m; i++)
-                cipherSystem.updateEnc();
+                cipherSystem.reEnc();
             long e4 = System.currentTimeMillis();
             t1 += e4-s4;
 

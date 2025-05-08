@@ -89,7 +89,7 @@ public class PAUKS extends CipherSystem {
     public Element C6;
     public Element[] C;
     @Override
-    public void updateEnc(){
+    public void reEnc(){
         C6 = C3.div(C2.powZn(uk_s1)).powZn(uk_s2).getImmutable();
 
         Element left = this.getBp().pairing(HashUtil.hash4G(C1, C2, C3, C4), C2);

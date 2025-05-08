@@ -24,22 +24,24 @@ public interface SearchableEncryption {
 
     boolean search();
 
+
+
     default void updateKey() {
         throw new UnsupportedOperationException("updateKey() is not supported");
     }
-    default void updateEnc() {
+    default void reEnc() {
         throw new UnsupportedOperationException("updateEnc() is not supported");
     }
 
     default void constTrap(String q) {
-        throw new UnsupportedOperationException("constTrap(String q) is not supported");
+        trap(q);
     }
     default void constTrap(List<String> Q) {
-        throw new UnsupportedOperationException("constTrap(List<String> Q) is not supported");
+        trap(Q);
     }
 
     default boolean updateSearch() {
-        throw new UnsupportedOperationException("updateSearch() is not supported");
+        return search();
     }
 
     default List<Long> test(List<String> words, int round){

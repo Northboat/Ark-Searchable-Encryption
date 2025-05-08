@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="test: test peks time cost &amp; update its docs" />
+    <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="test: test peks time cost &amp; update its docs">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/DPREKS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/PREKS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/CipherSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/CipherSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/SearchableEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/SearchableEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/AP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/AP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/PAUKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/impl/PAUKS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/util/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/300.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/400.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/500.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/600.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/700.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/CipherSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/CipherSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/SearchableEncryption.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/SearchableEncryption.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/impl/AP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/impl/AP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/impl/PAUKS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/impl/PAUKS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/util/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/util/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/util/TestUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/util/TestUtil.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,24 +66,24 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/File/Repo/cur/Ark-Searchable-Encryption/simuilation/src/main/java/cia/arkrypto/shit&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/File/Repo/cur/Ark-Searchable-Encryption/simuilation/src/main/java/cia/arkrypto/shit",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\simuilation\src\main\java\cia\arkrypto\shit" />
@@ -205,6 +229,7 @@
       <workItem from="1746002116743" duration="1108000" />
       <workItem from="1746003721314" duration="1597000" />
       <workItem from="1746076194986" duration="3619000" />
+      <workItem from="1746688095325" duration="4279000" />
     </task>
     <task id="LOCAL-00001" summary="update: add PEKS algo &amp; TestUtil">
       <created>1745999105945</created>

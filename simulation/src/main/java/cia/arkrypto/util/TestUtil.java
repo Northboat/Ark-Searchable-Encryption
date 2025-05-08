@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TestUtil {
     public static void singleThreadOneWordTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n){
-        int m = 10, k = 3, q = 1024;
+        int m = 1, k = 3, q = 1024;
         String w = "hello world";
 
         CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);
@@ -26,6 +26,8 @@ public class TestUtil {
         CipherSystem spwseOne = new SPWSEOne(G1, GT, Zr, bp, n, G2.newRandomElement().getImmutable());
         CipherSystem spwseTwo = new SPWSETwo(G1, GT, Zr, bp, n);
         CipherSystem peks = new PEKS(G1, GT, Zr, bp, n);
+        CipherSystem dpreks = new DPREKS(G1, GT, Zr, bp, n);
+        CipherSystem preks = new PREKS(G1, GT, Zr, bp, n);
 
 
 //        Runner.test(pauks, w, null, m);
@@ -40,6 +42,8 @@ public class TestUtil {
 //        Runner.test(spwseOne, w, null, m);
 //        Runner.test(spwseTwo, w, null, m);
         Runner.test(peks, w, null, m);
+        Runner.test(dpreks, w, null, m);
+        Runner.test(preks, w, null, m);
 
         Runner.printTime();
     }

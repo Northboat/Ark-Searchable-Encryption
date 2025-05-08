@@ -161,7 +161,7 @@ public class AP extends CipherSystem {
     Element Cj1, Cj2, Cj3;
     Element[] Cj4, Cj5, Cj6;
     @Override
-    public void updateEnc(){
+    public void reEnc(){
         Cj1 = Ci1.duplicate().getImmutable();
         Cj2 = Ci2.duplicate().getImmutable();
         Cj3 = Ci3.duplicate().getImmutable();
@@ -260,7 +260,7 @@ public class AP extends CipherSystem {
 
             for(int j = 0; j < receiver * sender - sender; j++){
                 long s4 = System.currentTimeMillis();
-                updateEnc();
+                reEnc();
                 long e4 = System.currentTimeMillis();
                 t1 += e4-s4;
 
