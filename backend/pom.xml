@@ -15,19 +15,20 @@
     </properties>
 
     <dependencies>
-        <!--  AES 加密  -->
-        <dependency>
-            <groupId>org.apache.directory.studio</groupId>
-            <artifactId>org.apache.commons.codec</artifactId>
-            <version>1.8</version>
-        </dependency>
         <!--  分词算法  -->
         <dependency>
             <groupId>com.hankcs</groupId>
             <artifactId>hanlp</artifactId>
             <version>portable-1.7.6</version>
         </dependency>
-
+        <!-- lombok-->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+        <!--  JPBC  -->
         <dependency>
             <groupId>jpbc.api</groupId>
             <artifactId>api</artifactId>
@@ -35,13 +36,18 @@
             <scope>system</scope>
             <systemPath>${pom.basedir}/lib/jpbc-api-2.0.0.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>jpbc-plaf</groupId>
             <artifactId>plaf</artifactId>
             <version>2.0.0</version>
             <scope>system</scope>
             <systemPath>${pom.basedir}/lib/jpbc-plaf-2.0.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>6.1.5</version>
         </dependency>
     </dependencies>
 
@@ -55,7 +61,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>cia.arkrypto.Main</mainClass>
+                            <mainClass>cia.arkrypto.se.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
