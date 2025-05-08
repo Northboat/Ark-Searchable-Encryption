@@ -23,6 +23,8 @@
 17. PECKS √
 18. AP √
 19. PAKS √
+19. DPREKS
+19. PREKS
 
 ~~IPFE：基于属性加密的可搜索加密四叉树仿真~~
 
