@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>se-sim</artifactId>
+    <groupId>cia.arkrypto</groupId>
+    <artifactId>Ark-Searchable-Encryption</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -22,7 +22,6 @@
             <version>portable-1.7.6</version>
         </dependency>
         <!-- lombok-->
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -61,7 +60,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>cia.arkrypto.se.Main</mainClass>
+                            <mainClass>cia.arkrypto.se.ArkSearchableEncryption</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

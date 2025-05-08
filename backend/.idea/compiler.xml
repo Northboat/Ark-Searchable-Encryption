@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="se-sim" />
+        <module name="Ark-Searchable-Encryption" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="peck" target="17" />
+      <module name="se-sim" target="17" />
       <module name="se-simulation" target="17" />
     </bytecodeTargetLevel>
   </component>
