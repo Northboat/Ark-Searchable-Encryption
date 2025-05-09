@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: Ark-Auth
+  security:
+    user:
+      name: "arkrypto"
+      password: "011026"
+  thymeleaf:
+    cache: false
+
+
+server:
+  port: 10086

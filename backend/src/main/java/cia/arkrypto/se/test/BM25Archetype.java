@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class BM25Test {
+public class BM25Archetype {
 
     @AllArgsConstructor
     @Data
@@ -204,7 +204,7 @@ public class BM25Test {
         int count = 0;
         for(String name: names){
             // 从文件中读入文档
-            docs.put(name, FileUtil.readDocs("mail/" + name));
+            docs.put(name, FileUtil.readDocs("file/mail/" + name));
             // 记录文档并且规定其在矩阵 matrix 中对应的下标
             id.put(name, count++);
         }

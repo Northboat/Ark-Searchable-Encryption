@@ -66,7 +66,7 @@ public class FileUtil {
     }
 
     public static void main(String[] args) {
-        String filePath = "word/100.txt"; // 文件的相对路径
+        String filePath = "file/word/100.txt"; // 文件的相对路径
 
         List<String> lines = readFileToList(filePath);
         assert lines != null;
@@ -74,7 +74,7 @@ public class FileUtil {
             System.out.println(line); // 打印每行内容
         }
 
-        String path = "mail/1";
+        String path = "file/mail/1";
         System.out.println(readDocs(path));
     }
 }

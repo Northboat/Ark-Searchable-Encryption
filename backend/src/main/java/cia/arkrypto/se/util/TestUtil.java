@@ -64,7 +64,7 @@ public class TestUtil {
 
     public static void singleThreadMultiWordsTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n) {
         int m = 1, k = 4;
-        String file = "word/2.txt";
+        String file = "file/word/2.txt";
         List<String> words = FileUtil.readFileToList(file);
 
         CipherSystem tms = new TMS(G1, GT, Zr, bp, n, k);
@@ -82,7 +82,7 @@ public class TestUtil {
     public static void multiThreadMultiWordsTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n) {
         int round = 1, sender = 1, receiver = 1;
 
-        String file = "word/2.txt";
+        String file = "file/word/2.txt";
         List<String> words = FileUtil.readFileToList(file);
 
         CipherSystem ap = new AP(G1, GT, Zr, bp, n, G2);

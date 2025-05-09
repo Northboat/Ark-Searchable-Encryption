@@ -5,16 +5,112 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="test: test peks time cost &amp; update its docs">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/ArkSearchableEncryption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/CipherSystemTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ark-Searchable-Encryption.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/controller/RouteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/service/CryptoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/css/images/intro.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/css/noscript.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/fonts/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/breakpoints.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/browser.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/jquery.scrollex.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/jquery.scrolly.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/js/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/base/_page.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/base/_reset.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/base/_typography.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_actions.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_box.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_button.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_contact.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_features.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_form.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_icon.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_icons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_image.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_list.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_menu.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_row.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_section.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_split.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_spotlights.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_table.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/components/_wrapper.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/layout/_footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/layout/_header.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/layout/_intro.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/layout/_sidebar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/layout/_wrapper.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/libs/_breakpoints.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/libs/_functions.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/libs/_html-grid.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/libs/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/libs/_vars.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/libs/_vendor.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/main.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/sass/noscript.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/pic01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/pic02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/pic03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/pic04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/pic05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/pic06.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/simulation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/a.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a160.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/a160.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a8.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/a8.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/se-sim.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/test/BM25Test$KeyPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/test/BM25Test$KeyPair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/ArkSearchableEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/ArkSearchableEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/BM25Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/BM25Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/FileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/1" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/10" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/11" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/11" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/12" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/13" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/13" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/14" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/14" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/15" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/15" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/16" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/16" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/17" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/17" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/18" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/18" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/19" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/19" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/2" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/20" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/20" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/3" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/5" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/6" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/7" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/8" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mail/9" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/mail/9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/200.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/200.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/300.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/300.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/400.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/400.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/600.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/600.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/word/700.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/file/word/700.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/ArkSearchableEncryption.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/ArkSearchableEncryption.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/test/BM25Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/test/BM25Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/util/FileUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/util/FileUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/util/TestUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cia/arkrypto/se/util/TestUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/time.log" beforeDir="false" afterPath="$PROJECT_DIR$/time.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,38 +150,42 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/File/Repo/cur/Ark-Searchable-Encryption/backend/src/main/resources/mail&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/File/Repo/cur/Ark-Searchable-Encryption/backend/src/main/resources/templates",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\backend\src\main\resources\templates" />
+      <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\backend\src\main\resources\static" />
       <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\backend\src\main\resources\mail" />
       <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\backend\src\main\java\cia\arkrypto\se\util" />
       <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\simuilation\src\main\java\cia\arkrypto\shit" />
-      <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\PECK\peck\src\main\java\cia\northboat\se\impl" />
-      <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\backend\src\main\resources\file" />
+      <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\backend\src\main\resources" />
       <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\backend\src\main\resources\word" />
       <recent name="E:\File\Repo\cur\Ark-Searchable-Encryption\PECK\peck" />
       <recent name="E:\File\XDU\项目\可搜索加密\code\peck\target\classes\BOOT-INF" />
-      <recent name="E:\File\XDU\项目\可搜索加密\code\peck\target\classes" />
-      <recent name="E:\File\XDU\项目\可搜索加密\code\peck\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cia.arkrypto.se.test" />
@@ -94,9 +194,9 @@
       <recent name="cia.northboat.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CipherSystemTest">
-    <configuration name="BM25Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cia.arkrypto.se.test.BM25Test" />
+  <component name="RunManager" selected="Spring Boot.ArkSearchableEncryption">
+    <configuration name="BM25Archetype" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cia.arkrypto.se.test.BM25Archetype" />
       <module name="Ark-Searchable-Encryption" />
       <extension name="coverage">
         <pattern>
@@ -134,6 +234,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cia.arkrypto.se.util.FileUtil" />
+      <module name="se-sim" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cia.arkrypto.se.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cia.arkrypto.se.Main" />
       <module name="Ark-Searchable-Encryption" />
@@ -147,25 +260,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cia.northboat.algo.Test" />
-      <module name="peck" />
+    <configuration name="ArkSearchableEncryption" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="Ark-Searchable-Encryption" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cia.arkrypto.se.ArkSearchableEncryption" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cia.northboat.algo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="cia.arkrypto.se.util.FileUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cia.arkrypto.se.util.FileUtil" />
-      <module name="se-sim" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cia.arkrypto.se.test.*" />
+          <option name="PATTERN" value="cia.arkrypto.se.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -175,11 +275,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.ArkSearchableEncryption" />
         <item itemvalue="Application.CipherSystemTest" />
-        <item itemvalue="Application.BM25Test" />
+        <item itemvalue="Application.BM25Archetype" />
         <item itemvalue="Application.cia.arkrypto.se.util.FileUtil" />
         <item itemvalue="Application.EncodeTest" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -230,6 +330,7 @@
       <workItem from="1746710097730" duration="171000" />
       <workItem from="1746710285569" duration="4150000" />
       <workItem from="1746715429231" duration="2055000" />
+      <workItem from="1746757124459" duration="2978000" />
     </task>
     <task id="LOCAL-00001" summary="update: add PEKS algo &amp; TestUtil">
       <created>1745999105945</created>
