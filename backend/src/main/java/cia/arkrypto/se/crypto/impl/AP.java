@@ -6,10 +6,10 @@ import cia.arkrypto.se.util.PolynomialUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 public class AP extends CipherSystem {
 

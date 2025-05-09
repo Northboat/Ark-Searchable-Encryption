@@ -121,8 +121,8 @@ public class TBEKS extends CipherSystem {
 
     @Override
     public boolean search(){
-        Element part1 = this.getBp().pairing(I0, T1).getImmutable();
-        Element part2 = this.getBp().pairing(I1, T2).getImmutable();
+        Element part1 = pairing(I0, T1);
+        Element part2 = pairing(I1, T2);
 
         Element product = this.getG().newOneElement();
         for(Element i: I){
@@ -130,7 +130,7 @@ public class TBEKS extends CipherSystem {
         }
         product = product.getImmutable();
 //        System.out.println(product);
-        Element part3 = this.getBp().pairing(product, h);
+        Element part3 = pairing(product, h);
 
         Element left = part1.mul(part2).getImmutable();
         Element right = part3.getImmutable();

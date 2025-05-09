@@ -1,6 +1,7 @@
 package cia.arkrypto.se.config;
 
 
+import cia.arkrypto.se.crypto.impl.AP;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
@@ -33,5 +34,15 @@ public class CryptoConfig {
     @Bean
     public Field Zr(Pairing pairing) {
         return pairing.getZr();
+    }
+
+    @Bean
+    public int n(){
+        return 26;
+    }
+
+    @Bean
+    public AP ap(Field G1, Field GT, Field Zr, Pairing bp, int n, Field G2){
+        return new AP(G1, GT, Zr, bp, n, G2);
     }
 }
