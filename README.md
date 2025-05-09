@@ -11,6 +11,7 @@
 - JPBC 2.0.0
 - IDEA 2022.3
 - Maven 3.9.1
+- Spring Boot 3.0.x (including Spring Security and Thymeleaf)
 
 算法清单
 
