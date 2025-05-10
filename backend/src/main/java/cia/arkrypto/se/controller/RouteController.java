@@ -16,12 +16,17 @@ public class RouteController {
     }
 
     @GetMapping("/sim")
-    public String toAuth() {
+    public String sim() {
         return "simulation";  // 返回 templates/login.html 页面
     }
 
+    @GetMapping("/arch")
+    public String arch() {
+        return "archetype";  // 返回 templates/login.html 页面
+    }
+
     @RequestMapping(value = "/sim/{algo}", method = RequestMethod.GET)
-    public String toAuth(@PathVariable("algo") String algo, Model model) {
+    public String sim(@PathVariable("algo") String algo, Model model) {
 //        System.out.println(algo);
         model.addAttribute("algo", algo);
         return "simulation";

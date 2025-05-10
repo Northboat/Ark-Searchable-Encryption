@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Archetype - Ark Searchable Encryption</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="/" class="title">Ark Searchable Encryption</a>
+				<nav>
+					<ul>
+						<li><a href="/home">Home</a></li>
+						<li><a href="/sim">Simulation</a></li>
+						<li><a href="/arch" class="active">Archetype</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+				<section id="main" class="wrapper">
+					<div class="inner">
+						<h1 class="major">Range-Searchable Encryption Archetype</h1>
+<!--						<span class="image fit"><img src="/images/pic05.jpg" alt="" /></span>-->
+						<p>本系统是一个支持范围查询的可搜索加密原型系统，主要包括以下三个核心步骤
+						<ol>
+							<li>身份双向认证：基于双线性配对构建的认证机制，实现客户端与服务器之间的相互身份验证，保障通信安全</li>
+							<li>加密索引构建：将数据经过处理后生成安全的索引结构，通过加密保护关键词内容，同时支持后续搜索操作</li>
+							<li>范围查询：利用改进的 BM25 算法，支持对加密索引中的数值范围或关键词匹配进行高效查询，兼顾安全性与实用性</li>
+						</ol>
+						<p>该系统集成了多种加密与检索技术，既保障了数据的安全性，又提升了加密条件下的查询效率，是探索安全搜索与加密索引结合的有力实践</p>
+
+						<section>
+							<h2>Operations</h2><br>
+							<div class="row gtr-uniform">
+								<div class="col-12">
+									<ul class="actions fit">
+										<li><a href="#" class="button fit">Mutual Authentication</a></li>
+										<li><a href="#" class="button fit">Encrypted Matrix Build</a></li>
+										<li><a href="#" class="button fit">Ranged Docs Search</a></li>
+									</ul>
+								</div>
+							</div><br>
+
+							<h2>Feedback</h2>
+							<div th:each="item: ${data}">
+								<strong th:text="${item.key}">Key</strong><br>
+								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
+							</div><br>
+						</section>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; cia.Arkrypto. All rights reserved.</li><li>Web Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
+
+	</body>
+</html>

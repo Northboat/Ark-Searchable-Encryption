@@ -6,9 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
-public class SPWSETwo extends CipherSystem {
+public class SPWSE2 extends CipherSystem {
 
-    public SPWSETwo(Field G, Field GT, Field Zr, Pairing bp, int n){
+    public SPWSE2(Field G, Field GT, Field Zr, Pairing bp, int n){
         super(G, GT, Zr, bp, n);
     }
 

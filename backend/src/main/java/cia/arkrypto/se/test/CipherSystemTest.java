@@ -21,8 +21,7 @@ public class CipherSystemTest {
     }
 
     public static void main(String[] args) {
-        TestUtil.singleThreadOneWordTest(G1, G2, GT, Zr, bp, n);
-        TestUtil.singleThreadMultiWordsTest(G1, G2, GT, Zr, bp, n);
-        TestUtil.multiThreadMultiWordsTest(G1, G2, GT, Zr, bp, n);
+        TestUtil.singleThreadTest(G1, G2, GT, Zr, bp, n);
+//        TestUtil.multiThreadTest(G1, G2, GT, Zr, bp, n);
     }
 }

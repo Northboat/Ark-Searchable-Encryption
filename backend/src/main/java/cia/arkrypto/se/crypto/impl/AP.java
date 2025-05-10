@@ -9,6 +9,7 @@ import it.unisa.dia.gas.jpbc.Pairing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 public class AP extends CipherSystem {
@@ -202,6 +203,8 @@ public class AP extends CipherSystem {
     }
 
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean updateSearch(){
         Element t = pairing(Cj1, V).powZn(x).getImmutable();
@@ -216,13 +219,35 @@ public class AP extends CipherSystem {
         product.getImmutable();
 //        System.out.println("product: " + product);
 
-        Element left = t.mul(Cj5[j]).powZn(Tj1).mul(product).getImmutable();
-        Element right = Cj2.mul(pairing(H2(K), Cj3)).powZn(Tj1).getImmutable();
+        left = t.mul(Cj5[j]).powZn(Tj1).mul(product).getImmutable();
+        right = Cj2.mul(pairing(H2(K), Cj3)).powZn(Tj1).getImmutable();
 
         System.out.println("AP UpdLeft: " + left);
         System.out.println("AP UpdRight: " + right);
 
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+
+        return flag;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round){
+        Map<String, Object> data = super.test(word, words, round);
+
+        data.put("g1", g1);
+        data.put("x", x);
+        data.put("X", X);
+        data.put("Ci1", Ci1);
+        data.put("Ti1", Ti1);
+        data.put("rk1", rk1);
+        data.put("Cj1", Cj1);
+        data.put("Tj1", Tj1);
+        data.put("left", left);
+        data.put("right", right);
+        data.put("flag", flag);
+
+        return data;
     }
 
 

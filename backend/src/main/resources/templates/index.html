@@ -21,7 +21,7 @@
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
 							<li><a href="#one">Pairing-Based</a></li>
-							<li><a href="#two">BM25-Based</a></li>
+							<li><a href="#two">Ranged SE</a></li>
 							<li><a href="#three">Customize</a></li>
 						</ul>
 					</nav>
@@ -39,9 +39,7 @@
 								Which Includes A BM25-Based Range-Searchable Encryption System<br>
 								Site Template Designed by <a href="http://html5up.net">HTML5 UP</a>.</p>
 							<ul class="actions">
-								<li><a target="_blank" href="https://arkrypto.github.io/pages/752eb6/" class="button scrolly">文档Ⅰ</a></li>
-								<li><a target="_blank" href="https://arkrypto.github.io/pages/7bc025/" class="button scrolly">文档Ⅱ</a></li>
-								<li><a target="_blank" href="https://arkrypto.github.io/pages/6ba8e2/" class="button scrolly">文档Ⅲ</a></li>
+								<li><a target="_blank" href="https://arkrypto.github.io/sec/#%E5%8F%AF%E6%90%9C%E7%B4%A2%E5%8A%A0%E5%AF%86" class="button scrolly">文档</a></li>
 							</ul>
 						</div>
 					</section>
@@ -53,7 +51,7 @@
 							<div class="content">
 								<div class="inner">
 									<h2>PAUKS</h2>
-									<p>Single Thread Single Word Test.</p>
+									<p>Public-Key Authenticated Encryption With Keyword Search Supporting Constant Trapdoor Generation and Fast Search</p>
 									<ul class="actions">
 										<li><a href="/sim/PAUKS" class="button">Learn more</a></li>
 									</ul>
@@ -65,9 +63,21 @@
 							<div class="content">
 								<div class="inner">
 									<h2>TBEKS</h2>
-									<p>Single Thread Multi Words Test.</p>
+									<p>Threshold multi-keyword search for cloud-based group data sharing</p>
 									<ul class="actions">
 										<li><a href="/sim/TBEKS" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="https://github.com/Arkrypto/Ark-Searchable-Encryption/blob/main/docs/docs-24-10/dIBAEKS.docs" class="image"><img src="/images/pic03.jpg" alt="" data-position="top center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>DIBAEKS</h2>
+									<p>Designated-server identity-based authenticated encryption with keyword search for encrypted emails</p>
+									<ul class="actions">
+										<li><a href="/sim/DIBAEKS" class="button">Learn more</a></li>
 									</ul>
 								</div>
 							</div>
@@ -78,41 +88,43 @@
 					<section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
 							<h2>BM25-Based Range-Searchable Encryption Archetype</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<p>
+								BM25 是一种广泛用于信息检索的打分算法，它根据关键词在文档中的频率和文档的整体长度，计算文档与查询之间的相关性得分，在这个范围可搜索加密算法中，BM25 被引入用于对<strong>密文索引</strong>打分排序，以保障数据隐私的同时提升查询效率与结果质量
+							</p>
 							<div class="features">
 								<section>
+									<span class="icon major fa-diamond"></span>
+									<h3>BM25 算法</h3>
+									<p>用于信息检索，根据词频与文档长度评估搜索内容与文档的相关性</p>
+								</section>
+								<section>
 									<span class="icon major fa-code"></span>
-									<h3>Lorem ipsum amet</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>基于配对的身份认证</h3>
+									<p>利用双线性配对构造身份认证机制，保障通信安全</p>
 								</section>
 								<section>
 									<span class="icon major fa-lock"></span>
-									<h3>Aliquam sed nullam</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>AES 加密</h3>
+									<p>一种对称加密算法，速度快，适合加密大量数据，用于对文档 ID 进行加密</p>
 								</section>
 								<section>
 									<span class="icon major fa-cog"></span>
-									<h3>Sed erat ullam corper</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>VFE-Plus 加密</h3>
+									<p>可验证函数加密方案，支持功能正确性验证，用于对 BM25 矩阵索引内容进行加密</p>
 								</section>
 								<section>
 									<span class="icon major fa-desktop"></span>
-									<h3>Veroeros quis lorem</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>分词算法</h3>
+									<p>基于 HanLP 分词库，将文档划分为有意义的单词，用于后续文本处理和索引构建</p>
 								</section>
 								<section>
 									<span class="icon major fa-chain"></span>
-									<h3>Urna quis bibendum</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon major fa-diamond"></span>
-									<h3>Aliquam urna dapibus</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>公钥加密</h3>
+									<p>使用公开密钥加密关键词序列，搜索时使用私钥解密，保障机密性</p>
 								</section>
 							</div>
 							<ul class="actions">
-								<li><a href="#" class="button">Learn more</a></li>
+								<li><a href="/arch" class="button">Learn more</a></li>
 							</ul>
 						</div>
 					</section>
@@ -120,56 +132,12 @@
 				<!-- Three -->
 					<section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h2>Get in touch</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-							<div class="split style1">
+							<h2>Customize</h2>
+							<p>自定义可搜索加密算法测试，系统将自动解析用户输入的变量以及计算公式，返回加密、陷门、匹配的结果和耗时</p>
+							<div class="inner">
 								<section>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
-											</div>
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
-											</div>
-											<div class="field">
-												<label for="message">Message</label>
-												<textarea name="message" id="message" rows="5"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><a href="#" class="button submit">Send Message</a></li>
-										</ul>
-									</form>
-								</section>
-								<section>
-									<ul class="contact">
-										<li>
-											<h3>Address</h3>
-											<span>12345 Somewhere Road #654<br />
-											Nashville, TN 00000-0000<br />
-											USA</span>
-										</li>
-										<li>
-											<h3>Email</h3>
-											<a href="#">user@untitled.tld</a>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<span>(000) 000-0000</span>
-										</li>
-										<li>
-											<h3>Social</h3>
-											<ul class="icons">
-												<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
-											</ul>
-										</li>
+									<ul class="actions">
+										<li><a href="#" class="button submit">有缘再见</a></li>
 									</ul>
 								</section>
 							</div>
@@ -182,7 +150,7 @@
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; cia.Arkrypto All rights reserved.</li><li>Web Design: <a href="http://html5up.net">HTML5 UP</a></li>
 					</ul>
 				</div>
 			</footer>

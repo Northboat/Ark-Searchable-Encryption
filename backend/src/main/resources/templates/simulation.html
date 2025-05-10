@@ -21,7 +21,7 @@
 					<ul>
 						<li><a href="/home">Home</a></li>
 						<li><a href="/sim" class="active">Simulation</a></li>
-<!--						<li><a href="elements.html">Elements</a></li>-->
+						<li><a href="/arch">Archetype</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -30,14 +30,74 @@
 			<div id="wrapper">
 
 				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">A Generic Page</h1>
-							<span class="image fit"><img src="/images/pic04.jpg" alt="" /></span>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
-						</div>
-					</section>
+				<section id="main" class="wrapper">
+					<div class="inner">
+						<h1 class="major">Pairing-Based SE Simulation</h1>
+<!--						<span class="image fit"><img src="/images/pic04.jpg" alt="" /></span>-->
+						<p>双线性配对是一种特殊的数学映射，它将两个群中的元素映射到另一个群中，具有以下三个核心特性
+						<ol>
+							<li>双线性性：两个输入元素的乘积结果与各自指数的乘积有关，可以实现指数之间的计算连接</li>
+							<li>非退化性：配对结果不会总是恒等于1，确保映射是有意义的</li>
+							<li>可计算性：配对运算可以被有效计算出来，适合程序实现</li>
+						</ol>
+						<p>这种结构为密码学提供了强大的表达能力，可用于构建身份加密、可搜索加密等高级安全协议</p>
+
+						<section>
+							<h2>Form</h2>
+							<form method="post" th:action="@{/test}">
+								<div class="row gtr-uniform">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="word" th:value="${word}" placeholder="- Test Word -" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<select name="round" th:value="${round}">
+											<option value="0" th:selected="${round == null or round == ''}">- Test Round -</option>
+											<option value="1" th:selected="${round == '1'}">1</option>
+											<option value="10" th:selected="${round == '10'}">10</option>
+											<option value="100" th:selected="${round == '100'}">100</option>
+										</select>
+									</div>
+									<div class="col-12">
+										<select name="algo" th:value="${algo}">
+											<option value="" th:selected="${algo == null or algo == ''}">- Algo -</option>
+											<option value="AP" th:selected="${algo == 'AP'}">AP</option>
+											<option value="CRIMA" th:selected="${algo == 'CRIMA'}">CRIMA</option>
+											<option value="DIBAEKS" th:selected="${algo == 'DIBAEKS'}">DIBAEKS</option>
+											<option value="DuMSE" th:selected="${algo == 'DuMSE'}">DuMSE</option>
+											<option value="FIPECK" th:selected="${algo == 'FIPECK'}">FIPECK</option>
+											<option value="Gu2CKS" th:selected="${algo == 'Gu2CKS'}">Gu2CKS</option>
+											<option value="PAEKS" th:selected="${algo == 'PAEKS'}">PAEKS</option>
+											<option value="PAUKS" th:selected="${algo == 'PAUKS'}">PAUKS</option>
+											<option value="PECKS" th:selected="${algo == 'PECKS'}">PECKS</option>
+											<option value="PEKS" th:selected="${algo == 'PEKS'}">PEKS</option>
+											<option value="pMatch" th:selected="${algo == 'pMatch'}">pMatch</option>
+											<option value="PREKS" th:selected="${algo == 'PREKS'}">PREKS</option>
+											<option value="SAPAUKS" th:selected="${algo == 'SAPAUKS'}">SAPAUKS</option>
+											<option value="SCF" th:selected="${algo == 'SCF'}">SCF</option>
+											<option value="SPWSE1" th:selected="${algo == 'SPWSE1'}">SPWSE1</option>
+											<option value="SPWSE2" th:selected="${algo == 'SPWSE2'}">SPWSE2</option>
+											<option value="TBEKS" th:selected="${algo == 'TBEKS'}">TBEKS</option>
+											<option value="TMS" th:selected="${algo == 'TMS'}">TMS</option>
+											<option value="Tu2CKS" th:selected="${algo == 'Tu2CKS'}">Tu2CKS</option>
+											<option value="TuCR" th:selected="${algo == 'TuCR'}">TuCR</option>
+										</select>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Send Test" class="primary" /></li>
+										</ul>
+									</div>
+								</div>
+							</form><br>
+
+							<h2>Test Result</h2>
+							<div th:each="item: ${data}">
+								<strong th:text="${item.key}">Key</strong><br>
+								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
+							</div><br>
+						</section>
+					</div>
+				</section>
 
 			</div>
 
@@ -45,7 +105,7 @@
 			<footer id="footer" class="wrapper alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; cia.Arkrypto. All rights reserved.</li><li>Web Design: <a href="http://html5up.net">HTML5 UP</a></li>
 					</ul>
 				</div>
 			</footer>

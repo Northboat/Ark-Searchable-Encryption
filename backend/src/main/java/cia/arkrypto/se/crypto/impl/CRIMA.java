@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class CRIMA extends CipherSystem {
 
     public CRIMA(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -57,18 +60,27 @@ public class CRIMA extends CipherSystem {
     public Element Ti;
     public void trap(String str){
         Element[] w = h(str);
-        // 这个地方？？？
+        // 这个地方太奇怪了
         Element k = pairing(pk_a[1], sk_b).getImmutable();
-        // 太奇怪了太奇怪了太奇怪了
         Ti = HashUtil.hashGT2GWithZrArr(this.getZr(), k, w).getImmutable();
     }
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
-        Element left = Ci;
-        Element right = pk_a[0].powZn(sk_svr.mul(HashUtil.hashG2ZrWithZr(this.getZr(), pk_a[0], Ti))).getImmutable();
+        left = Ci;
+        right = pk_a[0].powZn(sk_svr.mul(HashUtil.hashG2ZrWithZr(this.getZr(), pk_a[0], Ti))).getImmutable();
         System.out.println("CR-IMA left: " + left);
         System.out.println("CR-IMA right: " + right);
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+
+        return data;
     }
 }

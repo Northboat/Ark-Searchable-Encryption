@@ -1,4 +1,4 @@
-package cia.arkrypto.se.test;
+package cia.arkrypto.se.crypto;
 
 
 import cia.arkrypto.se.util.*;
@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class BM25Archetype {
+public class RangedSEArchetype {
 
     @AllArgsConstructor
     @Data
@@ -117,7 +117,6 @@ public class BM25Archetype {
         id_u = Zr.newRandomElement().getImmutable();
 
         Element x = Zr.newRandomElement();
-//        System.out.println(hash(id_o.toBytes()));
 
         ao = new KeyPair(hashG(id_o.toBytes()).powZn(x).getImmutable(), hashG(id_o.toBytes()));
         au = new KeyPair(hashG(id_u.toBytes()).powZn(x).getImmutable(), hashG(id_u.toBytes()));
@@ -204,7 +203,7 @@ public class BM25Archetype {
         int count = 0;
         for(String name: names){
             // 从文件中读入文档
-            docs.put(name, FileUtil.readDocs("file/mail/" + name));
+            docs.put(name, FileUtil.readDocs("test_data/mail/" + name));
             // 记录文档并且规定其在矩阵 matrix 中对应的下标
             id.put(name, count++);
         }

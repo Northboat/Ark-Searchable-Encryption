@@ -9,13 +9,14 @@ import it.unisa.dia.gas.plaf.jpbc.pairing.a.TypeACurveGenerator;
 import java.security.SecureRandom;
 
 
-public class SPWSEOne extends CipherSystem {
+public class SPWSE1 extends CipherSystem {
 
 
+    Field G2;
     Element g1, g2, h, v, r, m;
-    public SPWSEOne(Field G1, Field GT, Field Zr, Pairing bp, int n, Element g2){
+    public SPWSE1(Field G1, Field GT, Field Zr, Pairing bp, int n, Field G2){
         super(G1, GT, Zr, bp, n);
-        this.g2 = g2;
+        this.G2 = G2;
     }
     public Element[] H, S, T, R;
 
@@ -24,6 +25,7 @@ public class SPWSEOne extends CipherSystem {
     @Override
     public void setup(){ // 一些参与计算的随机数
         g1 = randomG();
+        g2 = G2.newRandomElement().getImmutable();
         v = this.getZr().newRandomElement().getImmutable();
         r = this.getZr().newRandomElement().getImmutable();
         m = this.getZr().newRandomElement().getImmutable();

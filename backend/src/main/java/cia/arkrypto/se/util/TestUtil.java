@@ -9,68 +9,66 @@ import it.unisa.dia.gas.jpbc.Pairing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class TestUtil {
-    public static void singleThreadOneWordTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n){
+
+    public static void singleThreadTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n){
         int m = 1, k = 3, q = 1024;
         String w = "hello world";
+        String file = "test_data/word/2.txt";
+        List<String> words = FileUtil.readFileToList(file);
 
         CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);
-        CipherSystem saPauks = new SAPAUKS(G1, GT, Zr, bp, n);
-        CipherSystem dIBaeks = new DIBAEKS(G1, GT, Zr, bp, n);
-        CipherSystem pMatch = new PMatch(G1, GT, Zr, bp, n);
-        CipherSystem crIma = new CRIMA(G1, GT, Zr, bp, n);
-        CipherSystem tu2Cks = new Tu2CKS(G1, GT, Zr, bp, n ,k);
-        CipherSystem tuCr = new TuCR(G1, GT, Zr, bp, n);
-        CipherSystem duMse = new DuMSE(G1, GT, Zr, bp, n, q);
+        CipherSystem sapauks = new SAPAUKS(G1, GT, Zr, bp, n);
+        CipherSystem dibaeks = new DIBAEKS(G1, GT, Zr, bp, n);
+        CipherSystem pmatch = new PMatch(G1, GT, Zr, bp, n);
+        CipherSystem crima = new CRIMA(G1, GT, Zr, bp, n);
+        CipherSystem tu2cks = new Tu2CKS(G1, GT, Zr, bp, n ,k);
+        CipherSystem tucr = new TuCR(G1, GT, Zr, bp, n);
+        CipherSystem dumse = new DuMSE(G1, GT, Zr, bp, n, q);
         CipherSystem paeks = new PAEKS(G1, GT, Zr, bp, n);
-        CipherSystem spwseOne = new SPWSEOne(G1, GT, Zr, bp, n, G2.newRandomElement().getImmutable());
-        CipherSystem spwseTwo = new SPWSETwo(G1, GT, Zr, bp, n);
+        CipherSystem spwse1 = new SPWSE1(G1, GT, Zr, bp, n, G2);
+        CipherSystem spwse2 = new SPWSE2(G1, GT, Zr, bp, n);
         CipherSystem peks = new PEKS(G1, GT, Zr, bp, n);
         CipherSystem dpreks = new DPREKS(G1, GT, Zr, bp, n);
         CipherSystem preks = new PREKS(G1, GT, Zr, bp, n);
         CipherSystem fipeck = new FIPECK(G1, GT, Zr, bp, n);
 
 
-        test(pauks, w, null, m);
-        test(saPauks, w, null, m);
 
-        test(crIma, w, null, m);
-        test(dIBaeks, w, null, m);
+
+        test(pauks, w, null, m);
+        test(sapauks, w, null, m);
+
+        test(crima, w, null, m);
+        test(dibaeks, w, null, m);
         test(dpreks, w, null, m);
-        test(duMse, w, null, m);
+        test(dumse, w, null, m);
 
         test(fipeck, w, null, m);
 
-        test(pMatch, w, null, m);
+        test(pmatch, w, null, m);
 
-        test(tu2Cks, w, null, m);
-        test(tuCr, w, null, m);
+        test(tu2cks, w, null, m);
+        test(tucr, w, null, m);
 
         test(paeks, w, null, m);
-        test(spwseOne, w, null, m);
-        test(spwseTwo, w, null, m);
+        test(spwse1, w, null, m);
+        test(spwse2, w, null, m);
         test(peks, w, null, m);
 
         test(preks, w, null, m);
 
-        printTime();
-    }
 
-
-    public static void singleThreadMultiWordsTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n) {
-        int m = 1, k = 4;
-        String file = "file/word/2.txt";
-        List<String> words = FileUtil.readFileToList(file);
-
-        CipherSystem tms = new TMS(G1, GT, Zr, bp, n, k);
-        CipherSystem tbeks = new TBEKS(G1, GT, Zr, bp, n, k);
-        CipherSystem gu2cks = new Gu2CKS(G1, GT, Zr, bp, n, k);
-
+        int l = 4;
+        CipherSystem tms = new TMS(G1, GT, Zr, bp, n, l);
+        CipherSystem tbeks = new TBEKS(G1, GT, Zr, bp, n, l);
+        CipherSystem gu2cks = new Gu2CKS(G1, GT, Zr, bp, n, l);
         test(tms, "", words, m);
         test(tbeks, "", words, m);
         test(gu2cks, "", words, m);
@@ -79,10 +77,11 @@ public class TestUtil {
     }
 
 
-    public static void multiThreadMultiWordsTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n) {
+
+    public static void multiThreadTest(Field G1, Field G2, Field GT, Field Zr, Pairing bp, int n) {
         int round = 1, sender = 1, receiver = 1;
 
-        String file = "file/word/2.txt";
+        String file = "test_data/word/2.txt";
         List<String> words = FileUtil.readFileToList(file);
 
         CipherSystem ap = new AP(G1, GT, Zr, bp, n, G2);
@@ -105,64 +104,24 @@ public class TestUtil {
     public static void test(CipherSystem cipherSystem, String word, List<String> words, int m){
         System.out.println(cipherSystem.getClass() + " test:");
 
-        cipherSystem.setup();
-        cipherSystem.keygen();
+        Map<String, Object> res = cipherSystem.test(word, words, m);
 
-        long s1 = System.currentTimeMillis();
-        for(int i = 0; i < m; i++) {
-            try {
-                cipherSystem.enc(word);
-            } catch (UnsupportedOperationException e) {
-                cipherSystem.enc(words);
-            }
-        }
-        long e1 = System.currentTimeMillis();
-        long t1 = e1-s1;
-
-        long s2 = System.currentTimeMillis();
-        for(int i = 0; i < m; i++){
-            try{
-                cipherSystem.trap(word);
-            }catch (UnsupportedOperationException e){
-                cipherSystem.trap(words);
-            }
-        }
-        long e2 = System.currentTimeMillis();
-        long t2 = e2-s2;
-
-        long s3 = System.currentTimeMillis();
-        for(int i = 0; i < m; i++)
-            System.out.println(cipherSystem.search());
-        long e3 = System.currentTimeMillis();
-        long t3 = e3-s3;
+        long encCost = (long) res.get("EncCost");
+        long trapCost = (long) res.get("TrapCost");
+        long searchCost = (long) res.get("SearchCost");
 
         if(cipherSystem.getUpdatable()){
-            cipherSystem.updateKey();
-            long s4 = System.currentTimeMillis();
-            for(int i = 0; i < m; i++)
-                cipherSystem.reEnc();
-            long e4 = System.currentTimeMillis();
-            t1 += e4-s4;
-
-
-            long s5 = System.currentTimeMillis();
-            for(int i = 0; i < m; i++)
-                cipherSystem.constTrap(word);
-            long e5 = System.currentTimeMillis();
-            t2 += e5-s5;
-
-            long s6 = System.currentTimeMillis();
-            for(int i = 0; i < m; i++)
-                System.out.println(cipherSystem.updateSearch());
-            long e6 = System.currentTimeMillis();
-            t3 += e6-s6;
+            encCost += (long) res.get("ReEncCost");
+            trapCost += (long) res.get("ConstTrapCost");
+            searchCost += (long) res.get("UpdateSearchCost");
         }
-
-        times.add(Arrays.asList(t1/m, t2/m, t3/m));
+        times.add(Arrays.asList(encCost, trapCost, searchCost));
 
         System.out.println(cipherSystem.getClass() + " test finished!\n");
     }
 
+
+    // 简单的多线程测试，数据量太大了，应该能快点
     public static void executorServiceTest(List<CipherSystem> cipherSystems, List<String> words,
                                            int sender, int receiver, int round){
         int n = cipherSystems.size();
