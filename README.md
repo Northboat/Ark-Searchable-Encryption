@@ -1,8 +1,10 @@
 # Ark Searchable Encryption
 
-> [基于 Pairing 的 SE 算法仿真](https://arkrypto.github.io/pages/752eb6/)
+可搜索加密仿真平台
 
-可搜索加密仿真，基于 JPBC 对一些基于 Pairing 的可搜索加密算法的复现，并测试其加密、陷门以及配对的时间开销
+- 基于 Pairing 的 SE 算法仿真
+- 基于 BM25 算法的范围可搜索加密系统原型
+- ~~基于属性加密的可搜索加密四叉树构建与检索~~
 
 环境
 
@@ -13,7 +15,7 @@
 - Maven 3.9.1
 - Spring Boot 3.0.x (including Spring Security and Thymeleaf)
 
-算法清单
+配对算法清单
 
 | 序号 | 算法     | 实现情况 |
 | ---- | -------- | -------- |
@@ -39,6 +41,4 @@
 | 20   | DPREKS   | √        |
 | 21   | PREKS    | √        |
 
-~~IPFE：基于属性加密的可搜索加密四叉树仿真~~
 
-基于 BM25 的范围可查询加密检索系统
