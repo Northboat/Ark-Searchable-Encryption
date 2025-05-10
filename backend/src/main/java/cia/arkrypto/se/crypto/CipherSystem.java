@@ -94,9 +94,7 @@ public abstract class CipherSystem implements SearchableEncryption{
         Map<String, Object> res = new HashMap<>();
         setup();
         for(int i = 0; i < round; i++){
-
             keygen();
-
             long s1 = System.currentTimeMillis();
             try{
                 enc(word);

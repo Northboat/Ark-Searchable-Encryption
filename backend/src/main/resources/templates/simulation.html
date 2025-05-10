@@ -37,7 +37,7 @@
 						<p>双线性配对是一种特殊的数学映射，它将两个群中的元素映射到另一个群中，具有以下三个核心特性
 						<ol>
 							<li>双线性性：两个输入元素的乘积结果与各自指数的乘积有关，可以实现指数之间的计算连接</li>
-							<li>非退化性：配对结果不会总是恒等于1，确保映射是有意义的</li>
+							<li>非退化性：配对结果不会总是恒等于 1，确保映射是有意义的</li>
 							<li>可计算性：配对运算可以被有效计算出来，适合程序实现</li>
 						</ol>
 						<p>这种结构为密码学提供了强大的表达能力，可用于构建身份加密、可搜索加密等高级安全协议</p>
@@ -94,7 +94,7 @@
 							<div th:each="item: ${data}">
 								<strong th:text="${item.key}">Key</strong><br>
 								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
-							</div><br>
+							</div>
 						</section>
 					</div>
 				</section>

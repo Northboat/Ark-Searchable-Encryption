@@ -1,6 +1,7 @@
 package cia.arkrypto.se.service;
 
 import cia.arkrypto.se.crypto.CipherSystem;
+import cia.arkrypto.se.crypto.RangedSEArchetype;
 import cia.arkrypto.se.crypto.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,12 @@ import java.util.Map;
 public class CryptoService {
 
     private final CipherSystem ap, crima, dibaeks, dpreks, dumse, fipeck, gu2cks, paeks, pauks, pecks, peks, pmatch, preks, sapauks, scf, spwse1, spwse2, tbeks, tms, tu2cks, tucr;
+    private final RangedSEArchetype rangedSEArchetype;
     @Autowired
     public CryptoService(AP ap, CRIMA crima, DIBAEKS dibaeks, DPREKS dpreks, DuMSE dumse, FIPECK fipeck,
                          Gu2CKS gu2cks, PAEKS paeks, PAUKS pauks, PECKS pecks, PEKS peks, PMatch pmatch,
                          PREKS preks, SAPAUKS sapauks, SCF scf, SPWSE1 spwse1, SPWSE2 spwse2, TBEKS tbeks,
-                         TMS tms, Tu2CKS tu2cks, TuCR tucr){
+                         TMS tms, Tu2CKS tu2cks, TuCR tucr, RangedSEArchetype rangedSEArchetype){
         this.ap = ap;
         this.crima = crima;
         this.dibaeks = dibaeks;
@@ -38,6 +40,7 @@ public class CryptoService {
         this.tms = tms;
         this.tu2cks = tu2cks;
         this.tucr = tucr;
+        this.rangedSEArchetype = rangedSEArchetype;
     }
 
 
@@ -86,5 +89,33 @@ public class CryptoService {
             return tucr.test(word, words, round);
         }
         return Map.of("msg", "Algo Not Exists");
+    }
+
+    public Map<String, Object> params(){
+        return rangedSEArchetype.getSystemParams();
+    }
+
+    public Map<String, Object> auth(){
+        long s = System.currentTimeMillis();
+        Map<String, Object> data = rangedSEArchetype.mutualAuth();
+        long e = System.currentTimeMillis();
+        data.put("time_cost", e-s);
+        return data;
+    }
+
+    public Map<String, Object> build(){
+        long s = System.currentTimeMillis();
+        Map<String, Object> data = rangedSEArchetype.buildMatrix();
+        long e = System.currentTimeMillis();
+        data.put("time_cost", e-s);
+        return data;
+    }
+
+    public Map<String, Object> search(){
+        long s = System.currentTimeMillis();
+        Map<String, Object> data = rangedSEArchetype.search();
+        long e = System.currentTimeMillis();
+        data.put("time_cost", e-s);
+        return data;
     }
 }

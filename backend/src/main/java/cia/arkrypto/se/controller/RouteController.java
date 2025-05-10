@@ -1,6 +1,8 @@
 package cia.arkrypto.se.controller;
 
 
+import cia.arkrypto.se.crypto.RangedSEArchetype;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RouteController {
+
     @GetMapping({"/home", "/"})
     public String home(Model model) {
         return "index";  // 返回 templates/index.html 页面
@@ -20,10 +23,6 @@ public class RouteController {
         return "simulation";  // 返回 templates/login.html 页面
     }
 
-    @GetMapping("/arch")
-    public String arch() {
-        return "archetype";  // 返回 templates/login.html 页面
-    }
 
     @RequestMapping(value = "/sim/{algo}", method = RequestMethod.GET)
     public String sim(@PathVariable("algo") String algo, Model model) {

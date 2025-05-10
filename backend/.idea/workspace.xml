@@ -5,51 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="test: test peks time cost &amp; update its docs">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/archetype.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/JPBCTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/config/CryptoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/config/CryptoConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/controller/CryptoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/controller/CryptoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/controller/RouteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/controller/RouteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/CipherSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/CipherSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/SearchableEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/SearchableEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/RangedSEArchetype.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/RangedSEArchetype.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/AP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/AP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/CRIMA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/CRIMA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SPWSEOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SPWSE1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SPWSETwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SPWSE2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/service/CryptoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/service/CryptoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/BM25Archetype.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/RangedSEArchetype.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/CipherSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/CipherSystemTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/FileUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/TestUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/1" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/10" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/10" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/11" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/11" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/12" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/12" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/13" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/13" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/14" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/14" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/15" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/15" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/16" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/16" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/17" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/17" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/18" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/18" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/19" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/19" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/2" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/20" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/20" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/3" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/5" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/6" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/7" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/8" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/mail/9" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/mail/9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/200.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/200.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/300.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/300.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/400.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/400.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/600.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/600.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/file/word/700.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test_data/word/700.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/pic06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/archetype.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/archetype.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/simulation.html" afterDir="false" />
     </list>
@@ -272,7 +238,7 @@
       <workItem from="1746715429231" duration="2055000" />
       <workItem from="1746757124459" duration="3914000" />
       <workItem from="1746781402434" duration="4869000" />
-      <workItem from="1746842735077" duration="15430000" />
+      <workItem from="1746842735077" duration="25196000" />
     </task>
     <task id="LOCAL-00001" summary="update: add PEKS algo &amp; TestUtil">
       <created>1745999105945</created>

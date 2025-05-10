@@ -37,4 +37,31 @@ public class CryptoController {
         model.addAttribute("round", Integer.toString(round));
         return "simulation";
     }
+
+    @GetMapping("/arch")
+    public String arch(Model model) {
+        model.addAttribute("params", cryptoService.params());
+        return "archetype";  // 返回 templates/login.html 页面
+    }
+
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public String auth(Model model) {
+        model.addAttribute("params", cryptoService.params());
+        model.addAttribute("data", cryptoService.auth());
+        return "archetype";
+    }
+
+    @RequestMapping(value = "/build", method = RequestMethod.GET)
+    public String build(Model model) {
+        model.addAttribute("params", cryptoService.params());
+        model.addAttribute("data", cryptoService.build());
+        return "archetype";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(Model model) {
+        model.addAttribute("params", cryptoService.params());
+        model.addAttribute("data", cryptoService.search());
+        return "archetype";
+    }
 }

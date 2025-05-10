@@ -1,5 +1,6 @@
 package cia.arkrypto.se.test;
 
+import cia.arkrypto.se.crypto.RangedSEArchetype;
 import cia.arkrypto.se.util.TestUtil;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
@@ -21,7 +22,10 @@ public class CipherSystemTest {
     }
 
     public static void main(String[] args) {
-        TestUtil.singleThreadTest(G1, G2, GT, Zr, bp, n);
+//        TestUtil.singleThreadTest(G1, G2, GT, Zr, bp, n);
 //        TestUtil.multiThreadTest(G1, G2, GT, Zr, bp, n);
+
+        RangedSEArchetype rangedSEArchetype = new RangedSEArchetype(G1, GT, Zr, bp);
+        rangedSEArchetype.test();
     }
 }

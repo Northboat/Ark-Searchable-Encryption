@@ -233,19 +233,21 @@ public class AP extends CipherSystem {
 
     @Override
     public Map<String, Object> test(String word, List<String> words, int round){
+        // 单纯把时间跑出来
         Map<String, Object> data = super.test(word, words, round);
-
+        // 变量单独计入，如果是多轮那么就会记录最后一轮的变量
         data.put("g1", g1);
         data.put("x", x);
         data.put("X", X);
         data.put("Ci1", Ci1);
         data.put("Ti1", Ti1);
-        data.put("rk1", rk1);
+        data.put("rk1", Arrays.toString(rk1));
         data.put("Cj1", Cj1);
         data.put("Tj1", Tj1);
         data.put("left", left);
         data.put("right", right);
         data.put("flag", flag);
+        data.put("msg", "如果是多轮测试，由于每轮除了系统变量，其余都是随机选取，所以变量的展示将默认是最后一轮的");
 
         return data;
     }

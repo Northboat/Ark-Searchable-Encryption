@@ -5,7 +5,6 @@ import cia.arkrypto.se.util.*;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
-import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.util.DigestUtils;
@@ -16,7 +15,6 @@ import javax.crypto.NoSuchPaddingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RangedSEArchetype {
@@ -32,25 +30,27 @@ public class RangedSEArchetype {
     // 系统初始化
 
     // 循环群 G1,GT, 整数群 Zr
-    private static final Field G1, GT, Zr;
+    private Field G1, GT, Zr;
     // 两个生成元
-    private static final Element g, h;
-    private static final Pairing bp;
-    // 全局变量初始化
-    static{
-        bp = PairingFactory.getPairing("a.properties");
-        G1 = bp.getG1();
-//        Field G2 = bp.getG2();
-        GT = bp.getGT();
-        Zr = bp.getZr();
-        g = G1.newRandomElement().getImmutable();
-        h = G1.newRandomElement().getImmutable();
+    private Element g, h;
+    private Pairing bp;
+
+    public RangedSEArchetype(Field G1, Field GT, Field Zr, Pairing bp){
+        this.G1 = G1;
+        this.GT = GT;
+        this.Zr = Zr;
+        this.bp = bp;
+
+        initSystem();
     }
 
     // 密钥生成中心密钥对kgc, 搜索服务器密钥对svr, 数据所有者密钥对co, 数据用户密钥对tu
-    private static KeyPair kgc, svr, co, tu;
+    private KeyPair kgc, svr, co, tu;
     // 密钥对初始化
-    public static void systemKeyInit(){
+    public void initKey(){
+        g = G1.newRandomElement().getImmutable();
+        h = G1.newRandomElement().getImmutable();
+
         Element x = Zr.newRandomElement().getImmutable();
         Element t = Zr.newRandomElement().getImmutable();
         Element s = Zr.newRandomElement().getImmutable();
@@ -63,26 +63,36 @@ public class RangedSEArchetype {
         tu = new KeyPair(r, g.powZn(r).getImmutable());
     }
 
-    public static void systemInit(){
+    Map<String, Object> systemParams;
+    public void initSystem(){
+        systemParams = new HashMap<>();
         // 1、系统参数初始化
-        System.out.println("系统参数初始化\n=======================");
-        systemKeyInit();
-        System.out.println("kgc: " + kgc);
-        System.out.println("svr: " + svr);
-        System.out.println("co: " + co);
-        System.out.println("tu: " + tu);
-        System.out.println("=======================\n");
+//        System.out.println("系统参数初始化\n=======================");
+        initKey();
+
+        systemParams.put("g", g);
+        systemParams.put("h", h);
+        systemParams.put("kgc", kgc);
+        systemParams.put("svr", svr);
+        systemParams.put("co", co);
+        systemParams.put("tu", tu);
+//        System.out.println("kgc: " + kgc);
+//        System.out.println("svr: " + svr);
+//        System.out.println("co: " + co);
+//        System.out.println("tu: " + tu);
+//        System.out.println("=======================\n");
+    }
+
+
+    public Map<String, Object> getSystemParams(){
+        return systemParams;
     }
 
 
 
-
-
-
     // 身份认证
-
     // 将比特数组 md5 哈希加密并映射到循环群 G1 上
-    public static Element hashG(byte[] bytes){
+    public Element hashG(byte[] bytes){
         Element hash = null;
         try{
             byte[] md5 = DigestUtils.md5Digest(bytes);
@@ -97,7 +107,7 @@ public class RangedSEArchetype {
     }
 
     // 将比特数组 MD5 加密后映射到 Zr 群上
-    public static Element hashZ(byte[] bytes){
+    public Element hashZ(byte[] bytes){
         Element hash = null;
         try{
             byte[] md5 = DigestUtils.md5Digest(bytes);
@@ -109,10 +119,10 @@ public class RangedSEArchetype {
     }
 
     // 数据私有者和数据用户的 ID
-    private static Element id_o, id_u, k;
+    private Element id_o, id_u, k;
     // 用于身份验证（数据私有者和数据用户之间）的两个密钥对
-    private static KeyPair ao, au;
-    public static void authKeyInit(){
+    private KeyPair ao, au;
+    public void initAuthKey(){
         id_o = Zr.newRandomElement().getImmutable();
         id_u = Zr.newRandomElement().getImmutable();
 
@@ -126,7 +136,7 @@ public class RangedSEArchetype {
 
 
     // 获取 CID
-    public static Element getCID(){
+    public Element getCID(){
         Element k1 = bp.pairing(ao.getSk(), au.getPk()).getImmutable();
         // 注意这里的命名要和生成元 h 区分开
         Element h1 = hashG(BitUtil.joinByteArray(ao.getPk().toBytes(), au.getPk().toBytes(), k1.toBytes())).getImmutable();
@@ -134,40 +144,47 @@ public class RangedSEArchetype {
     }
 
     // 获取 TID
-    public static Element getTID(){
+    public Element getTID(){
         Element k2 = bp.pairing(au.getSk(), ao.getPk()).getImmutable();
         Element h2 = hashG(BitUtil.joinByteArray(ao.getPk().toBytes(), au.getPk().toBytes(), k2.toBytes())).getImmutable();
         return bp.pairing(h2.powZn(tu.getSk()), co.getPk()).getImmutable();
     }
 
-    public static boolean auth(Element CID, Element TID){
+    public boolean auth(Element CID, Element TID){
         Element left = bp.pairing(CID, tu.getPk());
         Element right = TID.mul(bp.pairing(tu.getPk(), h));
-        System.out.println("left == right == " + left);
+        System.out.println("left: " + left);
+        System.out.println("right: " + right);
         return left.isEqual(right);
     }
 
-    public static void authTest(){
-        // 2、身份认证
+    // 2、身份认证
+    public Map<String, Object> mutualAuth(){
+        Map<String, Object> data = new HashMap<>();
+
         // 身份认证参数初始化
-        System.out.println("身份双向认证\n=======================");
-        authKeyInit();
-        System.out.println("id_o: " + id_o + "\nid_u: " + id_u + "\nao: " + ao + "\nau: " + au + "\nk: " + k);
+//        System.out.println("身份双向认证\n=======================");
+        initAuthKey();
+//        System.out.println("id_o: " + id_o + "\nid_u: " + id_u + "\nao: " + ao + "\nau: " + au + "\nk: " + k);
+
+        data.put("id_o", id_o);
+        data.put("id_u", id_u);
+        data.put("ao", ao);
+        data.put("au", au);
+        data.put("k", k);
 
         // 计算 CID、TID
         Element CID = getCID(), TID = getTID();
-        System.out.println("CID: " + CID + "\nTID: " + TID);
+//        System.out.println("CID: " + CID + "\nTID: " + TID);
+        data.put("CID", CID);
+        data.put("TID", TID);
 
         // 验证其双线性
-        if(auth(CID, TID)){
-            System.out.println("身份认证成功");
-        } else {
-            System.out.println("身份认证失败");
-        }
-        System.out.println("=======================\n");
+        boolean flag = auth(CID, TID);
+        data.put("flag", flag);
+        System.out.println(flag);
+        return data;
     }
-
-
 
 
 
@@ -175,83 +192,37 @@ public class RangedSEArchetype {
 
     // 索引矩阵
     // 列为文档 ID，行为关键词，值为相关性评分（为什么是 String，因为要对 int 进行 VFE Plus 加密，得到八进制字符串）
-    private static String[][] matrix;
+    private String[][] MATRIX;
     // 记录加密后的关键词和在索引矩阵中的下标位置
-    private static Element[] KEYWORD;
+    private Element[] KEYWORD;
     // 记录加密后的文档 ID 和在索引矩阵中的下标
-    private static String[] ID;
+    private String[] ID;
     // 文档集
-    private static Map<String, String> docs;
+    private Map<String, String> DOCS;
     // 文档名数组，用于读取本地文件
-    private static final List<String> names = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"));
-    // BM25 参数
-    private static double k1 = 1.2, b = 0.75, k3 = 1.4, a = 1;
+    private final List<String> NAMES = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7"));
+//    private final List<String> NAMES = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"));
 
-    private static void matrixInit() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
-        System.out.println("索引矩阵构建\n=======================");
 
-        // 用于记录关键词和其在矩阵 matrix 中对应的下标（行数）
-        Map<String, Integer> keyword = new HashMap<>();
-
+    private Map<String, Integer> readDocs(){
         // 用于记录文档 ID 和其在矩阵 matrix 中对应的下标（列数）
         Map<String, Integer> id = new HashMap<>();
-
-        // 用于记录关键词在文档集中出现的频率，在 m 个文档中出现则记为 m
-        Map<String, Integer> n = new HashMap<>();
-        docs = new HashMap<>();
-
+        DOCS = new HashMap<>();
         int count = 0;
-        for(String name: names){
+        for(String name: NAMES){
             // 从文件中读入文档
-            docs.put(name, FileUtil.readDocs("test_data/mail/" + name));
+            DOCS.put(name, FileUtil.readDocs("test_data/mail/" + name));
             // 记录文档并且规定其在矩阵 matrix 中对应的下标
             id.put(name, count++);
         }
-//        System.out.println(docs);
-        // 记录文档个数
-        int N = id.size();
+        return id;
+    }
 
-        int[] d = new int[id.size()];
-        for(String name: id.keySet()){
-            // 遍历文档 ID，从 Map id 里拿 id 对应的下标
-            int index = id.get(name);
-            // 记录各个文档的词汇总数，index 为 id 表中的值
-            // 取的时候一定要注意，先从 id 表中通过文档名取出下标，然后再通过下标去操作 d 数组或 matrix 数组
-            d[index] = docs.get(name).split(" ").length;
-        }
-        // 求文档包含的平均词数
-        int avg = Arrays.stream(d).sum() / N;
-
-
-        count = 0;
-        // 从 docs 表中取出文档内容
-        // 通过分词算法提取关键词并存入 keyword 表，值为其在二维数组 matrix 中的下标
-        for(String content: docs.values()){
-            List<String> l = HanLPUtil.getKeyword("", content);
-//            System.out.println(l);
-            for(String s: l){
-                if(!keyword.containsKey(s)){
-                    // 放入关键词，同时规定关键词在矩阵 matrix 中的下标
-                    keyword.put(s, count++);
-                    // 统计关键词在文档中出现次数
-                    n.put(s, 1);
-                } else {
-                    // 更新关键词在各文档中的出现次数
-                    n.put(s, n.get(s)+1);
-                }
-            }
-        }
-
-        System.out.println("文档 ID 序列（加密前）: " + id);
-        System.out.println("关键词序列（加密前）: " + keyword);
-        System.out.println("关键词在文档集中被包含的次数（n(q_i)）: " + n);
-
-
-        matrix = new String[keyword.size()][id.size()];
-//        System.out.println(keyword.size());
-//        System.out.println(id.size());
-
-
+    public void buildMatrix(Map<String, Integer> keyword, Map<String, Integer> id, Map<String, Integer> n, int N, int avg, int[] d){
+        // BM25 参数
+        double k1 = 1.2, b = 0.75, k3 = 1.4, a = 1;
+        // 初始化矩阵
+        MATRIX = new String[keyword.size()][id.size()];
         for(String q: keyword.keySet()){
             // matrix 行
             int i = keyword.get(q);
@@ -263,7 +234,7 @@ public class RangedSEArchetype {
                 double idf = Math.log((N + 1) / (n.get(q) + 0.5));
 //                System.out.println(idf);
                 // 计算第 i 个关键词在第 j 个文档中的出现频率
-                int f = HanLPUtil.getMatch(q, docs.get(s));
+                int f = HanLPUtil.getMatch(q, DOCS.get(s));
                 // 若为长文档，需要额外处理 f，加一个常数 a=1
                 if(d[j] > 400){
                     f += a;
@@ -271,20 +242,22 @@ public class RangedSEArchetype {
 //                System.out.println(f);
                 double R = (idf * (f * (k1+1) / (f + k1 * (1 - b + b * d[j] / avg))) * (f * (k3 + 1) / (k3 + f)));
                 String encode = VFEPlusUtil.encode((int)R);
-                matrix[i][j] = encode;
+                MATRIX[i][j] = encode;
             }
         }
+    }
 
 
-
+    public void encID(Map<String, Integer> id){
         ID = new String[id.size()];
         for(String s: id.keySet()){
             String c = AESUtil.encrypt(s);
             int index = id.get(s);
             ID[index] = c;
         }
-        System.out.println("文档 ID 序列（AES 加密后）: " + Arrays.toString(ID));
+    }
 
+    public void encKeyword(Map<String, Integer> keyword){
         KEYWORD = new Element[keyword.size()];
         // 在 keyword 表中加密关键词，得到最终加密后的关键词表 KEYWORD
         for(String w: keyword.keySet()){
@@ -301,25 +274,111 @@ public class RangedSEArchetype {
             KEYWORD[index] = c;
 //            if(w.equals("Jacques")){ System.out.println(c);  }
         }
-//        System.out.println("关键词序列（公钥加密后）: " + Arrays.toString(KEYWORD));
+    }
+
+    public Map<String, Object> buildMatrix() {
+
+        Map<String, Object> data = new HashMap<>();
+        if(k == null){
+            data.put("msg", "please finish mutual authentication first");
+            return data;
+        }
+
+//        System.out.println("索引矩阵构建\n=======================");
 
 
-//        for(Integer[] row: matrix){
-//            for(Integer i: row){
-//                System.out.print(i + "       ");
-//            }
-//            System.out.println();
-//        }
-        System.out.println("=======================\n");
+        // 用于记录关键词和其在矩阵 matrix 中对应的下标（行数）
+        Map<String, Integer> keyword = new HashMap<>();
+
+        // 用于记录文档 ID 和其在矩阵 matrix 中对应的下标（列数）
+        Map<String, Integer> id = readDocs();
+
+        // 用于记录关键词在文档集中出现的频率，在 m 个文档中出现则记为 m
+        Map<String, Integer> n = new HashMap<>();
+
+
+
+        // 记录文档个数
+        int N = id.size();
+
+        int[] d = new int[id.size()];
+        for(String name: id.keySet()){
+            // 遍历文档 ID，从 Map id 里拿 id 对应的下标
+            int index = id.get(name);
+            // 记录各个文档的词汇总数，index 为 id 表中的值
+            // 取的时候一定要注意，先从 id 表中通过文档名取出下标，然后再通过下标去操作 d 数组或 matrix 数组
+            d[index] = DOCS.get(name).split(" ").length;
+        }
+        // 求文档包含的平均词数
+        int avg = Arrays.stream(d).sum() / N;
+
+
+        int count = 0;
+        // 从 docs 表中取出文档内容
+        // 通过分词算法提取关键词并存入 keyword 表，值为其在二维数组 matrix 中的下标
+        for(String content: DOCS.values()){
+            List<String> l = HanLPUtil.getKeyword("", content);
+//            System.out.println(l);
+            for(String s: l){
+                if(!keyword.containsKey(s)){
+                    // 放入关键词，同时规定关键词在矩阵 matrix 中的下标
+                    keyword.put(s, count++);
+                    // 统计关键词在文档中出现次数
+                    n.put(s, 1);
+                } else {
+                    // 更新关键词在各文档中的出现次数
+                    n.put(s, n.get(s)+1);
+                }
+            }
+        }
+
+//        System.out.println("文档 ID 序列（加密前）: " + id);
+//        System.out.println("关键词序列（加密前）: " + keyword);
+//        System.out.println("关键词在文档集中被包含的次数（n(q_i)）: " + n);
+//        System.out.println(keyword.size());
+//        System.out.println(id.size());
+
+
+        data.put("id", id);
+        data.put("keyword", keyword);
+        data.put("n", n);
+        data.put("keyword_size", keyword.size());
+        data.put("id_size", id.size());
+
+
+
+
+        buildMatrix(keyword, id, n, N, avg, d);
+        encID(id);
+        encKeyword(keyword);
+
+        data.put("ID", Arrays.toString(ID));
+//        data.put("KEYWORD", Arrays.toString(KEYWORD)); // 这个太几把长了
+        data.put("msg", "加密后的关键词序列和矩阵太长了，页面放不完就不展示了");
+
+//        System.out.println("ID: " + Arrays.toString(ID));
+//        System.out.println("KEYWORD " + Arrays.toString(KEYWORD));
+
+
+        for(String[] row: MATRIX){
+            for(String i: row){
+                System.out.print(i + "\t");
+            }
+            System.out.println();
+        }
+
+        return data;
     }
 
 
-    public static Element getT(String w){
+
+
+    public Element getT(String w){
         // 映射到整数群 Zr
         return hashZ(BitUtil.joinByteArray(k.toBytes(), w.getBytes()));
     }
 
-    public static int find(String str){
+    public int find(String str){
         // 计算陷门
         Element t = getT(str);
         // 计算密文
@@ -336,7 +395,7 @@ public class RangedSEArchetype {
     }
 
     // 获取查询向量，在 words 与 KEYWORD 匹配的地方置 1，否则置 0
-    public static List<Integer> getQuery(List<String> words){
+    public List<Integer> getQuery(List<String> words){
         List<Integer> query = new ArrayList<>();
         // 初始化查询向量
         for(int i = 0; i < KEYWORD.length; i++){
@@ -354,12 +413,19 @@ public class RangedSEArchetype {
     }
 
     // 获取各个文档的 BM25 分数，通过查询向量和索引矩阵的每列（代表每个文档）做内积得到
-    public static List<Integer> getBM25(List<String> words){
-        System.out.println("计算查询向量的 BM25 相关性评分\n=======================");
-        System.out.println("查询包含的关键词: " + words);
+    public Map<String, Object> getBM25(List<String> words){
+//        System.out.println("计算查询向量的 BM25 相关性评分\n=======================");
+
+        Map<String, Object> data = new HashMap<>();
+
+
+//        System.out.println("查询包含的关键词: " + words);
         // 获取查询向量，长度为 KEYWORD.length
         List<Integer> query = getQuery(words);
-        System.out.println("对应的查询向量: " + query);
+//        System.out.println("对应的查询向量: " + query);
+        data.put("query_words", words);
+        data.put("query_vector", query);
+
         // 每个文档的 BM25 分数
         // 初始化相关性评分
         List<Integer> bm25 = new ArrayList<>();
@@ -367,38 +433,45 @@ public class RangedSEArchetype {
             int grade = 0;
             for (int i = 0; i < KEYWORD.length; i++) {
 //                System.out.println(matrix[index][j]);
-                int decode = VFEPlusUtil.decode(matrix[i][j]);
+                int decode = VFEPlusUtil.decode(MATRIX[i][j]);
                 grade += decode * query.get(i);
             }
             bm25.add(grade);
         }
-        System.out.println("BM25 相关性评分: " + bm25);
-        System.out.println("=======================\n");
-        return bm25;
+//        System.out.println("BM25 相关性评分: " + bm25);
+        data.put("bm25_score", bm25);
+//        System.out.println("=======================\n");
+        return data;
     }
 
 
     // 随便规定一个阈值
-    private static final int[] threshold = {2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    public static List<String> search(List<String> words) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    private final int[] threshold = {1, 1, 1, 2, 1, 1, 1};
+    public Map<String, Object> search(List<String> words) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         List<String> res = new ArrayList<>();
-        List<Integer> bm25 = getBM25(words);
+        Map<String, Object> data = getBM25(words);
+        List<Integer> bm25 = (List<Integer>) data.get("bm25_score");
         for(int i = 0; i < threshold.length; i++){
             if(bm25.get(i) >= threshold[i]){
                 String name = AESUtil.decrypt(ID[i]);
                 res.add(name);
             }
         }
-        return res;
+        data.put("target_docs", res);
+
+        System.out.println(bm25);
+        System.out.println(Arrays.toString(threshold));
+        System.out.println(res);
+        return data;
     }
 
-    public static void main(String[] args) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        systemInit();
-        authTest();
-        try{
-            matrixInit();
-        }catch (Exception e){
-            e.printStackTrace();
+
+    public Map<String, Object> search(){
+        Map<String, Object> data = new HashMap<>();
+
+        if(ID == null || KEYWORD == null || MATRIX == null || ID.length == 0 || KEYWORD.length == 0 || MATRIX.length == 0){
+            data.put("msg", "please build the matrix first");
+            return data;
         }
 
         List<String> words = new ArrayList<>();
@@ -411,65 +484,33 @@ public class RangedSEArchetype {
         words.add("From");
         words.add("phillip");
 
+        try {
+            data = search(words);
+        } catch (InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException |
+                 NoSuchAlgorithmException | BadPaddingException | InvalidKeyException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
+
+    public void test() {
+        initSystem();
+        mutualAuth();
+        buildMatrix();
         //获取当前时间为开始时间，转换为long型
-        long startTime = fromDateStringToLong(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS").format(new Date()));
+        long startTime = System.currentTimeMillis();
 
-        System.out.println("搜索结果: " + search(words));
+        Map<String, Object> searchData = search();
 
-        long stopTime = fromDateStringToLong(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS").format(new Date()));
+        long stopTime = System.currentTimeMillis();
         long timeSpan = stopTime - startTime;
         System.out.println("搜索耗时: " + timeSpan + "ms");
         //计算时间差,单位毫秒
-//        JPBCTest();
 
+
+        System.out.println(searchData);
     }
-
-
-    public static long fromDateStringToLong(String inVal) {
-        Date date = null;
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
-        try {
-            date = inputFormat.parse(inVal);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return date.getTime();
-    }
-
-
-    public static void JPBCTest(){
-
-        Pairing bp = PairingFactory.getPairing("a.properties");
-
-        // 二、选择群上的元素
-        Field G1 = bp.getG1();
-        Field G2 = bp.getG2();
-        Field Zr = bp.getZr();
-        Element u = G1.newRandomElement().getImmutable();
-        Element v = G2.newRandomElement().getImmutable();
-        Element a = Zr.newRandomElement().getImmutable();
-        Element b = Zr.newRandomElement().getImmutable();
-        System.out.println(u);
-        System.out.println(a);
-
-
-        // 三、计算等式左半部分
-        Element ua = u.powZn(a);
-        Element vb = v.powZn(b);
-        Element left = bp.pairing(ua,vb);
-
-        // 四、计算等式右半部分
-        Element euv = bp.pairing(u,v).getImmutable();
-        Element ab = a.mul(b);
-        Element right = euv.powZn(ab);
-
-        if (left.isEqual(right)) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
-        }
-
-    }
-
 
 }

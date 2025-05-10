@@ -47,18 +47,24 @@
 							<div class="row gtr-uniform">
 								<div class="col-12">
 									<ul class="actions fit">
-										<li><a href="#" class="button fit">Mutual Authentication</a></li>
-										<li><a href="#" class="button fit">Encrypted Matrix Build</a></li>
-										<li><a href="#" class="button fit">Ranged Docs Search</a></li>
+										<li><a href="/auth" class="button fit">1️⃣ Mutual Authentication</a></li>
+										<li><a href="/build" class="button fit">2️⃣ Encrypted Matrix Build</a></li>
+										<li><a href="/search" class="button fit">3️ Ranged Docs Search</a></li>
 									</ul>
 								</div>
 							</div><br>
+
+							<h2>System Params</h2>
+							<div th:each="item: ${params}">
+								<strong th:text="${item.key}">Key</strong><br>
+								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
+							</div>
 
 							<h2>Feedback</h2>
 							<div th:each="item: ${data}">
 								<strong th:text="${item.key}">Key</strong><br>
 								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
-							</div><br>
+							</div>
 						</section>
 					</div>
 				</section>
