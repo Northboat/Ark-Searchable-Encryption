@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class DIBAEKS extends CipherSystem {
 
     public DIBAEKS(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -57,12 +60,25 @@ public class DIBAEKS extends CipherSystem {
         T2 = g.powZn(r).getImmutable();
     }
 
+    boolean flag;
+    Element left, right;
     public boolean search(){
         Element p = this.getBp().pairing(T2.powZn(sk_svr), C3).getImmutable();
-        Element left = C1.mul(p).getImmutable();
-        Element right = this.getBp().pairing(T1.powZn(sk_svr), C2);
+        left = C1.mul(p).getImmutable();
+        right = this.getBp().pairing(T1.powZn(sk_svr), C2);
         System.out.println("dIBAEKS left: " + left);
         System.out.println("dIBAEKS right: " + right);
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 }

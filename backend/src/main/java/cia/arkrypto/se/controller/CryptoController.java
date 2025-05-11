@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +28,7 @@ public class CryptoController {
 
         int round = Integer.parseInt(params.get("round"));
         Map<String, Object> data = cryptoService.test(algo, word, words, round);
+        data.put("msg", "如果是多轮测试，由于每轮除了系统变量，其余都是随机选取，所以返回的变量将默认是最后一轮的");
 
 
         model.addAttribute("algo", algo);
@@ -51,17 +51,30 @@ public class CryptoController {
         return "archetype";
     }
 
-    @RequestMapping(value = "/build", method = RequestMethod.GET)
-    public String build(Model model) {
+    @RequestMapping(value = "/buildMatrix", method = RequestMethod.GET)
+    public String buildMatrix(Model model) {
         model.addAttribute("params", cryptoService.params());
-        model.addAttribute("data", cryptoService.build());
+        model.addAttribute("data", cryptoService.buildMatrix());
         return "archetype";
+    }
+
+    @RequestMapping(value = "/query", method = RequestMethod.GET)
+    public String query(Model model) {
+        model.addAttribute("params", cryptoService.params());
+        model.addAttribute("data", cryptoService.query());
+        return "archetype";
+    }
+
+    @RequestMapping(value = "/buildTree", method = RequestMethod.GET)
+    public String buildTree(Model model) {
+        model.addAttribute("data", Map.of("msg", "haven't write"));
+        return "tree";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(Model model) {
-        model.addAttribute("params", cryptoService.params());
-        model.addAttribute("data", cryptoService.search());
-        return "archetype";
+        model.addAttribute("data", Map.of("msg", "haven't write"));
+        return "tree";
     }
+
 }

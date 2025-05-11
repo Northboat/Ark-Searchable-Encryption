@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class PMatch extends CipherSystem {
 
 
@@ -67,17 +70,30 @@ public class PMatch extends CipherSystem {
     }
 
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
-        Element left = pairing(C1, T1);
+        left = pairing(C1, T1);
         Element p1 = pairing(C2, T2);
         Element p2 = pairing(C3, T3);
         Element p3 = pairing(C4, T4);
 
-        Element right = p1.mul(p2).mul(p3).getImmutable();
+        right = p1.mul(p2).mul(p3).getImmutable();
         System.out.println("pMatch left: " + left);
         System.out.println("pMatch right: " + right);
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 
 }

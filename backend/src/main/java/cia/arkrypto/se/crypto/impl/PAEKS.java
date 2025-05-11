@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class PAEKS extends CipherSystem {
 
     public PAEKS(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -53,16 +56,26 @@ public class PAEKS extends CipherSystem {
 
 
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
         System.out.println("T: " + T);
-        Element left = T.mul(pairing(C2, g)).getImmutable();
-        Element right = pairing(C1, pk_r).getImmutable();
+        left = T.mul(pairing(C2, g)).getImmutable();
+        right = pairing(C1, pk_r).getImmutable();
         System.out.println("PAEKS left: " + left);
         System.out.println("PAEKS right: " + right);
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
     }
 
 
-
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
+    }
 }

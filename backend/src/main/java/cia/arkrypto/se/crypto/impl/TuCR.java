@@ -7,6 +7,8 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
 
 public class TuCR extends CipherSystem {
 
@@ -148,14 +150,15 @@ public class TuCR extends CipherSystem {
         T[2] = pairing(g1, g2).powZn(s).getImmutable();
     }
 
-
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
-        Element left = pairing(C[0], T[0]).getImmutable();
+        left = pairing(C[0], T[0]).getImmutable();
 
         Element p1 = pairing(C[2], T[1].div(P_u1[2].powZn(sk_svr))).getImmutable();
         Element p2 = pairing(T[0], C[3]).getImmutable();
-        Element right = p1.mul(p2).getImmutable();
+        right = p1.mul(p2).getImmutable();
 
         System.out.println(p1);
         System.out.println(p2);
@@ -163,7 +166,17 @@ public class TuCR extends CipherSystem {
         System.out.println(left);
         System.out.println(right);
 
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 
 

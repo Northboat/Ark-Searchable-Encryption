@@ -1,4 +1,4 @@
-package cia.northboat.pojo;
+package cia.arkrypto.se.ds;
 
 import it.unisa.dia.gas.jpbc.Element;
 import lombok.AllArgsConstructor;

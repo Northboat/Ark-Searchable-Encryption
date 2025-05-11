@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class PREKS extends CipherSystem {
 
     public PREKS(Field G, Field GT, Field Zr, Pairing bp, int n) {
@@ -25,6 +28,7 @@ public class PREKS extends CipherSystem {
     public void setup() {
         g = randomG();
         h = randomG();
+        reEncCost = 0;
     }
 
     @Override
@@ -68,14 +72,34 @@ public class PREKS extends CipherSystem {
         B1 = B.powZn(sk2.div(sk1)).getImmutable();
     }
 
+    long reEncCost;
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search() {
+        long s = System.currentTimeMillis();
         reEnc();
+        reEncCost += System.currentTimeMillis() - s;
 
-        Element left = F.getImmutable();
-        Element right = H2(pairing(B, T_w)).getImmutable();
+        left = F.getImmutable();
+        right = H2(pairing(B, T_w)).getImmutable();
         System.out.println("left: " + left);
         System.out.println("right: " + right);
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round){
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("ReEncCost", reEncCost);
+        data.put("g", g);
+        data.put("pk1", pk1);
+        data.put("C", C);
+        data.put("T_w", T_w);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 }

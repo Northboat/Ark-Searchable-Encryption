@@ -10,6 +10,8 @@ import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Map;
 
 public class Tu2CKS extends CipherSystem {
     int k;
@@ -258,7 +260,8 @@ public class Tu2CKS extends CipherSystem {
         T3 = (p5.mul(p6).mul(p7)).powZn(s).getImmutable();
     }
 
-
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
 
@@ -275,14 +278,25 @@ public class Tu2CKS extends CipherSystem {
 
         Element p6 = C2.mul(p2).mul(p3).mul(p4).mul(p5).getImmutable();
 
-        Element left = p1.mul(p6).getImmutable();
-        Element right = T3;
+        left = p1.mul(p6).getImmutable();
+        right = T3;
 
 
         System.out.println(p6);
         System.out.println(left);
         System.out.println(right);
 
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 }

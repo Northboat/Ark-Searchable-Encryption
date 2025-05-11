@@ -7,6 +7,7 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.util.List;
+import java.util.Map;
 
 public class TMS extends CipherSystem {
 
@@ -95,6 +96,7 @@ public class TMS extends CipherSystem {
     }
 
 
+    boolean flag;
     Element K1, K2, K3, K;
     @Override
     public boolean search(){
@@ -110,6 +112,16 @@ public class TMS extends CipherSystem {
         K = part1.mul(part2).mul(part3).mul(part4);
         System.out.println("TMS K: " + K);
         System.out.println("TMS C2: " + C2);
-        return K.equals(C2);
+        flag = K.isEqual(C2);
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", K);
+        data.put("right", C2);
+        return data;
     }
 }

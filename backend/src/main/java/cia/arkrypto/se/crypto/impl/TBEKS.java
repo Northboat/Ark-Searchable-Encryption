@@ -7,6 +7,7 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.util.List;
+import java.util.Map;
 
 public class TBEKS extends CipherSystem {
 
@@ -118,7 +119,8 @@ public class TBEKS extends CipherSystem {
         T2.getImmutable();
     }
 
-
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
         Element part1 = pairing(I0, T1);
@@ -132,12 +134,22 @@ public class TBEKS extends CipherSystem {
 //        System.out.println(product);
         Element part3 = pairing(product, h);
 
-        Element left = part1.mul(part2).getImmutable();
-        Element right = part3.getImmutable();
+        left = part1.mul(part2).getImmutable();
+        right = part3.getImmutable();
 
         System.out.println("TBEKS Left: " + left);
         System.out.println("TBEKS Right: " + right);
 
-        return left.equals(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 }

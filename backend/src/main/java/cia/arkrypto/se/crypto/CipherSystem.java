@@ -90,7 +90,7 @@ public abstract class CipherSystem implements SearchableEncryption{
 
 
     public Map<String, Object> test(String word, List<String> words, int round){
-        long t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0;
+        long t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0, t7 = 0;
         Map<String, Object> res = new HashMap<>();
         setup();
         for(int i = 0; i < round; i++){
@@ -121,7 +121,11 @@ public abstract class CipherSystem implements SearchableEncryption{
 
 
             if(getUpdatable()){
+                long s7 = System.currentTimeMillis();
                 updateKey();
+                long e7 = System.currentTimeMillis();
+                t7 += e7-s7;
+
                 long s4 = System.currentTimeMillis();
                 reEnc();
                 long e4 = System.currentTimeMillis();
@@ -152,6 +156,7 @@ public abstract class CipherSystem implements SearchableEncryption{
             res.put("ReEncCost", t4);
             res.put("ConstTrapCost", t5);
             res.put("UpdateSearchCost", t6);
+            res.put("UpdateKeyCost", t7);
         }
         return res;
     }
@@ -160,5 +165,4 @@ public abstract class CipherSystem implements SearchableEncryption{
     public List<Long> test(List<String> words, int sender, int receiver, int round) {
         throw new UnsupportedOperationException("test(List<String> words, int sender, int receiver, int round) is not supported");
     }
-
 }

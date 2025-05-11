@@ -1,36 +1,38 @@
-package cia.northboat;
+package cia.arkrypto.se.test;
 
-
-import cia.northboat.pojo.Location;
-import cia.northboat.pojo.QuadTree;
-import cia.northboat.util.TreeUtil;
+import cia.arkrypto.se.crypto.EncryptedQuadtree;
+import cia.arkrypto.se.ds.Location;
+import cia.arkrypto.se.ds.QuadTree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.openjdk.jol.info.ClassLayout;
-
-
-public class Main {
-
+public class QuadtreeTest {
     static int n = 1;
     static long s1, e1, s2, e2, s3, e3;
     public static void main(String[] args) {
 
+        EncryptedQuadtree tree = new EncryptedQuadtree();
+
         genPoint();
-        QuadTree root = null;
+        QuadTree root = tree.build(O);
+
+
+        bfs(root);
+        System.out.println((e1-s1+e2-s2+e3-s3)/n + " ms");
+    }
+
+    public static void threadTest(EncryptedQuadtree tree){
         Object lock1 = new Object();
-        Object lock2 = new Object();
-        Object lock3 = new Object();
 
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 s1 = System.currentTimeMillis();
                 for(int i = 0; i < n; i++){
-                    TreeUtil.build(O);
+                    tree.build(O);
                 }
                 e1 = System.currentTimeMillis();
                 synchronized (lock1) {//获取对象锁
@@ -39,55 +41,15 @@ public class Main {
             }
         });
 
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                s2 = System.currentTimeMillis();
-                for(int i = 0; i < n; i++){
-                    TreeUtil.build(O);
-                }
-                e2 = System.currentTimeMillis();
-                synchronized (lock2) {//获取对象锁
-                    lock2.notify();//子线程唤醒
-                }
-            }
-        });
-
-        Thread thread3 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                s3 = System.currentTimeMillis();
-                for(int i = 0; i < n; i++){
-                    TreeUtil.build(O);
-                }
-                e3 = System.currentTimeMillis();
-                synchronized (lock3) {//获取对象锁
-                    lock3.notify();//子线程唤醒
-                }
-            }
-        });
-
         thread1.start();
-        thread2.start();
-        thread3.start();
 
         try {
             synchronized (lock1) {//这里也是一样
                 lock1.wait();//主线程等待
             }
-            synchronized (lock2) {//这里也是一样
-                lock2.wait();//主线程等待
-            }
-            synchronized (lock3) {//这里也是一样
-                lock3.wait();//主线程等待
-            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-//        bfs(root);
-        System.out.println((e1-s1+e2-s2+e3-s3)/n + " ms");
-//        System.out.println(ClassLayout.parseInstance(root));
     }
 
 
@@ -125,7 +87,7 @@ public class Main {
         double centerX = 0; // 圆心的横坐标
         double centerY = 0; // 圆心的纵坐标
         double radius = 900; // 圆半径
-        int numPoints = 100000; // 生成的点数
+        int numPoints = 100; // 生成的点数
 
         Random random = new Random();
         O = new Location[numPoints];
@@ -147,5 +109,4 @@ public class Main {
             System.out.println(o);
         }
     }
-
 }

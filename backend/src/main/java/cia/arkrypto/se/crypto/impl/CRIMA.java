@@ -80,7 +80,9 @@ public class CRIMA extends CipherSystem {
     @Override
     public Map<String, Object> test(String word, List<String> words, int round) {
         Map<String, Object> data = super.test(word, words, round);
-
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
         return data;
     }
 }

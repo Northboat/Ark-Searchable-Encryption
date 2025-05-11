@@ -5,6 +5,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class PEKS extends CipherSystem {
 
     public PEKS(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -165,6 +168,8 @@ public class PEKS extends CipherSystem {
     }
 
 
+    boolean flag = false;
+    Element left, right;
     @Override
     public boolean search(){
         Element z1 = pairing(B[0][0], E[0][0]).mul(pairing(B[0][1], E[0][1])).mul(pairing(B[0][2], E[0][2])).mul(pairing(B[0][3], E[0][3])).mul(pairing(B[0][4], E[0][4])).mul(pairing(B[0][5], E[0][5])).mul(pairing(B[0][6], E[0][6])).mul(pairing(B[0][7], E[0][7])).getImmutable();
@@ -199,18 +204,35 @@ public class PEKS extends CipherSystem {
         System.out.println("z7: " + z7 + "\ntau7: " + tau7);
         switch (testIndex) {
             case 0, 1 -> {
-                return z2.isEqual(tau2) && z4.isEqual(tau4); // test0 & test1
+                flag = z2.isEqual(tau2) && z4.isEqual(tau4); // test0 & test1
+                left = z4;
+                right = tau4;
             }
             case 2 -> {
-                return z2.isEqual(tau2) && z5.isEqual(tau5); // test2
+                flag = z2.isEqual(tau2) && z5.isEqual(tau5); // test2
+                left = z5;
+                right = tau5;
             }
             case 3, 4, 5 -> {
-                return z2.isEqual(tau2) && z6.isEqual(tau6); // test3 & test4 & test5
+                flag = z2.isEqual(tau2) && z6.isEqual(tau6); // test3 & test4 & test5
+                left = z6;
+                right = tau6;
             }
             case 6, 7 -> {
-                return z2.isEqual(tau2) && z7.isEqual(tau7); // test6 & test7
+                flag = z2.isEqual(tau2) && z7.isEqual(tau7); // test6 & test7
+                left = z7;
+                right = tau7;
             }
         }
-        return false;
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 }

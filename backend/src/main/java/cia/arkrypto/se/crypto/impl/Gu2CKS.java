@@ -6,6 +6,7 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.util.List;
+import java.util.Map;
 
 public class Gu2CKS extends CipherSystem {
 
@@ -102,6 +103,8 @@ public class Gu2CKS extends CipherSystem {
     }
 
 
+    boolean flag;
+    Element K;
     static Element[] T;
     public boolean search(){
         T = new Element[3];
@@ -114,12 +117,23 @@ public class Gu2CKS extends CipherSystem {
         Element part2 = this.getBp().pairing(B[1], T[1]).getImmutable();
         Element part3 = this.getBp().pairing(B[2], T[2]).getImmutable();
 
-        Element K = part1.mul(part2).mul(part3).getImmutable();
+        K = part1.mul(part2).mul(part3).getImmutable();
 
         System.out.println("Gu2CKS K: " + K);
         System.out.println("Gu2CKS C1: " + C1);
 
-        return K.equals(C1);
+        flag = K.isEqual(C1);
+        return flag;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("K", K);
+        data.put("C1", C1);
+        return data;
     }
 
 }

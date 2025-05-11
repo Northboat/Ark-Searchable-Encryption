@@ -1,14 +1,13 @@
-package cia.northboat.util;
+package cia.arkrypto.se.util;
 
-import cia.northboat.pojo.Cy;
-import cia.northboat.pojo.Location;
-import cia.northboat.pojo.QuadTree;
+
+import cia.arkrypto.se.ds.Cy;
+import cia.arkrypto.se.ds.Location;
+import cia.arkrypto.se.ds.QuadTree;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
-
-import java.math.BigInteger;
 
 public class IPFEUtil {
     private static Pairing bp;

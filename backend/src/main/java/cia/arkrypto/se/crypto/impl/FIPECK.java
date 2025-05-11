@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class FIPECK extends CipherSystem{
 
     public FIPECK(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -47,8 +50,6 @@ public class FIPECK extends CipherSystem{
 
     @Override
     public void keygen(){
-
-
         Element p = H3(rou);
         Element r = this.getZr().newRandomElement().getImmutable();
         Element k = this.getGT().newRandomElement().getImmutable();
@@ -77,13 +78,25 @@ public class FIPECK extends CipherSystem{
         T2 = g.powZn(pi).getImmutable();
     }
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
-        Element left = H1(this.getBp().pairing(C1, T1.div(T2.powZn(x))).mul(t));
-        Element right = C2;
+        left = H1(this.getBp().pairing(C1, T1.div(T2.powZn(x))).mul(t));
+        right = C2;
         System.out.println("left: " + left);
         System.out.println("right: " + right);
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
     }
 
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
+    }
 }

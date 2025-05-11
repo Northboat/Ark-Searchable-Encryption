@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class DPREKS extends CipherSystem {
 
     public DPREKS(Field G, Field GT, Field Zr, Pairing bp, int n) {
@@ -31,7 +34,7 @@ public class DPREKS extends CipherSystem {
         sk_kgc = randomZ(); // x
         sk_svr = randomZ();
         pk_svr = g.powZn(sk_svr).getImmutable();
-
+        reEncCost = 0;
     }
 
 
@@ -81,16 +84,40 @@ public class DPREKS extends CipherSystem {
         C_w1 = C_w1.powZn(sk_tu.div(sk_co)).getImmutable();
     }
 
+
+    long reEncCost;
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search() {
+        long s = System.currentTimeMillis();
         reEnc();
+        reEncCost += System.currentTimeMillis() - s;
 
         Element T = pairing(V, pk_co).powZn(sk_svr).getImmutable();
-        Element left = pairing(C_w1, T_q1.div(T_q2.powZn(sk_svr))).mul(T).getImmutable();
-        Element right = C_w2.getImmutable();
+        left = pairing(C_w1, T_q1.div(T_q2.powZn(sk_svr))).mul(T).getImmutable();
+        right = C_w2.getImmutable();
 
         System.out.println("left: " + left);
         System.out.println("right: " + right);
-        return left.isEqual(right);
+
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round){
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("ReEncCost", reEncCost);
+        data.put("g", g);
+        data.put("pk_svr", pk_svr);
+        data.put("V", V);
+        data.put("C_w1", C_w1);
+        data.put("T_q1", T_q1);
+        data.put("left", left);
+        data.put("right", right);
+
+        return data;
     }
 }

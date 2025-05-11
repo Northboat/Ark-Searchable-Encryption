@@ -1,4 +1,4 @@
-package cia.northboat.pojo;
+package cia.arkrypto.se.ds;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

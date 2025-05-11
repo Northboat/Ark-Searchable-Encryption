@@ -103,7 +103,7 @@ public class CryptoService {
         return data;
     }
 
-    public Map<String, Object> build(){
+    public Map<String, Object> buildMatrix(){
         long s = System.currentTimeMillis();
         Map<String, Object> data = rangedSEArchetype.buildMatrix();
         long e = System.currentTimeMillis();
@@ -111,7 +111,7 @@ public class CryptoService {
         return data;
     }
 
-    public Map<String, Object> search(){
+    public Map<String, Object> query(){
         long s = System.currentTimeMillis();
         Map<String, Object> data = rangedSEArchetype.search();
         long e = System.currentTimeMillis();

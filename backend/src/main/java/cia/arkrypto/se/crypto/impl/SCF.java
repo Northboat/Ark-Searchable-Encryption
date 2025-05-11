@@ -9,6 +9,7 @@ import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class SCF extends CipherSystem {
 
@@ -84,13 +85,28 @@ public class SCF extends CipherSystem {
     }
 
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
         Element pairing = this.getBp().pairing(PK_do, T);
         System.out.println("SCF Pairing: " + pairing);
-        return h3(pairing).isEqual(h4(pairing));
+        left = h3(pairing);
+        right = h4(pairing);
+
+        flag = left.isEqual(right);
+        return flag;
     }
 
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
+    }
 
     @Override
     public List<Long> test(List<String> words, int sender, int receiver, int round){
@@ -120,30 +136,5 @@ public class SCF extends CipherSystem {
         }
 
         return Arrays.asList(t1/round, t2/round, t3/round);
-    }
-
-    public static void main(String[] args) {
-        Pairing bp = PairingFactory.getPairing("a.properties");
-        Field G1 = bp.getG1();
-        Field GT = bp.getGT();
-        Field Zr = bp.getZr();
-        int n = 12;
-        SCF scf1 = new SCF(G1, GT, Zr, bp, n);
-        scf1.setup();
-        scf1.keygen();
-        scf1.enc("test");
-        long t1 = 0, t2 = 0;
-        int base = 100;
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < base; j++){
-                long[] t = scf1.hashTimeCost();
-                t1 += t[0];
-                t2 += t[1];
-            }
-            System.out.println(t1);
-            System.out.println(t2);
-            base += 50;
-        }
-
     }
 }

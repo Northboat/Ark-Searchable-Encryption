@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Archetype - Ark Searchable Encryption</title>
+		<title>Quadtree - Ark Searchable Encryption</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
@@ -21,8 +21,8 @@
 					<ul>
 						<li><a href="/home">Home</a></li>
 						<li><a href="/sim">Simulation</a></li>
-						<li><a href="/arch" class="active">Archetype</a></li>
-						<li><a href="/tree">Quadtree</a></li>
+						<li><a href="/arch">Archetype</a></li>
+						<li><a href="/tree" class="active">Quadtree</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -33,34 +33,29 @@
 				<!-- Main -->
 				<section id="main" class="wrapper">
 					<div class="inner">
-						<h1 class="major">Range-Searchable Encryption Archetype</h1>
-						<p>本系统是一个支持范围查询的可搜索加密原型系统，主要包括以下三个核心步骤
-						<ol>
-							<li>身份双向认证：基于双线性配对构建的认证机制，实现客户端与服务器之间的相互身份验证，保障通信安全</li>
-							<li>加密索引构建：将数据经过处理后生成安全的索引结构，通过加密保护关键词内容，同时支持后续搜索操作</li>
-							<li>范围查询：利用改进的 BM25 算法，支持对加密索引中的数值范围或关键词匹配进行高效查询，兼顾安全性与实用性</li>
-						</ol>
-						<p>该系统集成了多种加密与检索技术，既保障了数据的安全性，又提升了加密条件下的查询效率，是探索安全搜索与加密索引结合的有力实践</p>
+						<h1 class="major">Searchable Encrypted Prefix Quadtree</h1>
+
+						<section>
+						<p><span class="image left"><img src="/images/tree.png" alt="" /></span>
+							基于内积函数加密与前缀四叉树结构，设计了一种支持前缀匹配的可搜索加密方案<br><br>
+							构造阶段，系统首先将明文数据进行 z 阶码（z-order curve）编码，构造前缀字符串，再通过哈希与加密映射的方式，最后将其嵌入前缀四叉树的对应节点<br><br>
+							查询阶段，利用 IPFE 的向量内积特性，将查询向量与密文索引进行安全计算，无需解密即可完成匹配，实现密文索引的范围过滤与精准定位，并避免明文泄露风险<br><br>
+							该机制不仅兼顾了数据可检索性与访问效率，也有效保障了敏感数据在云端环境下的隐私安全，适用于需要支持前缀范围查询的加密存储场景
+						</p>
+						</section><br>
 
 						<section>
 							<h2>Operations</h2><br>
 							<div class="row gtr-uniform">
 								<div class="col-12">
 									<ul class="actions fit">
-										<li><a href="/auth" class="button fit">1️⃣ Mutual Authentication</a></li>
-										<li><a href="/buildMatrix" class="button fit">2️⃣ Encrypted Matrix Build</a></li>
-										<li><a href="/query" class="button fit">3️ Ranged Docs Search</a></li>
+										<li><a href="/buildTree" class="button fit">1️⃣ Quadtree Build</a></li>
+										<li><a href="/search" class="button fit">2️⃣ TreeNode Search</a></li>
 									</ul>
 								</div>
 							</div><br>
 
-							<h2>System Params</h2>
-							<div th:each="item: ${params}">
-								<strong th:text="${item.key}">Key</strong><br>
-								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
-							</div>
-
-							<h2>Feedback</h2>
+							<h2>Result</h2>
 							<div th:each="item: ${data}">
 								<strong th:text="${item.key}">Key</strong><br>
 								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>

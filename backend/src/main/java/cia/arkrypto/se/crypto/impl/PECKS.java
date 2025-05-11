@@ -10,6 +10,7 @@ import it.unisa.dia.gas.jpbc.Pairing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 public class PECKS extends CipherSystem {
@@ -116,21 +117,33 @@ public class PECKS extends CipherSystem {
         }
     }
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search() {
-        Element left = this.getGT().newOneElement();
+        left = this.getGT().newOneElement();
         for(int i = 0; i <= l; i++){
             Element cur = this.getBp().pairing(C1[i], T1[i].div(T4.powZn(sk_cs)));
             left.mul(cur);
         }
         left.getImmutable();
 
-        Element right = this.getBp().pairing(C2, T2).mul(this.getBp().pairing(C3, T3)).getImmutable();
+        right = this.getBp().pairing(C2, T2).mul(this.getBp().pairing(C3, T3)).getImmutable();
 
         System.out.println("PECKS Left: " + left);
         System.out.println("PECKS Right: " + right);
 
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 
     @Override

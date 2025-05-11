@@ -22,6 +22,7 @@
 						<li><a href="/home">Home</a></li>
 						<li><a href="/sim" class="active">Simulation</a></li>
 						<li><a href="/arch">Archetype</a></li>
+						<li><a href="/tree">Quadtree</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -33,7 +34,6 @@
 				<section id="main" class="wrapper">
 					<div class="inner">
 						<h1 class="major">Pairing-Based SE Simulation</h1>
-<!--						<span class="image fit"><img src="/images/pic04.jpg" alt="" /></span>-->
 						<p>双线性配对是一种特殊的数学映射，它将两个群中的元素映射到另一个群中，具有以下三个核心特性
 						<ol>
 							<li>双线性性：两个输入元素的乘积结果与各自指数的乘积有关，可以实现指数之间的计算连接</li>
@@ -54,15 +54,24 @@
 											<option value="0" th:selected="${round == null or round == ''}">- Test Round -</option>
 											<option value="1" th:selected="${round == '1'}">1</option>
 											<option value="10" th:selected="${round == '10'}">10</option>
+											<option value="50" th:selected="${round == '50'}">50</option>
 											<option value="100" th:selected="${round == '100'}">100</option>
+											<option value="200" th:selected="${round == '200'}">200</option>
+											<option value="300" th:selected="${round == '300'}">300</option>
+											<option value="400" th:selected="${round == '400'}">400</option>
+											<option value="500" th:selected="${round == '500'}">500</option>
+											<option value="600" th:selected="${round == '600'}">600</option>
+											<option value="700" th:selected="${round == '700'}">700</option>
 										</select>
 									</div>
+
 									<div class="col-12">
 										<select name="algo" th:value="${algo}">
 											<option value="" th:selected="${algo == null or algo == ''}">- Algo -</option>
 											<option value="AP" th:selected="${algo == 'AP'}">AP</option>
 											<option value="CRIMA" th:selected="${algo == 'CRIMA'}">CRIMA</option>
 											<option value="DIBAEKS" th:selected="${algo == 'DIBAEKS'}">DIBAEKS</option>
+											<option value="DPREKS" th:selected="${algo == 'DPREKS'}">DPREKS</option>
 											<option value="DuMSE" th:selected="${algo == 'DuMSE'}">DuMSE</option>
 											<option value="FIPECK" th:selected="${algo == 'FIPECK'}">FIPECK</option>
 											<option value="Gu2CKS" th:selected="${algo == 'Gu2CKS'}">Gu2CKS</option>

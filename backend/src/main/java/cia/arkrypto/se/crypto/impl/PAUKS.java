@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class PAUKS extends CipherSystem {
 
     public PAUKS(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -65,17 +68,21 @@ public class PAUKS extends CipherSystem {
         T2 = g.powZn(r3).getImmutable();
     }
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
         System.out.println("C1: " + C1);
         System.out.println("C2: " + C2);
         System.out.println("T1: " + T1);
         System.out.println("T2: " + T2);
-        Element left = this.getBp().pairing(C1, T1);
-        Element right = this.getBp().pairing(C2, T2);
+        left = this.getBp().pairing(C1, T1);
+        right = this.getBp().pairing(C2, T2);
         System.out.println("PAUKS verify test left: " + left);
         System.out.println("PAUKS verify test right: " + right);
-        return left.isEqual(right);
+
+        flag = left.isEqual(right);
+        return flag;
     }
 
 
@@ -116,12 +123,26 @@ public class PAUKS extends CipherSystem {
         T_2 = HashUtil.hashZrArr2G(g, w).powZn(r).getImmutable();
     }
 
+
+    boolean updateFlag;
     @Override
     public boolean updateSearch(){
         Element left = this.getBp().pairing(C4, T_1);
         Element right = this.getBp().pairing(C6, T_2);
         System.out.println("PAUKS update test left: " + left);
         System.out.println("PAUKS update test right: " + right);
-        return left.isEqual(right);
+        updateFlag = left.isEqual(right);
+        return updateFlag;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        data.put("update_flag", updateFlag);
+        return data;
     }
 }

@@ -110,11 +110,13 @@ public class AP extends CipherSystem {
         }
     }
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search() {
         Element t = pairing(Ci1, V).powZn(x).getImmutable();
 
-        Element right = Ci2.powZn(Ti1).getImmutable();
+        right = Ci2.powZn(Ti1).getImmutable();
 
         Element part1 = t.powZn(Ti1).getImmutable();
         Element part2 = this.getGT().newOneElement();
@@ -125,11 +127,12 @@ public class AP extends CipherSystem {
         part2.getImmutable();
 //        System.out.println("product: " + part2);
 
-        Element left = part1.mul(part2).getImmutable();
+        left = part1.mul(part2).getImmutable();
 
         System.out.println("AP Left: " + left);
         System.out.println("AP Right: " + right);
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
     }
 
 
@@ -203,8 +206,8 @@ public class AP extends CipherSystem {
     }
 
 
-    boolean flag;
-    Element left, right;
+    boolean updateFlag;
+    Element updateLeft, updateRight;
     @Override
     public boolean updateSearch(){
         Element t = pairing(Cj1, V).powZn(x).getImmutable();
@@ -219,15 +222,15 @@ public class AP extends CipherSystem {
         product.getImmutable();
 //        System.out.println("product: " + product);
 
-        left = t.mul(Cj5[j]).powZn(Tj1).mul(product).getImmutable();
-        right = Cj2.mul(pairing(H2(K), Cj3)).powZn(Tj1).getImmutable();
+        updateLeft = t.mul(Cj5[j]).powZn(Tj1).mul(product).getImmutable();
+        updateRight = Cj2.mul(pairing(H2(K), Cj3)).powZn(Tj1).getImmutable();
 
         System.out.println("AP UpdLeft: " + left);
         System.out.println("AP UpdRight: " + right);
 
-        flag = left.isEqual(right);
+        updateFlag = left.isEqual(right);
 
-        return flag;
+        return updateFlag;
     }
 
 
@@ -247,7 +250,7 @@ public class AP extends CipherSystem {
         data.put("left", left);
         data.put("right", right);
         data.put("flag", flag);
-        data.put("msg", "如果是多轮测试，由于每轮除了系统变量，其余都是随机选取，所以变量的展示将默认是最后一轮的");
+        data.put("update_flag", updateFlag);
 
         return data;
     }

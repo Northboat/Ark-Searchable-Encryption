@@ -7,6 +7,8 @@ import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 import it.unisa.dia.gas.plaf.jpbc.pairing.a.TypeACurveGenerator;
 
 import java.security.SecureRandom;
+import java.util.List;
+import java.util.Map;
 
 
 public class SPWSE1 extends CipherSystem {
@@ -167,6 +169,8 @@ public class SPWSE1 extends CipherSystem {
     }
 
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
 //        System.out.println("开始匹配\n=====================");
@@ -179,62 +183,23 @@ public class SPWSE1 extends CipherSystem {
 
         Element ans = acc.div(d).getImmutable();
 
-        System.out.println("left: " + ans);
-        System.out.println("right: " + this.getGT().newOneElement());
+        left = ans;
+        right = this.getGT().newOneElement().getImmutable();
+        System.out.println("left: " + left);
+        System.out.println("right: " + right);
 //        System.out.println("=====================\n\n");
 
-        return ans.isEqual(this.getGT().newOneElement());
+        flag = left.isEqual(right);
+        return flag;
     }
 
 
-    public static void main(String[] args) {
-        genParams();
-    }
-
-    public static void genParams(){
-        // 1. 创建固定种子的 SecureRandom 实例
-        SecureRandom fixedRandom = new SecureRandom();
-        fixedRandom.setSeed(12345L);  // 固定随机种子
-        // 初始化 type a 类型曲线
-        PairingParametersGenerator pg = new TypeACurveGenerator(160, 512);
-        // 生成参数
-        PairingParameters params = pg.generate();
-        // 打印参数
-        System.out.println(params.toString());
-    }
-
-    // 简单的双线性验证
-    public static void testPairing(){
-
-        Pairing bp = PairingFactory.getPairing("a8.properties");
-
-        // 二、选择群上的元素
-        Field G1 = bp.getG1();
-        Field G2 = bp.getG2();
-        Field Zr = bp.getZr();
-        Element u = G1.newRandomElement().getImmutable();
-        Element v = G2.newRandomElement().getImmutable();
-        Element a = Zr.newRandomElement().getImmutable();
-        Element b = Zr.newRandomElement().getImmutable();
-        System.out.println("G1 上元素 u: " + u);
-        System.out.println("Zr 上元素 a: " + a);
-
-
-        // 三、计算等式左半部分
-        Element ua = u.powZn(a);
-        Element vb = v.powZn(b);
-        Element left = bp.pairing(ua,vb);
-
-        // 四、计算等式右半部分
-        Element euv = bp.pairing(u,v).getImmutable();
-        Element ab = a.mul(b);
-        Element right = euv.powZn(ab);
-
-        if (left.isEqual(right)) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
-        }
-
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 }

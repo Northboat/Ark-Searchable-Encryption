@@ -23,6 +23,11 @@ public class RouteController {
         return "simulation";  // 返回 templates/login.html 页面
     }
 
+    @GetMapping("/tree")
+    public String tree() {
+        return "tree";  // 返回 templates/login.html 页面
+    }
+
 
     @RequestMapping(value = "/sim/{algo}", method = RequestMethod.GET)
     public String sim(@PathVariable("algo") String algo, Model model) {

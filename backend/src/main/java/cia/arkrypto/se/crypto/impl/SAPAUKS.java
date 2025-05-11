@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class SAPAUKS extends CipherSystem {
 
     public SAPAUKS(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -75,6 +78,8 @@ public class SAPAUKS extends CipherSystem {
         t_5 = pk_r;
     }
 
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
         Element part1 = pairing(c_1.div(c_3.powZn(sk_cs.invert())), t_4).getImmutable();
@@ -82,12 +87,23 @@ public class SAPAUKS extends CipherSystem {
         Element part3 = pairing(t_1.div(t_3.powZn(sk_cs.invert())), c_4).getImmutable();
         Element part4 = pairing(t_2, c_5).getImmutable();
 
-        Element left = part1.div(part2).getImmutable();
-        Element right = part3.div(part4).getImmutable();
+        left = part1.div(part2).getImmutable();
+        right = part3.div(part4).getImmutable();
 
         System.out.println("SA-PAUKS left: " + left);
         System.out.println("SA-PAUKS right: " + right);
 
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
     }
 }

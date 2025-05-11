@@ -8,6 +8,7 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DuMSE extends CipherSystem {
@@ -46,14 +47,14 @@ public class DuMSE extends CipherSystem {
     }
 
 
-    public Element id, sk_id, C1, C2, C3;
+    public Element id, sk_id, C1, C2, C3, L;
     @Override
     public void enc(String str){
         Element[] w = h(str);
         Element r = randomZ();
 
         // log(q) 位的随机数
-        Element L = BitUtil.random(this.getZr(), (int)Math.log(q));
+        L = BitUtil.random(this.getZr(), (int)Math.log(q));
 
         // 不知道哪来的参数
         Element p = randomZ(), pr = randomZ();
@@ -107,14 +108,14 @@ public class DuMSE extends CipherSystem {
         T_2 = pairing(T3.div(T2.powZn(sk_fs.invert())), AI_o).getImmutable();
     }
 
-
+    Element L1;
     @Override
     public boolean search(){
         Element p1 = pairing(T_1, AI_o).getImmutable();
         Element p2 = T_2.powZn(sk_ss).getImmutable();
 
         // 又用到了这个哈希
-        Element L1 = HashUtil.hashGT2ZrWithQ(this.getZr(), p2.div(p1), (int)Math.log(q)).getImmutable();
+        L1 = HashUtil.hashGT2ZrWithQ(this.getZr(), p2.div(p1), (int)Math.log(q)).getImmutable();
 
         Element U1 = pairing(C2, AI_o).powZn(sk_ss).getImmutable();
         Element U2 = C3;
@@ -128,6 +129,16 @@ public class DuMSE extends CipherSystem {
 
         System.out.println("L': " + L1);
         return false;
+    }
+
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", false);
+        data.put("L", L);
+        data.put("L'", L1);
+        return data;
     }
 
 }

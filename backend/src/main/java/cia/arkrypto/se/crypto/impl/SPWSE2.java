@@ -6,6 +6,9 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
+import java.util.List;
+import java.util.Map;
+
 public class SPWSE2 extends CipherSystem {
 
     public SPWSE2(Field G, Field GT, Field Zr, Pairing bp, int n){
@@ -149,6 +152,9 @@ public class SPWSE2 extends CipherSystem {
         T5 = g.powZn(s.mul(m.mul(s2))).getImmutable();
     }
 
+
+    boolean flag;
+    Element left, right;
     @Override
     public boolean search(){
         Element acc = this.getGT().newOneElement();
@@ -182,12 +188,20 @@ public class SPWSE2 extends CipherSystem {
 //        System.out.println("T4 pairing check: " + bp.pairing(g, T4));   // T4
 //        System.out.println("T5 pairing check: " + bp.pairing(h, T5));   // T5
 
-        Element left = part1.mul(part2).getImmutable();
-        Element right = part3.mul(part4).getImmutable();
+        left = part1.mul(part2).getImmutable();
+        right = part3.mul(part4).getImmutable();
 
         System.out.println("left: " + left + "\nright: " + right);
-
-        return left.isEqual(right);
+        flag = left.isEqual(right);
+        return flag;
     }
 
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("left", left);
+        data.put("right", right);
+        return data;
+    }
 }
