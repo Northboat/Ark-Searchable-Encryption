@@ -46,19 +46,61 @@
 
 						<section>
 							<h2>Operations</h2><br>
-							<div class="row gtr-uniform">
-								<div class="col-12">
-									<ul class="actions fit">
-										<li><a href="/buildTree" class="button fit">1️⃣ Quadtree Build</a></li>
-										<li><a href="/search" class="button fit">2️⃣ TreeNode Search</a></li>
-									</ul>
+							<form method="post" th:action="@{/buildTree}">
+								<div class="row gtr-uniform">
+									<div class="col-4 col-12-xsmall">
+										<select name="count" th:value="${count}">
+											<option value="1" th:selected="${count == null or count == ''}">- Node Count -</option>
+											<option value="10" th:selected="${count == '10'}">10</option>
+											<option value="50" th:selected="${count == '50'}">50</option>
+											<option value="100" th:selected="${count == '100'}">100</option>
+											<option value="200" th:selected="${count == '200'}">200</option>
+											<option value="300" th:selected="${count == '300'}">300</option>
+											<option value="400" th:selected="${count == '400'}">400</option>
+											<option value="500" th:selected="${count == '500'}">500</option>
+											<option value="600" th:selected="${count == '600'}">600</option>
+											<option value="700" th:selected="${count == '700'}">700</option>
+											<option value="100000" th:selected="${count == '100000'}">100000</option>
+										</select>
+									</div>
+									<div class="col-4 col-12-xsmall">
+										<select name="type" th:value="${type}">
+											<option value="1" th:selected="${type == null or type == ''}">- Node Info Type -</option>
+											<option value="1" th:selected="${type == '1'}">Node Coordinate</option>
+											<option value="2" th:selected="${type == '2'}">Node Ciphertext</option>
+											<option value="3" th:selected="${type == '3'}">Node Prefix String</option>
+											<option value="4" th:selected="${type == '4'}">Node All Info</option>
+										</select>
+									</div>
+									<div class="col-4">
+										<ul class="actions">
+											<li><input type="submit" value="Build Tree" class="primary" /></li>
+										</ul>
+									</div>
 								</div>
-							</div><br>
+							</form>
+
+
+							<form method="post" th:action="@{/search}">
+								<div class="row gtr-uniform">
+									<div class="col-4 col-12-xsmall">
+										<input type="text" name="x" th:value="${x}" placeholder="- X-coordinate -" />
+									</div>
+									<div class="col-4 col-12-xsmall">
+										<input type="text" name="y" th:value="${y}" placeholder="- Y-coordinate -" />
+									</div>
+									<div class="col-4">
+										<ul class="actions">
+											<li><input type="submit" value="Search Node" class="primary" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
 
 							<h2>Result</h2>
 							<div th:each="item: ${data}">
 								<strong th:text="${item.key}">Key</strong><br>
-								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
+								<p th:utext="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
 							</div>
 						</section>
 					</div>

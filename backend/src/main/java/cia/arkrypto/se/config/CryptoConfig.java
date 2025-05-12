@@ -2,6 +2,7 @@ package cia.arkrypto.se.config;
 
 
 import ch.qos.logback.core.joran.sanity.Pair;
+import cia.arkrypto.se.crypto.EncryptedQuadtree;
 import cia.arkrypto.se.crypto.RangedSEArchetype;
 import cia.arkrypto.se.crypto.impl.*;
 import it.unisa.dia.gas.jpbc.Field;
@@ -44,6 +45,15 @@ public class CryptoConfig {
         return pairing.getZr();
     }
 
+    @Bean
+    public RangedSEArchetype rangedSEArchetype(Field G1, Field GT, Field Zr, Pairing bp){
+        return new RangedSEArchetype(G1, GT, Zr, bp);
+    }
+
+    @Bean
+    public EncryptedQuadtree encryptedQuadtree(Field G1, Field Zr){
+        return new EncryptedQuadtree(G1, Zr, n);
+    }
 
     @Bean
     public AP ap(Field G1, Field GT, Field Zr, Pairing bp, Field G2){
@@ -152,8 +162,5 @@ public class CryptoConfig {
         return new TuCR(G1, GT, Zr, bp, n);
     }
 
-    @Bean
-    public RangedSEArchetype rangedSEArchetype(Field G1, Field GT, Field Zr, Pairing bp){
-        return new RangedSEArchetype(G1, GT, Zr, bp);
-    }
+
 }

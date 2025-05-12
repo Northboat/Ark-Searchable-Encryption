@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location {
+public class Point {
     private int x, y;
+
+    public String toString(){
+        return "(" + x + ", " + y + ")";
+    }
 }

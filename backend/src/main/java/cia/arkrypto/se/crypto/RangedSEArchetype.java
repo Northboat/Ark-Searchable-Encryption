@@ -280,7 +280,7 @@ public class RangedSEArchetype {
 
         Map<String, Object> data = new HashMap<>();
         if(k == null){
-            data.put("msg", "please finish mutual authentication first");
+            data.put("Error", "Please finish the mutual authentication first");
             return data;
         }
 
@@ -354,7 +354,7 @@ public class RangedSEArchetype {
 
         data.put("ID", Arrays.toString(ID));
 //        data.put("KEYWORD", Arrays.toString(KEYWORD)); // 这个太几把长了
-        data.put("msg", "加密后的关键词序列和矩阵太长了，页面放不完就不展示了");
+        data.put("Msg", "The encrypted keywords and matrix too long to show");
 
 //        System.out.println("ID: " + Arrays.toString(ID));
 //        System.out.println("KEYWORD " + Arrays.toString(KEYWORD));
@@ -470,7 +470,7 @@ public class RangedSEArchetype {
         Map<String, Object> data = new HashMap<>();
 
         if(ID == null || KEYWORD == null || MATRIX == null || ID.length == 0 || KEYWORD.length == 0 || MATRIX.length == 0){
-            data.put("msg", "please build the matrix first");
+            data.put("Error", "Please build the matrix first");
             return data;
         }
 

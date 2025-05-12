@@ -7,7 +7,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Cy {
+public class Ciphertext {
+    Element[] y;
     Element C;
     Element D;
     Element[] E;
