@@ -48,7 +48,7 @@
 							<h2>Operations</h2><br>
 							<form method="post" th:action="@{/buildTree}">
 								<div class="row gtr-uniform">
-									<div class="col-4 col-12-xsmall">
+									<div class="col-6 col-12-xsmall">
 										<select name="count" th:value="${count}">
 											<option value="1" th:selected="${count == null or count == ''}">- Node Count -</option>
 											<option value="10" th:selected="${count == '10'}">10</option>
@@ -63,7 +63,7 @@
 											<option value="100000" th:selected="${count == '100000'}">100000</option>
 										</select>
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-6 col-12-xsmall">
 										<select name="type" th:value="${type}">
 											<option value="1" th:selected="${type == null or type == ''}">- Node Info Type -</option>
 											<option value="1" th:selected="${type == '1'}">Node Coordinate</option>
@@ -72,9 +72,9 @@
 											<option value="4" th:selected="${type == '4'}">Node All Info</option>
 										</select>
 									</div>
-									<div class="col-4">
+									<div class="col-12">
 										<ul class="actions">
-											<li><input type="submit" value="Build Tree" class="primary" /></li>
+											<li><input type="submit" value="1️⃣ Build Tree" class="button fit" /></li>
 										</ul>
 									</div>
 								</div>
@@ -83,15 +83,15 @@
 
 							<form method="post" th:action="@{/search}">
 								<div class="row gtr-uniform">
-									<div class="col-4 col-12-xsmall">
+									<div class="col-6 col-12-xsmall">
 										<input type="text" name="x" th:value="${x}" placeholder="- X-coordinate -" />
 									</div>
-									<div class="col-4 col-12-xsmall">
+									<div class="col-6 col-12-xsmall">
 										<input type="text" name="y" th:value="${y}" placeholder="- Y-coordinate -" />
 									</div>
-									<div class="col-4">
+									<div class="col-12">
 										<ul class="actions">
-											<li><input type="submit" value="Search Node" class="primary" /></li>
+											<li><input type="submit" value="2️⃣ Search Node" class="button fit" /></li>
 										</ul>
 									</div>
 								</div>
