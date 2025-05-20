@@ -3,6 +3,7 @@ package cia.arkrypto.se.service;
 import cia.arkrypto.se.crypto.CipherSystem;
 import cia.arkrypto.se.crypto.EncryptedQuadtree;
 import cia.arkrypto.se.crypto.RangedSEArchetype;
+import cia.arkrypto.se.crypto.SimpleMiner;
 import cia.arkrypto.se.crypto.impl.*;
 import cia.arkrypto.se.ds.Point;
 import cia.arkrypto.se.ds.QuadtreeNode;
@@ -20,11 +21,13 @@ public class CryptoService {
     private final CipherSystem ap, crima, dibaeks, dpreks, dumse, fipeck, gu2cks, paeks, pauks, pecks, peks, pmatch, preks, sapauks, scf, spwse1, spwse2, tbeks, tms, tu2cks, tucr;
     private final RangedSEArchetype rangedSEArchetype;
     private final EncryptedQuadtree encryptedQuadtree;
+    private final SimpleMiner simpleMiner;
     @Autowired
     public CryptoService(AP ap, CRIMA crima, DIBAEKS dibaeks, DPREKS dpreks, DuMSE dumse, FIPECK fipeck,
                          Gu2CKS gu2cks, PAEKS paeks, PAUKS pauks, PECKS pecks, PEKS peks, PMatch pmatch,
                          PREKS preks, SAPAUKS sapauks, SCF scf, SPWSE1 spwse1, SPWSE2 spwse2, TBEKS tbeks,
-                         TMS tms, Tu2CKS tu2cks, TuCR tucr, RangedSEArchetype rangedSEArchetype, EncryptedQuadtree encryptedQuadtree){
+                         TMS tms, Tu2CKS tu2cks, TuCR tucr, RangedSEArchetype rangedSEArchetype,
+                         EncryptedQuadtree encryptedQuadtree, SimpleMiner simpleMiner){
         this.ap = ap;
         this.crima = crima;
         this.dibaeks = dibaeks;
@@ -48,6 +51,7 @@ public class CryptoService {
         this.tucr = tucr;
         this.rangedSEArchetype = rangedSEArchetype;
         this.encryptedQuadtree = encryptedQuadtree;
+        this.simpleMiner = simpleMiner;
     }
 
 
@@ -147,6 +151,10 @@ public class CryptoService {
         data.put("height", encryptedQuadtree.getHeight());
 
         return data;
+    }
+
+    public Map<String, Object> mine(int difficulty){
+        return simpleMiner.mine(difficulty);
     }
 
 

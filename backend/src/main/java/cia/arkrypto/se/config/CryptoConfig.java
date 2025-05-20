@@ -4,6 +4,7 @@ package cia.arkrypto.se.config;
 import ch.qos.logback.core.joran.sanity.Pair;
 import cia.arkrypto.se.crypto.EncryptedQuadtree;
 import cia.arkrypto.se.crypto.RangedSEArchetype;
+import cia.arkrypto.se.crypto.SimpleMiner;
 import cia.arkrypto.se.crypto.impl.*;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
@@ -53,6 +54,11 @@ public class CryptoConfig {
     @Bean
     public EncryptedQuadtree encryptedQuadtree(Field G1, Field Zr){
         return new EncryptedQuadtree(G1, Zr, n);
+    }
+
+    @Bean
+    public SimpleMiner simpleMiner(){
+        return new SimpleMiner();
     }
 
     @Bean

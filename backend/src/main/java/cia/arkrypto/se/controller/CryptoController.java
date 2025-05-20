@@ -80,6 +80,14 @@ public class CryptoController {
     }
 
 
+    @RequestMapping(value = "/mine", method = RequestMethod.GET)
+    public String mine(Model model) {
+        int difficulty = 5;
+        model.addAttribute("data", cryptoService.mine(difficulty));
+        return "tree";
+    }
+
+
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String search(@RequestParam String x, @RequestParam String y, Model model) {
         model.addAttribute("x", x);

@@ -73,29 +73,30 @@
 										</select>
 									</div>
 									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" value="1️⃣ Build Tree" class="button fit" /></li>
+										<ul class="actions fit">
+											<li><input type="submit" value="Build Tree" class="button fit" /></li>
+											<li><a href="/mine" class="button fit">Simple Miner</a></li>
 										</ul>
 									</div>
 								</div>
 							</form>
 
 
-							<form method="post" th:action="@{/search}">
-								<div class="row gtr-uniform">
-									<div class="col-6 col-12-xsmall">
-										<input type="text" name="x" th:value="${x}" placeholder="- X-coordinate -" />
-									</div>
-									<div class="col-6 col-12-xsmall">
-										<input type="text" name="y" th:value="${y}" placeholder="- Y-coordinate -" />
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" value="2️⃣ Search Node" class="button fit" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
+<!--							<form method="post" th:action="@{/search}">-->
+<!--								<div class="row gtr-uniform">-->
+<!--									<div class="col-6 col-12-xsmall">-->
+<!--										<input type="text" name="x" th:value="${x}" placeholder="- X-coordinate -" />-->
+<!--									</div>-->
+<!--									<div class="col-6 col-12-xsmall">-->
+<!--										<input type="text" name="y" th:value="${y}" placeholder="- Y-coordinate -" />-->
+<!--									</div>-->
+<!--									<div class="col-12">-->
+<!--										<ul class="actions">-->
+<!--											<li><input type="submit" value="2️⃣ Search Node" class="button fit" /></li>-->
+<!--										</ul>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</form>-->
 
 							<h2>Result</h2>
 							<div th:each="item: ${data}">
