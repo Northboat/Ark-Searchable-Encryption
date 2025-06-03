@@ -7,6 +7,8 @@ import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 import it.unisa.dia.gas.plaf.jpbc.pairing.a.TypeACurveGenerator;
 
 import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CipherSystemTest {
     public static Field G1, G2, GT, Zr;
@@ -30,12 +32,28 @@ public class CipherSystemTest {
 //        RangedSEArchetype rangedSEArchetype = new RangedSEArchetype(G1, GT, Zr, bp);
 //        rangedSEArchetype.test();
 
-        HVE hve = new HVE(G1, GT, Zr, bp, n, 3);
-        hve.setup();
-        hve.keygen();
-        hve.enc("101");
-        hve.trap("101");
-        hve.search();
+//        HVE hve = new HVE(G1, GT, Zr, bp, n, 3);
+//        hve.setup();
+//        hve.keygen();
+//        hve.enc("101");
+//        hve.trap("1*0");
+//        System.out.println(hve.search());
+//
+//        // ✅ 示例输入：cell 概率分布
+//        Map<String, Double> cells = new HashMap<>();
+//        cells.put("A", 0.85);
+//        cells.put("B", 0.15);
+//        cells.put("C", 0.60);
+//        cells.put("D", 0.35);
+//        cells.put("E", 0.95);
+//
+//        Map<String, String> encoded = hve.grayOptimizer(cells, 7);
+//
+//        // ✅ 输出分配结果
+//        System.out.println("Cell → Gray 编码分配结果：");
+//        for (Map.Entry<String, String> entry : encoded.entrySet()) {
+//            System.out.println("Cell " + entry.getKey() + " → " + entry.getValue());
+//        }
     }
 
     public static void JPBCTest(){

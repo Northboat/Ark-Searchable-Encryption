@@ -6,7 +6,7 @@ import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
-import java.util.Map;
+import java.util.*;
 
 // Hidden Vector Encryption
 public class HVE extends CipherSystem {
@@ -21,10 +21,56 @@ public class HVE extends CipherSystem {
     }
 
 
-    // 优化的 Gray 编码器
-    public Map<String, String> grayOptimizer(Map<String, Double> cells){
+    public List<String> buildGrayPath(int l) {
+        if (l == 0) return new ArrayList<>(List.of(""));
+        List<String> prev = buildGrayPath(l-1);
+        List<String> path = new ArrayList<>();
 
-        return null;
+        // 正序添加，前缀 0
+        for (String code : prev) {
+            path.add("0" + code);
+        }
+        // 反序添加，前缀 1
+        for (int i = prev.size()-1; i >= 0; i--) {
+            path.add("1" + prev.get(i));
+        }
+        return path;
+    }
+
+
+    // 优化的 Gray 编码器
+    public Map<String, String> grayOptimizer(Map<String, Double> cells, int l){
+        // 构建长度为 l 的 Gray 编码路径
+        if(cells.size() > Math.pow(2, l)){
+            System.out.println("Cells too Much, Can't Encode");
+            return null;
+        }
+        List<String> codes = buildGrayPath(l);
+        System.out.println(codes);
+
+        // 构建大顶堆，对 cells 按照权重从大到小排序
+        PriorityQueue<String> sortedCells = new PriorityQueue<>((a, b) -> {
+            if(cells.get(b) - cells.get(a) < 0){
+                return -1;
+            } else if(cells.get(b) - cells.get(a) == 0){
+                return 0;
+            } else {
+                return 1;
+            }
+        });
+        for(String cell: cells.keySet()){
+            sortedCells.offer(cell);
+        }
+
+        // 分配 Gray 编码
+        Map<String, String> grayCode = new HashMap<>();
+        int i = 0;
+        while(!sortedCells.isEmpty()){
+            String cell = sortedCells.poll();
+            String code = codes.get(i++);
+            grayCode.put(cell, code);
+        }
+        return grayCode;
     }
 
 
@@ -76,15 +122,15 @@ public class HVE extends CipherSystem {
 
 
 
-        Element test = this.getG().newOneElement();
-        for(int i = 0; i < l; i++){
-            test.mul(C2[i]).mul(C3[i]);
-        }
-        System.out.println("test: " + test);
-        System.out.println("M:" + M);
-        System.out.println("e(g,g)^{as}: " + pairing(g, g).powZn(a.mul(s)));
+//        Element test = this.getG().newOneElement();
+//        for(int i = 0; i < l; i++){
+//            test.mul(C2[i]).mul(C3[i]);
+//        }
+//        System.out.println("test: " + test);
+//        System.out.println("M:" + M);
+//        System.out.println("e(g,g)^{as}: " + pairing(g, g).powZn(a.mul(s)));
         System.out.println("C0: " + C0);
-        System.out.println("C0/e(g,g)^{as}: " + C0.div(pairing(g, g).powZn(a.mul(s))) + "\n");
+//        System.out.println("C0/e(g,g)^{as}: " + C0.div(pairing(g, g).powZn(a.mul(s))) + "\n");
     }
 
 
@@ -104,18 +150,22 @@ public class HVE extends CipherSystem {
                 Element r1 = randomZ(), r2 = randomZ();
                 K1[i] = g.powZn(r1).getImmutable();
                 K2[i] = g.powZn(r2).getImmutable();
-                c.mul(u[i].powZn(T).mul(h[i]).powZn(r1).mul(w[i]).powZn(r2));
+                c.mul(u[i].powZn(T).mul(h[i]).powZn(r1).mul(w[i].powZn(r2)));
 //                c.mul(u[i].powZn(T).mul(h[i]).mul(w[i]));
             }
         }
         c.getImmutable();
         K0 = g.powZn(a).mul(c).getImmutable();
 
-        System.out.println("Product: " + c);
-        System.out.println("e(C1, K0): " + pairing(C1, K0));
+//        System.out.println("Product: " + c);
+//        System.out.println("e(C1, K0): " + pairing(C1, K0) + "\n");
+        System.out.println("K0: " + K0);
 
     }
 
+
+    Boolean flag;
+    Element M1;
     @Override
     public boolean search() {
         Element part1 = pairing(C1, K0);
@@ -133,16 +183,26 @@ public class HVE extends CipherSystem {
         }
         part2.getImmutable();
 
-        System.out.println("Pairing Product: " + part2);
+//        System.out.println("Pairing Product: " + part2);
 //        System.out.println("part2: " + part2);
-        System.out.println("e(C1, K0)/Pairing Product: "+ part1.div(part2));
+//        System.out.println("e(C1, K0)/Pairing Product: "+ part1.div(part2));
 
-        Element M1 = C0.div(part1.div(part2)).getImmutable();
+        M1 = C0.div(part1.div(part2)).getImmutable();
 
-        System.out.println("HVE left: " + M);
-        System.out.println("HVE right: " + M1);
-        return M.isEqual(M1);
+        System.out.println("HVE M: " + M);
+        System.out.println("HVE M': " + M1);
+        flag = M.isEqual(M1);
+        return flag;
     }
 
+
+    @Override
+    public Map<String, Object> test(String word, List<String> words, int round) {
+        Map<String, Object> data = super.test(word, words, round);
+        data.put("flag", flag);
+        data.put("M", M);
+        data.put("M1", M1);
+        return data;
+    }
 
 }

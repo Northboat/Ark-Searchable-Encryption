@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 public class CryptoService {
 
-    private final CipherSystem ap, crima, dibaeks, dpreks, dumse, fipeck, gu2cks, paeks, pauks, pecks, peks, pmatch, preks, sapauks, scf, spwse1, spwse2, tbeks, tms, tu2cks, tucr;
+    private final CipherSystem ap, crima, dibaeks, dpreks, dumse, fipeck, gu2cks, paeks, pauks, pecks, peks, pmatch, preks, sapauks, scf, spwse1, spwse2, tbeks, tms, tu2cks, tucr, hve;
     private final RangedSearchArchetype rangedSearchArchetype;
     private final EncryptedQuadtree encryptedQuadtree;
     private final SimpleMiner simpleMiner;
@@ -26,7 +26,7 @@ public class CryptoService {
                          Gu2CKS gu2cks, PAEKS paeks, PAUKS pauks, PECKS pecks, PEKS peks, PMatch pmatch,
                          PREKS preks, SAPAUKS sapauks, SCF scf, SPWSE1 spwse1, SPWSE2 spwse2, TBEKS tbeks,
                          TMS tms, Tu2CKS tu2cks, TuCR tucr, RangedSearchArchetype rangedSearchArchetype,
-                         EncryptedQuadtree encryptedQuadtree, SimpleMiner simpleMiner){
+                         EncryptedQuadtree encryptedQuadtree, SimpleMiner simpleMiner, HVE hve){
         this.ap = ap;
         this.crima = crima;
         this.dibaeks = dibaeks;
@@ -48,6 +48,7 @@ public class CryptoService {
         this.tms = tms;
         this.tu2cks = tu2cks;
         this.tucr = tucr;
+        this.hve = hve;
         this.rangedSearchArchetype = rangedSearchArchetype;
         this.encryptedQuadtree = encryptedQuadtree;
         this.simpleMiner = simpleMiner;
@@ -97,6 +98,8 @@ public class CryptoService {
             return tu2cks.test(word, words, round);
         } else if(algo.equalsIgnoreCase("tucr")){
             return tucr.test(word, words, round);
+        } else if(algo.equalsIgnoreCase("hve")){
+            return hve.test(word, words, round);
         }
         return Map.of("msg", "Algo Not Exists");
     }

@@ -166,5 +166,9 @@ public class CryptoConfig {
         return new TuCR(G1, GT, Zr, bp, n);
     }
 
+    @Bean
+    public HVE hve(Field G1, Field GT, Field Zr, Pairing bp){
+        return new HVE(G1, GT, Zr, bp, n, l);
+    }
 
 }

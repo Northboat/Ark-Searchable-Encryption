@@ -5,38 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4df1e08c-ea5c-4d4d-932e-fdbf1765c707" name="Changes" comment="test: test peks time cost &amp; update its docs">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/HVE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/config/CryptoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/config/CryptoConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/controller/RouteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/controller/RouteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/CipherSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/CipherSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/RangedSEArchetype.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/RangedSearchArchetype.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/SearchableEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/SearchableEncryption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/AP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/AP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/CRIMA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/CRIMA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/DIBAEKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/DIBAEKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/DPREKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/DPREKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/DuMSE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/DuMSE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/FIPECK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/FIPECK.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/Gu2CKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/Gu2CKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/PAEKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/PAEKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/PAUKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/PAUKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/PECKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/PECKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/PEKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/PEKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/PMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/PMatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/PREKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/PREKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SAPAUKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/SAPAUKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SCF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/SCF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SPWSE1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/SPWSE1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/SPWSE2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/SPWSE2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/TBEKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/TBEKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/TMS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/TMS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/Tu2CKS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/Tu2CKS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/impl/TuCR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/TuCR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/HVE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/crypto/sim/impl/HVE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/service/CryptoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/service/CryptoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/CipherSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/test/CipherSystemTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/HashUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/HashUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cia/arkrypto/se/util/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/simulation.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +94,7 @@
       <recent name="cia.northboat.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CipherSystemTest">
+  <component name="RunManager" selected="Spring Boot.ArkSearchableEncryption">
     <configuration name="CipherSystemTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cia.arkrypto.se.test.CipherSystemTest" />
       <module name="Ark-Searchable-Encryption" />
@@ -201,8 +175,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CipherSystemTest" />
         <item itemvalue="Spring Boot.ArkSearchableEncryption" />
+        <item itemvalue="Application.CipherSystemTest" />
         <item itemvalue="Application.SimpleMiner" />
         <item itemvalue="Application.QuadtreeTest" />
         <item itemvalue="Application.RangedSearchArchetype" />
@@ -267,7 +241,7 @@
       <workItem from="1747051660591" duration="774000" />
       <workItem from="1747708572096" duration="2910000" />
       <workItem from="1747714179038" duration="1179000" />
-      <workItem from="1748921096895" duration="6806000" />
+      <workItem from="1748921096895" duration="12042000" />
     </task>
     <task id="LOCAL-00001" summary="update: add PEKS algo &amp; TestUtil">
       <created>1745999105945</created>
