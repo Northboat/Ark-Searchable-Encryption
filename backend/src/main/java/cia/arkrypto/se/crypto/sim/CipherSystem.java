@@ -1,4 +1,4 @@
-package cia.arkrypto.se.crypto;
+package cia.arkrypto.se.crypto.sim;
 
 import cia.arkrypto.se.util.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;

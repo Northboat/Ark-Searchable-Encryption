@@ -24,6 +24,14 @@ public class HashUtil {
     }
 
 
+    public static Element hashStr2GT(Field Zr, Element gt, String word, int n){
+        Element[] W = hashStr2ZrArr(Zr, word, n);
+        return hashZrArr2GT(gt, W);
+    }
+
+    public static Element hashZrArr2GT(Element gt, Element[] W){
+        return hashZrArr2G(gt, W);
+    }
 
     // 四个 G 上的元素通过累乘哈希为一个 G 上的元素
     public static Element hash4G(Element g1, Element g2, Element g3, Element g4){

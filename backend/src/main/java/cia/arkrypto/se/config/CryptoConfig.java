@@ -1,17 +1,15 @@
 package cia.arkrypto.se.config;
 
 
-import ch.qos.logback.core.joran.sanity.Pair;
 import cia.arkrypto.se.crypto.EncryptedQuadtree;
-import cia.arkrypto.se.crypto.RangedSEArchetype;
+import cia.arkrypto.se.crypto.RangedSearchArchetype;
 import cia.arkrypto.se.crypto.SimpleMiner;
-import cia.arkrypto.se.crypto.impl.*;
+import cia.arkrypto.se.crypto.sim.impl.*;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.parameters.P;
 
 @Configuration
 public class CryptoConfig {
@@ -47,8 +45,8 @@ public class CryptoConfig {
     }
 
     @Bean
-    public RangedSEArchetype rangedSEArchetype(Field G1, Field GT, Field Zr, Pairing bp){
-        return new RangedSEArchetype(G1, GT, Zr, bp);
+    public RangedSearchArchetype rangedSearchArchetype(Field G1, Field GT, Field Zr, Pairing bp){
+        return new RangedSearchArchetype(G1, GT, Zr, bp);
     }
 
     @Bean

@@ -1,6 +1,6 @@
-package cia.arkrypto.se.crypto.impl;
+package cia.arkrypto.se.crypto.sim.impl;
 
-import cia.arkrypto.se.crypto.CipherSystem;
+import cia.arkrypto.se.crypto.sim.CipherSystem;
 import cia.arkrypto.se.util.AESUtil;
 import cia.arkrypto.se.util.BitUtil;
 import cia.arkrypto.se.util.HashUtil;
@@ -9,7 +9,6 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 
 import java.math.BigInteger;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 

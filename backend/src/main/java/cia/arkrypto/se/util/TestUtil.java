@@ -1,7 +1,7 @@
 package cia.arkrypto.se.util;
 
-import cia.arkrypto.se.crypto.CipherSystem;
-import cia.arkrypto.se.crypto.impl.*;
+import cia.arkrypto.se.crypto.sim.CipherSystem;
+import cia.arkrypto.se.crypto.sim.impl.*;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;

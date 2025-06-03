@@ -1,9 +1,6 @@
-package cia.arkrypto.se.crypto;
+package cia.arkrypto.se.crypto.sim;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public interface SearchableEncryption {
     void setup();

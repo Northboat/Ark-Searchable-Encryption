@@ -1,14 +1,13 @@
 package cia.arkrypto.se.service;
 
-import cia.arkrypto.se.crypto.CipherSystem;
+import cia.arkrypto.se.crypto.sim.CipherSystem;
 import cia.arkrypto.se.crypto.EncryptedQuadtree;
-import cia.arkrypto.se.crypto.RangedSEArchetype;
+import cia.arkrypto.se.crypto.RangedSearchArchetype;
 import cia.arkrypto.se.crypto.SimpleMiner;
-import cia.arkrypto.se.crypto.impl.*;
+import cia.arkrypto.se.crypto.sim.impl.*;
 import cia.arkrypto.se.ds.Point;
 import cia.arkrypto.se.ds.QuadtreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -19,14 +18,14 @@ import java.util.Map;
 public class CryptoService {
 
     private final CipherSystem ap, crima, dibaeks, dpreks, dumse, fipeck, gu2cks, paeks, pauks, pecks, peks, pmatch, preks, sapauks, scf, spwse1, spwse2, tbeks, tms, tu2cks, tucr;
-    private final RangedSEArchetype rangedSEArchetype;
+    private final RangedSearchArchetype rangedSearchArchetype;
     private final EncryptedQuadtree encryptedQuadtree;
     private final SimpleMiner simpleMiner;
     @Autowired
     public CryptoService(AP ap, CRIMA crima, DIBAEKS dibaeks, DPREKS dpreks, DuMSE dumse, FIPECK fipeck,
                          Gu2CKS gu2cks, PAEKS paeks, PAUKS pauks, PECKS pecks, PEKS peks, PMatch pmatch,
                          PREKS preks, SAPAUKS sapauks, SCF scf, SPWSE1 spwse1, SPWSE2 spwse2, TBEKS tbeks,
-                         TMS tms, Tu2CKS tu2cks, TuCR tucr, RangedSEArchetype rangedSEArchetype,
+                         TMS tms, Tu2CKS tu2cks, TuCR tucr, RangedSearchArchetype rangedSearchArchetype,
                          EncryptedQuadtree encryptedQuadtree, SimpleMiner simpleMiner){
         this.ap = ap;
         this.crima = crima;
@@ -49,7 +48,7 @@ public class CryptoService {
         this.tms = tms;
         this.tu2cks = tu2cks;
         this.tucr = tucr;
-        this.rangedSEArchetype = rangedSEArchetype;
+        this.rangedSearchArchetype = rangedSearchArchetype;
         this.encryptedQuadtree = encryptedQuadtree;
         this.simpleMiner = simpleMiner;
     }
@@ -103,12 +102,12 @@ public class CryptoService {
     }
 
     public Map<String, Object> params(){
-        return rangedSEArchetype.getSystemParams();
+        return rangedSearchArchetype.getSystemParams();
     }
 
     public Map<String, Object> auth(){
         long s = System.currentTimeMillis();
-        Map<String, Object> data = rangedSEArchetype.mutualAuth();
+        Map<String, Object> data = rangedSearchArchetype.mutualAuth();
         long e = System.currentTimeMillis();
         data.put("time_cost", e-s);
         return data;
@@ -116,7 +115,7 @@ public class CryptoService {
 
     public Map<String, Object> buildMatrix(){
         long s = System.currentTimeMillis();
-        Map<String, Object> data = rangedSEArchetype.buildMatrix();
+        Map<String, Object> data = rangedSearchArchetype.buildMatrix();
         long e = System.currentTimeMillis();
         data.put("time_cost", e-s);
         return data;
@@ -124,7 +123,7 @@ public class CryptoService {
 
     public Map<String, Object> query(){
         long s = System.currentTimeMillis();
-        Map<String, Object> data = rangedSEArchetype.search();
+        Map<String, Object> data = rangedSearchArchetype.search();
         long e = System.currentTimeMillis();
         data.put("time_cost", e-s);
         return data;

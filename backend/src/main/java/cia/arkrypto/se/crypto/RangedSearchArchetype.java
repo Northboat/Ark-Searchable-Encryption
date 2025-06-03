@@ -17,7 +17,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-public class RangedSEArchetype {
+public class RangedSearchArchetype {
 
     @AllArgsConstructor
     @Data
@@ -35,7 +35,7 @@ public class RangedSEArchetype {
     private Element g, h;
     private Pairing bp;
 
-    public RangedSEArchetype(Field G1, Field GT, Field Zr, Pairing bp){
+    public RangedSearchArchetype(Field G1, Field GT, Field Zr, Pairing bp){
         this.G1 = G1;
         this.GT = GT;
         this.Zr = Zr;

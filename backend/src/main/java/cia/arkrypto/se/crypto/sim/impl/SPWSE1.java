@@ -1,12 +1,9 @@
-package cia.arkrypto.se.crypto.impl;
+package cia.arkrypto.se.crypto.sim.impl;
 
-import cia.arkrypto.se.crypto.CipherSystem;
+import cia.arkrypto.se.crypto.sim.CipherSystem;
 import cia.arkrypto.se.util.HashUtil;
 import it.unisa.dia.gas.jpbc.*;
-import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
-import it.unisa.dia.gas.plaf.jpbc.pairing.a.TypeACurveGenerator;
 
-import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 

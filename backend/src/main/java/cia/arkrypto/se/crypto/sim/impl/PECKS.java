@@ -1,6 +1,6 @@
-package cia.arkrypto.se.crypto.impl;
+package cia.arkrypto.se.crypto.sim.impl;
 
-import cia.arkrypto.se.crypto.CipherSystem;
+import cia.arkrypto.se.crypto.sim.CipherSystem;
 import cia.arkrypto.se.util.HashUtil;
 import cia.arkrypto.se.util.PolynomialUtil;
 import it.unisa.dia.gas.jpbc.Element;

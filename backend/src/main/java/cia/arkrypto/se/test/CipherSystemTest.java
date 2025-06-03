@@ -1,6 +1,6 @@
 package cia.arkrypto.se.test;
 
-import cia.arkrypto.se.crypto.RangedSEArchetype;
+import cia.arkrypto.se.crypto.sim.impl.HVE;
 import cia.arkrypto.se.util.TestUtil;
 import it.unisa.dia.gas.jpbc.*;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
@@ -25,11 +25,17 @@ public class CipherSystemTest {
 
     public static void main(String[] args) {
 //        genParams();
-        TestUtil.singleThreadTest(G1, G2, GT, Zr, bp, n);
-        TestUtil.multiThreadTest(G1, G2, GT, Zr, bp, n);
-
+//        TestUtil.singleThreadTest(G1, G2, GT, Zr, bp, n);
+//        TestUtil.multiThreadTest(G1, G2, GT, Zr, bp, n);
 //        RangedSEArchetype rangedSEArchetype = new RangedSEArchetype(G1, GT, Zr, bp);
 //        rangedSEArchetype.test();
+
+        HVE hve = new HVE(G1, GT, Zr, bp, n, 3);
+        hve.setup();
+        hve.keygen();
+        hve.enc("101");
+        hve.trap("101");
+        hve.search();
     }
 
     public static void JPBCTest(){
