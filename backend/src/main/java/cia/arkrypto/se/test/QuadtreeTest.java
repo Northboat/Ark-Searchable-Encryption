@@ -1,18 +1,14 @@
 package cia.arkrypto.se.test;
 
-import cia.arkrypto.se.crypto.EncryptedQuadtree;
-import cia.arkrypto.se.ds.Ciphertext;
-import cia.arkrypto.se.ds.Point;
-import cia.arkrypto.se.ds.QuadtreeNode;
-import cia.arkrypto.se.util.HashUtil;
-import cia.arkrypto.se.util.IPFEUtil;
+import cia.arkrypto.se.crypto.ipfe.EncryptedQuadtree;
+import cia.arkrypto.se.model.bo.Ciphertext;
+import cia.arkrypto.se.model.bo.Point;
+import cia.arkrypto.se.model.bo.QuadtreeNode;
+import cia.arkrypto.se.crypto.ipfe.IPFESystem;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
-import org.springframework.security.core.parameters.P;
-
-import java.util.*;
 
 public class QuadtreeTest {
 
@@ -32,10 +28,8 @@ public class QuadtreeTest {
 
         EncryptedQuadtree tree = new EncryptedQuadtree(G1, Zr, l);
 
-//        tree.build(10);
-//        System.out.println(tree.getTreeStruct(1));
-//        System.out.println(tree.getTreeStruct(1));
-
+        tree.build(10);
+        System.out.println(tree.getTreeStruct(1));
         tree.test();
 
         IPFETest(tree);
@@ -53,7 +47,7 @@ public class QuadtreeTest {
         System.out.println(t);
         System.out.println(c);
 
-        Element res = IPFEUtil.decrypt(tree.getG1(), t, c);
+        Element res = IPFESystem.decrypt(tree.getG1(), t, c);
         System.out.println(res);
     }
 

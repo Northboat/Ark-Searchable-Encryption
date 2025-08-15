@@ -1,15 +1,16 @@
 package cia.arkrypto.se.config;
 
-
-import cia.arkrypto.se.crypto.EncryptedQuadtree;
-import cia.arkrypto.se.crypto.RangedSearchArchetype;
-import cia.arkrypto.se.crypto.SimpleMiner;
-import cia.arkrypto.se.crypto.sim.impl.*;
+import cia.arkrypto.se.crypto.sign.impl.*;
+import cia.arkrypto.se.crypto.ipfe.EncryptedQuadtree;
+import cia.arkrypto.se.crypto.bm25.RangedSearchArchetype;
+import cia.arkrypto.se.crypto.miner.SimpleMiner;
+import cia.arkrypto.se.crypto.pairing.impl.*;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 
 @Configuration
 public class CryptoConfig {
@@ -171,4 +172,24 @@ public class CryptoConfig {
         return new HVE(G1, GT, Zr, bp, n, l);
     }
 
+    @Bean
+    public RSA rsa(Field Zr) {
+        return new RSA(Zr);
+    }
+
+    @Bean
+    public Schnorr schnorr(Field G1, Field Zr){
+        return new Schnorr(G1, Zr);
+    }
+
+    @Bean
+    public Elgamal elgamal(Field Zr) {
+        return new Elgamal(Zr);
+    }
+
+    @Bean
+    public cia.arkrypto.se.crypto.sign.impl.rfid.Schnorr schnorr_rfid(Field G1, Field Zr) {
+        int length = 10; // 可替换配置参数
+        return new cia.arkrypto.se.crypto.sign.impl.rfid.Schnorr(G1, Zr, length);
+    }
 }

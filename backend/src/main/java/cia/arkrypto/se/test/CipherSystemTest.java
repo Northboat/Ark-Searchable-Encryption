@@ -1,14 +1,10 @@
 package cia.arkrypto.se.test;
 
-import cia.arkrypto.se.crypto.sim.impl.HVE;
-import cia.arkrypto.se.util.TestUtil;
 import it.unisa.dia.gas.jpbc.*;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 import it.unisa.dia.gas.plaf.jpbc.pairing.a.TypeACurveGenerator;
 
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CipherSystemTest {
     public static Field G1, G2, GT, Zr;

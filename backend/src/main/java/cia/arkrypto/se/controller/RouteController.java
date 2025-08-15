@@ -33,4 +33,9 @@ public class RouteController {
         model.addAttribute("algo", algo);
         return "simulation";
     }
+
+    @GetMapping("/signature")
+    public String signature() {
+        return "auth";  // 返回 templates/login.html 页面
+    }
 }

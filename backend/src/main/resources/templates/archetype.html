@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<link rel="icon" type="image/png" href="/images/favicon.ico">
 	</head>
 	<body class="is-preload">
 
@@ -20,9 +21,10 @@
 				<nav>
 					<ul>
 						<li><a href="/home">Home</a></li>
-						<li><a href="/sim">Simulation</a></li>
+						<li><a href="/sim">Pairing Sim</a></li>
 						<li><a href="/arch" class="active">Archetype</a></li>
 						<li><a href="/tree">Quadtree</a></li>
+						<li><a href="/signature">Signature Sim</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -54,13 +56,13 @@
 								</div>
 							</div><br>
 
-							<h2>System Params</h2>
+							<h2>Params</h2>
 							<div th:each="item: ${params}">
 								<strong th:text="${item.key}">Key</strong><br>
 								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
 							</div>
 
-							<h2>Feedback</h2>
+							<h2>Result</h2>
 							<div th:each="item: ${data}">
 								<strong th:text="${item.key}">Key</strong><br>
 								<p th:text="${item.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>

@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<link rel="icon" type="image/png" href="/images/favicon.ico">
 	</head>
 	<body class="is-preload">
 
@@ -23,6 +24,7 @@
 						<li><a href="/sim">Simulation</a></li>
 						<li><a href="/arch">Archetype</a></li>
 						<li><a href="/tree" class="active">Quadtree</a></li>
+						<li><a href="/signature">Signature Sim</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -74,29 +76,28 @@
 									</div>
 									<div class="col-12">
 										<ul class="actions fit">
-											<li><input type="submit" value="Build Tree" class="button fit" /></li>
-											<li><a href="/mine" class="button fit">Simple Miner</a></li>
+											<li><input type="submit" value="1️⃣ Build Tree" class="button fit" /></li>
 										</ul>
 									</div>
 								</div>
 							</form>
 
 
-<!--							<form method="post" th:action="@{/search}">-->
-<!--								<div class="row gtr-uniform">-->
-<!--									<div class="col-6 col-12-xsmall">-->
-<!--										<input type="text" name="x" th:value="${x}" placeholder="- X-coordinate -" />-->
-<!--									</div>-->
-<!--									<div class="col-6 col-12-xsmall">-->
-<!--										<input type="text" name="y" th:value="${y}" placeholder="- Y-coordinate -" />-->
-<!--									</div>-->
-<!--									<div class="col-12">-->
-<!--										<ul class="actions">-->
-<!--											<li><input type="submit" value="2️⃣ Search Node" class="button fit" /></li>-->
-<!--										</ul>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</form>-->
+							<form method="post" th:action="@{/search}">
+								<div class="row gtr-uniform">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="x" th:value="${x}" placeholder="- X-coordinate -" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="y" th:value="${y}" placeholder="- Y-coordinate -" />
+									</div>
+									<div class="col-12">
+										<ul class="actions fit">
+											<li><input type="submit" value="2️⃣ Search Node" class="button fit" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
 
 							<h2>Result</h2>
 							<div th:each="item: ${data}">

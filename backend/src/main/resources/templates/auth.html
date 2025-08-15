@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Quadtree - Ark Searchable Encryption</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<link rel="icon" type="image/png" href="/images/favicon.ico">
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="/" class="title">Ark Searchable Encryption</a>
+				<nav>
+					<ul>
+						<li><a href="/home">Home</a></li>
+						<li><a href="/sim">Pairing Sim</a></li>
+						<li><a href="/arch">Archetype</a></li>
+						<li><a href="/tree">Quadtree</a></li>
+						<li><a href="/signature" class="active">Signature Sim</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+				<section id="main" class="wrapper">
+					<div class="inner">
+						<h1 class="major">Signature Auth Simulation</h1>
+
+						<section>
+						<p>
+							签名算法仿真<br><br>
+							我喜欢在丛林里面抢肉吃，因为我是来自真正的底层，当我站在两江交汇之处，我身上流的是劳动人民的血，<b>我太帅咯，</b>爱噶的瑞，<strong>下游戏，</strong>直接就钻进了VIP，<i>我太狂咯，</i>爱噶的哩，<em>看哈你，</em>下苦力只为了买个衣，<sup>我太帅咯，</sup>爱噶的瑞，<sub>下游戏，</sub>直接就钻进了VIP，我太狂咯，<u>爱噶的哩，</u>看哈你，<code>下苦力只为了买个衣</code>
+						</p>
+						</section><br>
+
+						<section>
+							<h2>Operations</h2><br>
+							<form method="get" th:action="@{/signer}">
+								<div class="col-6">
+									<select name="algo" th:value="${algo}">
+										<option value="" th:selected="${algo == null or algo == ''}">请选择</option>
+										<option value="RSA" th:selected="${algo == 'RSA'}">RSA Protocol</option>
+										<option value="ElGamal" th:selected="${algo == 'ElGamal'}">ElGamal Protocol on ECC</option>
+										<option value="DH" th:selected="${algo == 'DH'}">DH Protocol on ECC</option>
+										<option value="Schnorr" th:selected="${algo == 'Schnorr'}">Schnorr Protocol</option>
+										<option value="Schnorr_RFID" th:selected="${algo == 'Schnorr_RFID'}">RFID Schnorr Protocol</option>
+										<option value="Okamoto_RFID" th:selected="${algo == 'Okamoto_RFID'}">RFID Okamoto Protocol</option>
+										<option value="EC_RAC" th:selected="${algo == 'EC_RAC'}">RFID EC-RAC Protocol</option>
+										<option value="ECDLP_RK" th:selected="${algo == 'ECDLP_RK'}">RFID ECDLP-RK Protocol</option>
+										<option value="ECC_ID" th:selected="${algo == 'ECC_ID'}">RFID ECC-ID-Verifier Protocol</option>
+									</select>
+								</div><br>
+								<div class="col-6">
+									<ul class="actions fit">
+										<li><input type="submit" value="Signature Test" class="primary" /></li>
+										<li><a href="/mine" class="button fit">Simple Miner</a></li>
+									</ul>
+								</div>
+							</form>
+
+
+							<h2>Result</h2>
+
+							<div th:each="entry: ${data}">
+								<strong th:text="${entry.key}">Key</strong>:<br>
+								<p th:text="${entry.value}" style="word-wrap: break-word; word-break: break-all; white-space: normal;">Value</p>
+							</div>
+						</section>
+					</div>
+				</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; cia.Arkrypto. All rights reserved.</li><li>Web Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/assets/js/browser.min.js"></script>
+			<script src="/assets/js/breakpoints.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
+
+	</body>
+</html>
