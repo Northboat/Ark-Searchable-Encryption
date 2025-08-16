@@ -42,4 +42,8 @@
 | 20   | DPREKS   | √        |
 | 21   | PREKS    | √        |
 | 22   | HVE      | √        |
+| 23   | RSA      | √        |
+| 24   | Schnorr  | √        |
+| 25   | Elgamal  | √        |
+| 26   | SBS      | √        |
 
