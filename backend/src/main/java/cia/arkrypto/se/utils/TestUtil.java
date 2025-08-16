@@ -1,6 +1,6 @@
 package cia.arkrypto.se.utils;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.crypto.pairing.impl.*;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
@@ -23,21 +23,21 @@ public class TestUtil {
         String file = "test_data/word/2.txt";
         List<String> words = FileUtil.readFileToList(file);
 
-        CipherSystem pauks = new PAUKS(G1, GT, Zr, bp, n);
-        CipherSystem sapauks = new SAPAUKS(G1, GT, Zr, bp, n);
-        CipherSystem dibaeks = new DIBAEKS(G1, GT, Zr, bp, n);
-        CipherSystem pmatch = new PMatch(G1, GT, Zr, bp, n);
-        CipherSystem crima = new CRIMA(G1, GT, Zr, bp, n);
-        CipherSystem tu2cks = new Tu2CKS(G1, GT, Zr, bp, n ,k);
-        CipherSystem tucr = new TuCR(G1, GT, Zr, bp, n);
-        CipherSystem dumse = new DuMSE(G1, GT, Zr, bp, n, q);
-        CipherSystem paeks = new PAEKS(G1, GT, Zr, bp, n);
-        CipherSystem spwse1 = new SPWSE1(G1, GT, Zr, bp, n, G2);
-        CipherSystem spwse2 = new SPWSE2(G1, GT, Zr, bp, n);
-        CipherSystem peks = new PEKS(G1, GT, Zr, bp, n);
-        CipherSystem dpreks = new DPREKS(G1, GT, Zr, bp, n);
-        CipherSystem preks = new PREKS(G1, GT, Zr, bp, n);
-        CipherSystem fipeck = new FIPECK(G1, GT, Zr, bp, n);
+        PairingSystem pauks = new PAUKS(G1, GT, Zr, bp);
+        PairingSystem sapauks = new SAPAUKS(G1, GT, Zr, bp);
+        PairingSystem dibaeks = new DIBAEKS(G1, GT, Zr, bp);
+        PairingSystem pmatch = new PMatch(G1, GT, Zr, bp);
+        PairingSystem crima = new CRIMA(G1, GT, Zr, bp);
+        PairingSystem tu2cks = new Tu2CKS(G1, GT, Zr, bp);
+        PairingSystem tucr = new TuCR(G1, GT, Zr, bp);
+        PairingSystem dumse = new DuMSE(G1, GT, Zr, bp);
+        PairingSystem paeks = new PAEKS(G1, GT, Zr, bp);
+        PairingSystem spwse1 = new SPWSE1(G1, GT, Zr, bp, G2);
+        PairingSystem spwse2 = new SPWSE2(G1, GT, Zr, bp);
+        PairingSystem peks = new PEKS(G1, GT, Zr, bp);
+        PairingSystem dpreks = new DPREKS(G1, GT, Zr, bp);
+        PairingSystem preks = new PREKS(G1, GT, Zr, bp);
+        PairingSystem fipeck = new FIPECK(G1, GT, Zr, bp);
 
 
 
@@ -65,9 +65,9 @@ public class TestUtil {
 
 
         int l = 4;
-        CipherSystem tms = new TMS(G1, GT, Zr, bp, n, l);
-        CipherSystem tbeks = new TBEKS(G1, GT, Zr, bp, n, l);
-        CipherSystem gu2cks = new Gu2CKS(G1, GT, Zr, bp, n, l);
+        PairingSystem tms = new TMS(G1, GT, Zr, bp);
+        PairingSystem tbeks = new TBEKS(G1, GT, Zr, bp);
+        PairingSystem gu2cks = new Gu2CKS(G1, GT, Zr, bp);
         test(tms, "", words, m);
         test(tbeks, "", words, m);
         test(gu2cks, "", words, m);
@@ -83,16 +83,16 @@ public class TestUtil {
         String file = "test_data/word/2.txt";
         List<String> words = FileUtil.readFileToList(file);
 
-        CipherSystem ap = new AP(G1, GT, Zr, bp, n, G2);
-        CipherSystem scf = new SCF(G1, GT, Zr, bp, n);
-        CipherSystem pecks = new PECKS(G1, GT, Zr, bp, n);
+        PairingSystem ap = new AP(G1, GT, Zr, bp, G2);
+        PairingSystem scf = new SCF(G1, GT, Zr, bp);
+        PairingSystem pecks = new PECKS(G1, GT, Zr, bp);
 
-        List<CipherSystem> cipherSystems = new ArrayList<>();
-        cipherSystems.add(scf);
-        cipherSystems.add(ap);
-        cipherSystems.add(pecks);
+        List<PairingSystem> pairingSystems = new ArrayList<>();
+        pairingSystems.add(scf);
+        pairingSystems.add(ap);
+        pairingSystems.add(pecks);
 
-        executorServiceTest(cipherSystems, words, sender, receiver, round);
+        executorServiceTest(pairingSystems, words, sender, receiver, round);
 
         System.out.println("The Time Cost Log in ./time.log");
     }
@@ -100,44 +100,44 @@ public class TestUtil {
 
     public static List<List<Long>> times = new ArrayList<>();
 
-    public static void test(CipherSystem cipherSystem, String word, List<String> words, int m){
-        System.out.println(cipherSystem.getClass() + " test:");
+    public static void test(PairingSystem pairingSystem, String word, List<String> words, int m){
+        System.out.println(pairingSystem.getClass() + " test:");
 
-        Map<String, Object> res = cipherSystem.test(word, words, m);
+        Map<String, Object> res = pairingSystem.test(word, words, m);
 
         long encCost = (long) res.get("EncCost");
         long trapCost = (long) res.get("TrapCost");
         long searchCost = (long) res.get("SearchCost");
 
-        if(cipherSystem.getUpdatable()){
+        if(pairingSystem.getUpdatable()){
             encCost += (long) res.get("ReEncCost");
             trapCost += (long) res.get("ConstTrapCost");
             searchCost += (long) res.get("UpdateSearchCost");
         }
         times.add(Arrays.asList(encCost, trapCost, searchCost));
 
-        System.out.println(cipherSystem.getClass() + " test finished!\n");
+        System.out.println(pairingSystem.getClass() + " test finished!\n");
     }
 
 
     // 简单的多线程测试，数据量太大了，应该能快点
-    public static void executorServiceTest(List<CipherSystem> cipherSystems, List<String> words,
+    public static void executorServiceTest(List<PairingSystem> pairingSystems, List<String> words,
                                            int sender, int receiver, int round){
-        int n = cipherSystems.size();
+        int n = pairingSystems.size();
 
         System.out.println("Thread Pool Start, " + n + " Threads in Total");
 
         // 需要测试的算法数量
         List<List<Long>> times = new ArrayList<>(n);
-        for (CipherSystem system : cipherSystems) {
+        for (PairingSystem system : pairingSystems) {
             System.out.println(system.getClass() + "Test");
             times.add(new ArrayList<>());
         }
         ExecutorService executor = Executors.newFixedThreadPool(n);
         List<Future<List<Long>>> futures = new ArrayList<>();
         // 提交任务
-        for(CipherSystem cipherSystem: cipherSystems){
-            futures.add(executor.submit(() -> cipherSystem.test(words, sender, receiver, round)));
+        for(PairingSystem pairingSystem : pairingSystems){
+            futures.add(executor.submit(() -> pairingSystem.test(words, sender, receiver, round)));
         }
 
         // 获取结果

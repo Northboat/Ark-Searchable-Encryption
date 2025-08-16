@@ -1,23 +1,25 @@
 package cia.arkrypto.se.crypto.pairing.impl;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.utils.BitUtil;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DuMSE extends CipherSystem {
+@Component
+public class DuMSE extends PairingSystem {
 
 
-    int q;
-    public DuMSE(Field G, Field GT, Field Zr, Pairing bp, int n, int q){
-        super(G, GT, Zr, bp, n);
-        this.q = q; // 默认1024
+    @Autowired
+    public DuMSE(Field G1, Field GT, Field Zr, Pairing bp){
+        super(G1, GT, Zr, bp);
     }
 
 
@@ -54,7 +56,7 @@ public class DuMSE extends CipherSystem {
         Element r = randomZ();
 
         // log(q) 位的随机数
-        L = BitUtil.random(this.getZr(), (int)Math.log(q));
+        L = BitUtil.random(this.getZr(), (int)Math.log(getQ()));
 
         // 不知道哪来的参数
         Element p = randomZ(), pr = randomZ();
@@ -75,18 +77,18 @@ public class DuMSE extends CipherSystem {
             Element p1 = pairing(HashUtil.hashZrArr2G(g, w).powZn(p), pk_ss).powZn(sk_o.invert()).getImmutable();
 
             // 没问题
-            C1 = HashUtil.hashGT2ZrWithQ(this.getZr(), p1, (int)Math.log(q)).getImmutable();
+            C1 = HashUtil.hashGT2ZrWithQ(this.getZr(), p1, (int)Math.log(getQ())).getImmutable();
 
             Element p2 = pairing(g.powZn(pr), pk_ss).powZn(sk_o.invert()).getImmutable();
             // 这里有问题捏，只要在某一区间就行 [-6, 24]，太神奇了，Math.log(q) 也行
-            Element p3 = HashUtil.hashGT2ZrWithQ(this.getZr(), p2, (int)Math.log(id.toBigInteger().bitLength() + q + sk_id.toBigInteger().bitLength()));
+            Element p3 = HashUtil.hashGT2ZrWithQ(this.getZr(), p2, (int)Math.log(id.toBigInteger().bitLength() + getQ() + sk_id.toBigInteger().bitLength()));
 
             C3 = BitUtil.xor(this.getZr(), p3, h);
 
         } else {
             C1 = record.get(str);
             Element p1 = pairing(g.powZn(pr), pk_ss).powZn(sk_o.invert()).getImmutable();
-            Element p2 = HashUtil.hashGT2ZrWithQ(this.getZr(), p1, (int)Math.log(id.toBigInteger().bitLength() + q + sk_id.toBigInteger().bitLength()));
+            Element p2 = HashUtil.hashGT2ZrWithQ(this.getZr(), p1, (int)Math.log(id.toBigInteger().bitLength() + getQ() + sk_id.toBigInteger().bitLength()));
             C3 = BitUtil.xor(this.getZr(), p2, h);
             record.put(str, L);
         }
@@ -115,12 +117,12 @@ public class DuMSE extends CipherSystem {
         Element p2 = T_2.powZn(sk_ss).getImmutable();
 
         // 又用到了这个哈希
-        L1 = HashUtil.hashGT2ZrWithQ(this.getZr(), p2.div(p1), (int)Math.log(q)).getImmutable();
+        L1 = HashUtil.hashGT2ZrWithQ(this.getZr(), p2.div(p1), (int)Math.log(getQ())).getImmutable();
 
         Element U1 = pairing(C2, AI_o).powZn(sk_ss).getImmutable();
         Element U2 = C3;
 
-        Element p3 = HashUtil.hashGT2ZrWithQ(this.getZr(), U1.powZn(sk_i), (int)Math.log(q)).getImmutable();
+        Element p3 = HashUtil.hashGT2ZrWithQ(this.getZr(), U1.powZn(sk_i), (int)Math.log(getQ())).getImmutable();
 
         // 异或
         Element Msg = BitUtil.xor(this.getZr(), p3, U2);

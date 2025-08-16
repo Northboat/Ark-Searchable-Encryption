@@ -1,20 +1,24 @@
 package cia.arkrypto.se.crypto.pairing.impl;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
 
-public class SPWSE1 extends CipherSystem {
+@Component
+public class SPWSE1 extends PairingSystem {
 
 
     Field G2;
     Element g1, g2, h, v, r, m;
-    public SPWSE1(Field G1, Field GT, Field Zr, Pairing bp, int n, Field G2){
-        super(G1, GT, Zr, bp, n);
+    @Autowired
+    public SPWSE1(Field G1, Field GT, Field Zr, Pairing bp, Field G2){
+        super(G1, GT, Zr, bp);
         this.G2 = G2;
     }
     public Element[] H, S, T, R;

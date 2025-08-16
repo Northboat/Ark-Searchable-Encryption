@@ -12,13 +12,13 @@ import java.math.BigInteger;
 @Getter
 @Setter
 @Data
-public abstract class CipherSystem implements Auth {
+public abstract class SignatureSystem implements Auth {
 
     Pairing BP;
     Field G1, G2, GT, Zr;
     Boolean sanitizable, updatable;
 
-    public CipherSystem(Pairing BP, Field G1, Field G2, Field GT, Field Zr, Boolean sanitizable, Boolean updatable){
+    public SignatureSystem(Pairing BP, Field G1, Field G2, Field GT, Field Zr, Boolean sanitizable, Boolean updatable){
         this.BP = BP;
         this.G1 = G1;
         this.G2 = G2;

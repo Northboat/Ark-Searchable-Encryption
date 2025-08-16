@@ -1,6 +1,6 @@
 package cia.arkrypto.se.service;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.crypto.pairing.impl.*;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Service
 public class PairingService {
-    private final CipherSystem ap, crima, dibaeks, dpreks, dumse, fipeck, gu2cks, paeks, pauks, pecks, peks, pmatch, preks, sapauks, scf, spwse1, spwse2, tbeks, tms, tu2cks, tucr, hve;
+    private final PairingSystem ap, crima, dibaeks, dpreks, dumse, fipeck, gu2cks, paeks, pauks, pecks, peks, pmatch, preks, sapauks, scf, spwse1, spwse2, tbeks, tms, tu2cks, tucr, hve;
 
     public PairingService(AP ap, CRIMA crima, DIBAEKS dibaeks, DPREKS dpreks, DuMSE dumse, FIPECK fipeck,
                           Gu2CKS gu2cks, PAEKS paeks, PAUKS pauks, PECKS pecks, PEKS peks, PMatch pmatch,

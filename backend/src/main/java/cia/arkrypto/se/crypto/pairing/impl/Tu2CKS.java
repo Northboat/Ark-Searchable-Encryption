@@ -1,23 +1,24 @@
 package cia.arkrypto.se.crypto.pairing.impl;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.utils.AESUtil;
 import cia.arkrypto.se.utils.BitUtil;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
-public class Tu2CKS extends CipherSystem {
-    int k;
-    public Tu2CKS(Field G, Field GT, Field Zr, Pairing bp, int n, int k){
-        super(G, GT, Zr, bp, n);
-        // 取 3
-        this.k = k;
+@Component
+public class Tu2CKS extends PairingSystem {
+    @Autowired
+    public Tu2CKS(Field G1, Field GT, Field Zr, Pairing bp){
+        super(G1, GT, Zr, bp);
     }
     private Element H(String str){
         return HashUtil.hashZrArr2Zr(this.getZr(), HashUtil.hashStr2ZrArr(this.getZr(), str, this.getN())).getImmutable();
@@ -34,7 +35,7 @@ public class Tu2CKS extends CipherSystem {
     private Element f(Element x){
         Element res = t.duplicate();
         // fi 一共 k-1 长，最后一轮 x 的指数将是 k-2+1 = k-1 次，正确的
-        for(int i = 0; i < k-1; i++){
+        for(int i = 0; i < getK()-1; i++){
             Element e = x.duplicate();
             e.pow(new BigInteger(String.valueOf(i+1)));
             res.add(fi[i].mul(e));
@@ -85,7 +86,7 @@ public class Tu2CKS extends CipherSystem {
         sk_kgc = H1(id_kgc).powZn(alpha).getImmutable();
         pk_kgc = H1(id_kgc).getImmutable();
 
-        fi = new Element[k-1];
+        fi = new Element[getK()-1];
         fi[0] = randomZ();
         fi[1] = randomZ();
 
@@ -146,11 +147,11 @@ public class Tu2CKS extends CipherSystem {
     private Element[] sk_u1, sk_u2, sk_u3, pk_u1, pk_u2, pk_u3;
     public void keygen(){
 
-        Element[] delta = new Element[k];
-        Element[] r = new Element[k];
-        Element[] mu = new Element[k];
-        Element[] t = new Element[k];
-        for(int i = 0; i < k; i++){
+        Element[] delta = new Element[getK()];
+        Element[] r = new Element[getK()];
+        Element[] mu = new Element[getK()];
+        Element[] t = new Element[getK()];
+        for(int i = 0; i < getK(); i++){
             t[i] = randomZ();
             mu[i] = randomZ();
             r[i] = randomZ();

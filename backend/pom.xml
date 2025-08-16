@@ -80,6 +80,18 @@
 
     <build>
         <plugins>
+            <!-- 消除Spring 框架在尝试通过反射获取方法参数名称时，发现相关类没有使用 -parameters 编译器选项编译导致的警告 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -111,6 +123,7 @@
                     </archive>
                 </configuration>
             </plugin>
+
         </plugins>
 
         <resources>

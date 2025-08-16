@@ -4,6 +4,8 @@ import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -11,26 +13,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public abstract class CipherSystem implements SearchableEncryption{
+@Getter
+@Setter
+public abstract class PairingSystem implements SearchableEncryption{
     Field G, GT, Zr;
     Pairing bp;
-    int n;
+    int n = 26, l = 4, k = 3, q = 1024;
     boolean updatable;
 
-    public CipherSystem(Field G, Field GT, Field Zr, Pairing bp, int n) {
+    public PairingSystem(Field G, Field GT, Field Zr, Pairing bp) {
         this.G = G;
         this.GT = GT;
         this.Zr = Zr;
         this.bp = bp;
-        this.n = n;
         this.updatable = false;
     }
-    public CipherSystem(Field G, Field GT, Field Zr, Pairing bp, int n, boolean updatable) {
+    public PairingSystem(Field G, Field GT, Field Zr, Pairing bp, boolean updatable) {
         this.G = G;
         this.GT = GT;
         this.Zr = Zr;
         this.bp = bp;
-        this.n = n;
         this.updatable = updatable;
     }
 

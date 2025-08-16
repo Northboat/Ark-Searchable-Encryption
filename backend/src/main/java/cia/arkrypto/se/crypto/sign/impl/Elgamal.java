@@ -1,16 +1,20 @@
 package cia.arkrypto.se.crypto.sign.impl;
 
-import cia.arkrypto.se.crypto.sign.CipherSystem;
+import cia.arkrypto.se.crypto.sign.SignatureSystem;
 import cia.arkrypto.se.model.dto.CryptoMap;
 import cia.arkrypto.se.model.dto.KeyPair;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Field;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public class Elgamal extends CipherSystem {
+@Component
+public class Elgamal extends SignatureSystem {
 
+    @Autowired
     public Elgamal(Field Zr) {
         super(null, null, null, null, Zr, false, false);
     }

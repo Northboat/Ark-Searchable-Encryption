@@ -1,6 +1,6 @@
 package cia.arkrypto.se.service;
 
-import cia.arkrypto.se.crypto.miner.SimpleMiner;
+import cia.arkrypto.se.crypto.mine.SimpleMiner;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

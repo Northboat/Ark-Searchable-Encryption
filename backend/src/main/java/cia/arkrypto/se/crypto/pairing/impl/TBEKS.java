@@ -1,21 +1,23 @@
 package cia.arkrypto.se.crypto.pairing.impl;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
-public class TBEKS extends CipherSystem {
+@Component
+public class TBEKS extends PairingSystem {
 
     Element g, h;
-    int k;
-    public TBEKS(Field G, Field GT, Field Zr, Pairing bp, int n, int k){
-        super(G, GT, Zr, bp, n);
-        this.k = k;
+    @Autowired
+    public TBEKS(Field G1, Field GT, Field Zr, Pairing bp){
+        super(G1, GT, Zr, bp);
     }
 
     // MSK
@@ -59,8 +61,8 @@ public class TBEKS extends CipherSystem {
         w1 = g.powZn(r.div(d)).getImmutable();
         w2 = g.powZn(r.mul(u)).getImmutable();
 
-        R = new Element[k]; D = new Element[k];
-        for(int i = 0; i < k; i++){
+        R = new Element[getK()]; D = new Element[getK()];
+        for(int i = 0; i < getK(); i++){
             Element x = this.getZr().newElement(i+1).getImmutable();
             R[i] = f1(x);
             D[i] = f2(x);

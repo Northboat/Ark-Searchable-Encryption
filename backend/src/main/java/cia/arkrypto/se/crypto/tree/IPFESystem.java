@@ -1,4 +1,4 @@
-package cia.arkrypto.se.crypto.ipfe;
+package cia.arkrypto.se.crypto.tree;
 
 
 import cia.arkrypto.se.model.bo.Ciphertext;

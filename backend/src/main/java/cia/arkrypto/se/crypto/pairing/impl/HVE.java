@@ -1,22 +1,24 @@
 package cia.arkrypto.se.crypto.pairing.impl;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 // Hidden Vector Encryption
-public class HVE extends CipherSystem {
+@Component
+public class HVE extends PairingSystem {
 
 
     private final Element M;
-    private final int l;
-    public HVE(Field G1, Field GT, Field Zr, Pairing BP, int n, int l) {
-        super(G1, GT, Zr, BP, n);
-        this.l = l;
+    @Autowired
+    public HVE(Field G1, Field GT, Field Zr, Pairing BP) {
+        super(G1, GT, Zr, BP);
         M = HashUtil.hashStr2GT(this.getZr(), randomGT(), "test", this.getN());
     }
 
@@ -85,13 +87,13 @@ public class HVE extends CipherSystem {
     Element[] u, h, w, U, H, W;
     @Override
     public void keygen() {
-        u = new Element[l];
-        h = new Element[l];
-        w = new Element[l];
-        U = new Element[l];
-        H = new Element[l];
-        W = new Element[l];
-        for(int i = 0; i < l; i++){
+        u = new Element[getL()];
+        h = new Element[getL()];
+        w = new Element[getL()];
+        U = new Element[getL()];
+        H = new Element[getL()];
+        W = new Element[getL()];
+        for(int i = 0; i < getL(); i++){
             Element t = randomG();
             u[i] = t; U[i] = t;
             t = randomG();
@@ -110,9 +112,9 @@ public class HVE extends CipherSystem {
         C0 = M.mul(pairing(g, g).powZn(a.mul(s))).getImmutable();
         C1 = g.powZn(s).getImmutable();
 
-        C2 = new Element[l];
-        C3 = new Element[l];
-        for(int i = 0; i < l; i++){
+        C2 = new Element[getL()];
+        C3 = new Element[getL()];
+        for(int i = 0; i < getL(); i++){
             Element I = w.charAt(i) == '1' ? getI("1") : getI("0");
             C2[i] = U[i].powZn(I).mul(H[i]).powZn(s).getImmutable();
 //            C2[i] = U[i].powZn(I).mul(H[i]).getImmutable();
@@ -140,11 +142,11 @@ public class HVE extends CipherSystem {
     @Override
     public void trap(String q) {
         T = q;
-        K1 = new Element[l];
-        K2 = new Element[l];
+        K1 = new Element[getL()];
+        K2 = new Element[getL()];
 
         Element c = this.getG().newOneElement();
-        for(int i = 0; i < l; i++){
+        for(int i = 0; i < getL(); i++){
             if(q.charAt(i) != '*'){
                 Element T = q.charAt(i) == '1' ? getI("1") : getI("0");
                 Element r1 = randomZ(), r2 = randomZ();
@@ -173,7 +175,7 @@ public class HVE extends CipherSystem {
 //        System.out.println("cal: " + part1.div(C0));
 
         Element part2 = this.getGT().newOneElement();
-        for(int i = 0; i < l; i++){
+        for(int i = 0; i < getL(); i++){
             if(T.charAt(i) != '*'){
                 Element part3 = pairing(C2[i], K1[i]);
                 Element part4 = pairing(C3[i], K2[i]);

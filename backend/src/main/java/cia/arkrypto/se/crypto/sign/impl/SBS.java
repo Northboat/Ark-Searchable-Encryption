@@ -1,18 +1,23 @@
 package cia.arkrypto.se.crypto.sign.impl;
 
-import cia.arkrypto.se.crypto.sign.CipherSystem;
+import cia.arkrypto.se.crypto.sign.SignatureSystem;
 import cia.arkrypto.se.model.dto.CryptoMap;
 import cia.arkrypto.se.model.dto.KeyPair;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Pairing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 // Sanitizable Blind Signature
 // 可擦除盲签名
-public class SBS extends CipherSystem {
+@Component
+public class SBS extends SignatureSystem {
 
+
+    @Autowired
     public SBS(Pairing BP, Field G1, Field GT, Field Zr) {
         super(BP, G1, null, GT, Zr, true, true);
         g  = randomG1(); // 生成元

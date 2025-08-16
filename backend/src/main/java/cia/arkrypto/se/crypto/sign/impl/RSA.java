@@ -1,18 +1,22 @@
 package cia.arkrypto.se.crypto.sign.impl;
 
-import cia.arkrypto.se.crypto.sign.CipherSystem;
+import cia.arkrypto.se.crypto.sign.SignatureSystem;
 import cia.arkrypto.se.model.dto.CryptoMap;
 import cia.arkrypto.se.model.dto.KeyPair;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Field;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
 
 // JPBC 并不适用，用 BigInteger 手写的
-public class RSA extends CipherSystem {
+@Component
+public class RSA extends SignatureSystem {
 
+    @Autowired
     public RSA(Field Zr) {
         super(null, null, null, null, Zr, false, false);
     }

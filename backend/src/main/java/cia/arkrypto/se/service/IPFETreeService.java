@@ -1,6 +1,6 @@
 package cia.arkrypto.se.service;
 
-import cia.arkrypto.se.crypto.ipfe.EncryptedQuadtree;
+import cia.arkrypto.se.crypto.tree.EncryptedQuadtree;
 import cia.arkrypto.se.model.bo.Point;
 import cia.arkrypto.se.model.bo.QuadtreeNode;
 import org.springframework.beans.factory.annotation.Autowired;

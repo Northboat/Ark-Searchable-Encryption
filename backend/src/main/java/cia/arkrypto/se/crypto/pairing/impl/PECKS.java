@@ -1,11 +1,13 @@
 package cia.arkrypto.se.crypto.pairing.impl;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.utils.HashUtil;
 import cia.arkrypto.se.utils.PolynomialUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,10 +15,12 @@ import java.util.List;
 import java.util.Map;
 
 
-public class PECKS extends CipherSystem {
+@Component
+public class PECKS extends PairingSystem {
 
-    public PECKS(Field G, Field GT, Field Zr, Pairing bp, int n){
-        super(G, GT, Zr, bp, n);
+    @Autowired
+    public PECKS(Field G1, Field GT, Field Zr, Pairing bp){
+        super(G1, GT, Zr, bp);
     }
 
     public Element H(String str){

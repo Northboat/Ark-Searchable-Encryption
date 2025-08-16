@@ -51,27 +51,27 @@ public class CryptoController {
         model.addAttribute("data", data);
         model.addAttribute("word", word);
         model.addAttribute("round", Integer.toString(round));
-        return "simulation";
+        return "pairing";
     }
 
     @GetMapping("/arch")
     public String arch(Model model) {
         model.addAttribute("params", rangedSearchService.params());
-        return "archetype";  // 返回 templates/login.html 页面
+        return "arch";  // 返回 templates/login.html 页面
     }
 
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
     public String auth(Model model) {
         model.addAttribute("params", rangedSearchService.params());
         model.addAttribute("data", rangedSearchService.auth());
-        return "archetype";
+        return "arch";
     }
 
     @RequestMapping(value = "/buildMatrix", method = RequestMethod.GET)
     public String buildMatrix(Model model) {
         model.addAttribute("params", rangedSearchService.params());
         model.addAttribute("data", rangedSearchService.buildMatrix());
-        return "archetype";
+        return "arch";
     }
 
 
@@ -79,7 +79,7 @@ public class CryptoController {
     public String query(Model model) {
         model.addAttribute("params", rangedSearchService.params());
         model.addAttribute("data", rangedSearchService.query());
-        return "archetype";
+        return "arch";
     }
 
 
@@ -98,7 +98,7 @@ public class CryptoController {
     public String mine(Model model) {
         int difficulty = 5;
         model.addAttribute("data", blockChainService.mine(difficulty));
-        return "auth";
+        return "sign";
     }
 
 
@@ -124,7 +124,7 @@ public class CryptoController {
         KeyPair keyPair = authService.keygen(algo);
         if(Objects.isNull(keyPair)){
             model.addAttribute("result", Map.of("error", "algo invalid"));
-            return "auth";
+            return "sign";
         }
 
         CryptoMap signature = authService.sign(algo, "test", keyPair.sk);
@@ -138,7 +138,7 @@ public class CryptoController {
                 "flag", flag
         ));
 
-        return "auth";
+        return "sign";
     }
 
     // 密钥生成

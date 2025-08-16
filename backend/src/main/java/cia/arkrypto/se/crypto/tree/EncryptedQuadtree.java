@@ -1,4 +1,4 @@
-package cia.arkrypto.se.crypto.ipfe;
+package cia.arkrypto.se.crypto.tree;
 
 import cia.arkrypto.se.model.bo.Ciphertext;
 import cia.arkrypto.se.model.bo.Point;
@@ -7,21 +7,25 @@ import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
 @Getter
+@Component
 public class EncryptedQuadtree {
 
     QuadtreeNode root;
     Field G1, Zr;
     int l;
-    public EncryptedQuadtree(Field G1, Field Zr, int l){
+    @Autowired
+    public EncryptedQuadtree(Field G1, Field Zr){
         this.G1 = G1;
         this.Zr = Zr;
-        this.l = l;
+        this.l = 26;
         root = new QuadtreeNode(new Point(0, 0));
         height = 1;
         IPFESystem.setup(G1, Zr, l);

@@ -7,6 +7,8 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 
 import javax.crypto.BadPaddingException;
@@ -17,6 +19,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+
+@Component
 public class RangedSearchArchetype {
 
     @AllArgsConstructor
@@ -35,6 +39,7 @@ public class RangedSearchArchetype {
     private Element g, h;
     private Pairing bp;
 
+    @Autowired
     public RangedSearchArchetype(Field G1, Field GT, Field Zr, Pairing bp){
         this.G1 = G1;
         this.GT = GT;

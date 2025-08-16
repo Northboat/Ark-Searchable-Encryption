@@ -16,9 +16,9 @@ public class RouteController {
         return "index";  // 返回 templates/index.html 页面
     }
 
-    @GetMapping("/sim")
-    public String sim() {
-        return "simulation";  // 返回 templates/login.html 页面
+    @GetMapping("/pairing")
+    public String pairing() {
+        return "pairing";  // 返回 templates/login.html 页面
     }
 
     @GetMapping("/tree")
@@ -27,15 +27,14 @@ public class RouteController {
     }
 
 
-    @RequestMapping(value = "/sim/{algo}", method = RequestMethod.GET)
+    @RequestMapping(value = "/pairing/{algo}", method = RequestMethod.GET)
     public String sim(@PathVariable("algo") String algo, Model model) {
-//        System.out.println(algo);
         model.addAttribute("algo", algo);
-        return "simulation";
+        return "pairing";
     }
 
     @GetMapping("/signature")
     public String signature() {
-        return "auth";  // 返回 templates/login.html 页面
+        return "sign";  // 返回 templates/login.html 页面
     }
 }

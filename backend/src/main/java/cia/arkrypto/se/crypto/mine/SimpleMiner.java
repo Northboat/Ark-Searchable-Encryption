@@ -1,4 +1,6 @@
-package cia.arkrypto.se.crypto.miner;
+package cia.arkrypto.se.crypto.mine;
+
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -6,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+@Component
 public class SimpleMiner {
 
 

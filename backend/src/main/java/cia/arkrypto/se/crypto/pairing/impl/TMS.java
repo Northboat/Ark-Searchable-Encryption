@@ -1,21 +1,23 @@
 package cia.arkrypto.se.crypto.pairing.impl;
 
-import cia.arkrypto.se.crypto.pairing.CipherSystem;
+import cia.arkrypto.se.crypto.pairing.PairingSystem;
 import cia.arkrypto.se.utils.HashUtil;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
-public class TMS extends CipherSystem {
+@Component
+public class TMS extends PairingSystem {
 
     Element g;
-    int k; // 用户个数
-    public TMS(Field G, Field GT, Field Zr, Pairing bp, int n, int k){
-        super(G, GT, Zr, bp, n);
-        this.k = k;
+    @Autowired
+    public TMS(Field G1, Field GT, Field Zr, Pairing bp){
+        super(G1, GT, Zr, bp);
     }
 
     public Element H(List<String> words){
@@ -52,8 +54,8 @@ public class TMS extends CipherSystem {
     private Element[] sk, pk;
     @Override
     public void keygen(){
-        sk = new Element[k]; pk = new Element[k];
-        for(int i = 0; i < k; i++){
+        sk = new Element[getK()]; pk = new Element[getK()];
+        for(int i = 0; i < getK(); i++){
             Element x = this.getZr().newElement(i+1).getImmutable();
             sk[i] = f(x);
             pk[i] = g.powZn(sk[i]).getImmutable();

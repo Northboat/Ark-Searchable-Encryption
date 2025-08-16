@@ -1,10 +1,10 @@
 package cia.arkrypto.se.test;
 
-import cia.arkrypto.se.crypto.ipfe.EncryptedQuadtree;
+import cia.arkrypto.se.crypto.tree.EncryptedQuadtree;
 import cia.arkrypto.se.model.bo.Ciphertext;
 import cia.arkrypto.se.model.bo.Point;
 import cia.arkrypto.se.model.bo.QuadtreeNode;
-import cia.arkrypto.se.crypto.ipfe.IPFESystem;
+import cia.arkrypto.se.crypto.tree.IPFESystem;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
@@ -26,7 +26,7 @@ public class QuadtreeTest {
     // 搜索匹配不上，很难受
     public static void main(String[] args) {
 
-        EncryptedQuadtree tree = new EncryptedQuadtree(G1, Zr, l);
+        EncryptedQuadtree tree = new EncryptedQuadtree(G1, Zr);
 
         tree.build(10);
         System.out.println(tree.getTreeStruct(1));
